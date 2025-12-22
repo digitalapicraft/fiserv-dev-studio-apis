@@ -1,0 +1,733 @@
+openapi: 3.0.0
+info:
+  title: Submit order Transaction
+  version: 1.0.0
+servers:
+  - url: http://localhost
+components:
+  securitySchemes:
+    noauthAuth:
+      type: http
+      scheme: noauth
+tags:
+  - name: Submit order transaction.
+paths:
+  /checkouts/v1/orders:
+    post:
+      tags:
+        - Submit order transaction.
+      summary: Submit order transaction.
+      description: >-
+        Use this API to facilitate processing an alternate payment method <a
+        href="../docs?path=docs/Resources/API-Documents/Checkouts/Checkouts.md">checkout
+        order based</a> transaction.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                order:
+                  intent: AUTHORIZE
+                transactionDetails:
+                  operationType: CREATE
+                paymentMethod:
+                  provider: PAYPAL
+                  type: PAYPAL_WALLET
+                merchantDetails:
+                  merchantId: '100008000003683'
+                  terminalId: '10000001'
+                interactions:
+                  channel: WEB
+                  customerConfirmation: REVIEW_AND_PAY
+                  paymentInitiator: MERCHANT
+                  returnUrls:
+                    successUrl: https://merchantsite.com/checkout-success
+                    cancelUrl: https://merchantsite.com/checkout-cancel
+                amount:
+                  total: 12.04
+                  currency: USD
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Client-Request-Id
+          in: header
+          schema:
+            type: string
+          description: >-
+            A client-generated ID for request tracking and signature creation,
+            unique per request. This is also used for idempotency control.
+            Recommended 128-bit UUID format.
+          example: string
+        - name: Api-Key
+          in: header
+          schema:
+            type: string
+          description: >-
+            API key provided to the merchant associating the requests with the
+            appropriate app in the Developer Portal.
+          example: string
+        - name: Timestamp
+          in: header
+          schema:
+            type: integer
+          description: >-
+            Epoch timestamp in milliseconds in the request from a client system.
+            Used for authorization header generation and time limit (5 minutes).
+          example: '5828'
+        - name: Accept-Language
+          in: header
+          schema:
+            type: string
+          description: >-
+            The Accept Language header contains information about the language
+            preference of a user. This HTTP header is useful to multilingual
+            sites for deciding the best language to serve to the client. For
+            example en-US or fr-CA.
+          example: en-US
+        - name: Auth-Token-Type
+          in: header
+          schema:
+            type: string
+          description: Indicates authorization type HMAC, JWT or AccessToken.
+          example: HMAC
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '201':
+          description: Created
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                example-0:
+                  summary: Create a Checkouts Orders Response
+                  value:
+                    gatewayResponse:
+                      transactionType: ORDER_CREATE
+                      transactionState: CREATED
+                      transactionProcessingDetails:
+                        orderId: CHG015b847f4295dac370f38c0e37f0b62e73
+                        transactionTimestamp: '2025-03-05T06:52:18.561696858Z'
+                        apiTraceId: 73b7546875c740ab9742aadeba149bb5
+                        clientRequestId: '3329403'
+                        transactionId: 73b7546875c740ab9742aadeba149bb5
+                        apiKey: vjG1BCuHLvBqw2Zq3bGSVCYfERAjBwsLW3RIrACmCFuQxXCC
+                    order:
+                      orderId: CHG015b847f4295dac370f38c0e37f0b62e73
+                      intent: AUTHORIZE
+                      orderStatus: PAYER_ACTION_REQUIRED
+                    interactions:
+                      actions:
+                        type: WEB_REDIRECTION
+                        url: >-
+                          https://www.paypal.com/checkoutnow?token=31E784125P529340D
+                example-1:
+                  summary: Authorize a Checkouts Orders Response
+                  value:
+                    gatewayResponse:
+                      transactionType: ORDER_AUTHORIZE
+                      transactionState: AUTHORIZED
+                      transactionProcessingDetails:
+                        orderId: CHG017081ce98f774b0829c6287211081e2ec
+                        transactionTimestamp: '2025-03-05T06:59:58.694840269Z'
+                        apiTraceId: 2889348c880d42bdb64d588b3ffeef9e
+                        clientRequestId: '3903159'
+                        transactionId: 2889348c880d42bdb64d588b3ffeef9e
+                        apiKey: vjG1BCuHLvBqw2Zq3bGSVCYfERAjBwsLW3RIrACmCFuQxXCC
+                    order:
+                      orderId: CHG017081ce98f774b0829c6287211081e2ec
+                      orderStatus: COMPLETED
+                    transaction:
+                      transactionDetails:
+                        transactionType: ORDER_AUTHORIZE
+                        cavvInPrimary: false
+                        paymentReceipt:
+                          approvedAmount:
+                            total: 12.04
+                            currency: USD
+                          processorResponseDetails:
+                            approvalStatus: APPROVED
+                            referenceNumber: 81C041850Y514153H
+                example-2:
+                  summary: Capture a Checkouts Orders Response
+                  value:
+                    gatewayResponse:
+                      transactionType: ORDER_CAPTURE
+                      transactionState: CAPTURED
+                      transactionProcessingDetails:
+                        orderId: CHG013ca2d1309b2276fc16398e2b80544a38
+                        transactionTimestamp: '2025-03-05T07:02:56.341262122Z'
+                        apiTraceId: 6b91e9772ee94064be9218cab461857b
+                        clientRequestId: '7454417'
+                        transactionId: 6b91e9772ee94064be9218cab461857b
+                        apiKey: vjG1BCuHLvBqw2Zq3bGSVCYfERAjBwsLW3RIrACmCFuQxXCC
+                    order:
+                      orderId: CHG013ca2d1309b2276fc16398e2b80544a38
+                    transaction:
+                      transactionDetails:
+                        transactionType: ORDER_CAPTURE
+                        cavvInPrimary: false
+                        paymentReceipt:
+                          processorResponseDetails:
+                            approvalStatus: APPROVED
+                            referenceNumber: 9CG4914070687760B
+                example-3:
+                  summary: Update a Checkouts Orders Response
+                  value:
+                    gatewayResponse:
+                      transactionType: ORDER_UPDATE
+                      transactionState: UPDATED
+                    order:
+                      orderId: CHG015b847f4295dac370f38c0e37f0b62e73
+                      orderStatus: CONFIRMED
+        '400':
+          description: Bad Request
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                example-0:
+                  summary: Create a Checkouts Orders Request
+                  value:
+                    gatewayResponse:
+                      transactionProcessingDetails:
+                        apiTraceId: 7027b61dbf7645399d204dbfa0de0870
+                        clientRequestId: 9bb0664a21fc48e3a1cef1f067fced3f
+                    error:
+                      - type: GATEWAY
+                        code: '105'
+                        field: amount.currency
+                        message: Invalid amount or currency
+                example-1:
+                  summary: Authorize a Checkouts Orders Request
+                  value:
+                    gatewayResponse:
+                      transactionProcessingDetails:
+                        apiTraceId: 7027b61dbf7645399d204dbfa0de0870
+                        clientRequestId: 9bb0664a21fc48e3a1cef1f067fced3f
+                    error:
+                      - type: GATEWAY
+                        code: '105'
+                        field: amount.currency
+                        message: Invalid amount or currency
+                example-2:
+                  summary: Capture a Checkouts Orders Request
+                  value:
+                    gatewayResponse:
+                      transactionProcessingDetails:
+                        apiTraceId: 7027b61dbf7645399d204dbfa0de0870
+                        clientRequestId: 9bb0664a21fc48e3a1cef1f067fced3f
+                    error:
+                      - type: GATEWAY
+                        code: '105'
+                        field: amount.currency
+                        message: Invalid amount or currency
+                example-3:
+                  summary: Update a Checkouts Orders Request
+                  value:
+                    gatewayResponse:
+                      transactionProcessingDetails:
+                        apiTraceId: 7027b61dbf7645399d204dbfa0de0870
+                        clientRequestId: 9bb0664a21fc48e3a1cef1f067fced3f
+                    error:
+                      - type: GATEWAY
+                        code: '105'
+                        field: amount.currency
+                        message: Invalid amount or currency
+        '401':
+          description: Unauthorized
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                example-0:
+                  summary: Create a Checkouts Orders Request
+                  value:
+                    gatewayResponse:
+                      transactionProcessingDetails:
+                        apiTraceId: 7027b61dbf7645399d204dbfa0de0870
+                        clientRequestId: 9bb0664a21fc48e3a1cef1f067fced3f
+                    error:
+                      - type: APIM
+                        message: ApiKey and/or Authentication supplied are invalid.
+                example-1:
+                  summary: Authorize a Checkouts Orders Request
+                  value:
+                    gatewayResponse:
+                      transactionProcessingDetails:
+                        apiTraceId: 7027b61dbf7645399d204dbfa0de0870
+                        clientRequestId: 9bb0664a21fc48e3a1cef1f067fced3f
+                    error:
+                      - type: APIM
+                        message: ApiKey and/or Authentication supplied are invalid.
+                example-2:
+                  summary: Capture a Checkouts Orders Request
+                  value:
+                    gatewayResponse:
+                      transactionProcessingDetails:
+                        apiTraceId: 7027b61dbf7645399d204dbfa0de0870
+                        clientRequestId: 9bb0664a21fc48e3a1cef1f067fced3f
+                    error:
+                      - type: APIM
+                        message: ApiKey and/or Authentication supplied are invalid.
+                example-3:
+                  summary: Update a Checkouts Orders Request
+                  value:
+                    gatewayResponse:
+                      transactionProcessingDetails:
+                        apiTraceId: 7027b61dbf7645399d204dbfa0de0870
+                        clientRequestId: 9bb0664a21fc48e3a1cef1f067fced3f
+                    error:
+                      - type: APIM
+                        message: ApiKey and/or Authentication supplied are invalid.
+        '404':
+          description: Not Found
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                example-0:
+                  summary: Create a Checkouts Orders Request
+                  value:
+                    gatewayResponse:
+                      transactionProcessingDetails:
+                        apiTraceId: 7027b61dbf7645399d204dbfa0de0870
+                        clientRequestId: 9bb0664a21fc48e3a1cef1f067fced3f
+                    error:
+                      - type: APIM
+                        message: Resource not found.
+                example-1:
+                  summary: Authorize a Checkouts Orders Request
+                  value:
+                    gatewayResponse:
+                      transactionProcessingDetails:
+                        apiTraceId: 7027b61dbf7645399d204dbfa0de0870
+                        clientRequestId: 9bb0664a21fc48e3a1cef1f067fced3f
+                    error:
+                      - type: APIM
+                        message: Resource not found.
+                example-2:
+                  summary: Capture a Checkouts Orders Request
+                  value:
+                    gatewayResponse:
+                      transactionProcessingDetails:
+                        apiTraceId: 7027b61dbf7645399d204dbfa0de0870
+                        clientRequestId: 9bb0664a21fc48e3a1cef1f067fced3f
+                    error:
+                      - type: APIM
+                        message: Resource not found.
+                example-3:
+                  summary: Update a Checkouts Orders Request
+                  value:
+                    gatewayResponse:
+                      transactionProcessingDetails:
+                        apiTraceId: 7027b61dbf7645399d204dbfa0de0870
+                        clientRequestId: 9bb0664a21fc48e3a1cef1f067fced3f
+                    error:
+                      - type: APIM
+                        message: Resource not found.
+        '408':
+          description: Request Timeout
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                example-0:
+                  summary: Create a Checkouts Orders Request
+                  value:
+                    gatewayResponse:
+                      transactionProcessingDetails:
+                        apiTraceId: 7027b61dbf7645399d204dbfa0de0870
+                        clientRequestId: 9bb0664a21fc48e3a1cef1f067fced3f
+                    error:
+                      - type: APIM
+                        message: Broken client connectivity.
+                example-1:
+                  summary: Authorize a Checkouts Orders Request
+                  value:
+                    gatewayResponse:
+                      transactionProcessingDetails:
+                        apiTraceId: 7027b61dbf7645399d204dbfa0de0870
+                        clientRequestId: 9bb0664a21fc48e3a1cef1f067fced3f
+                    error:
+                      - type: APIM
+                        message: Broken client connectivity.
+                example-2:
+                  summary: Capture a Checkouts Orders Request
+                  value:
+                    gatewayResponse:
+                      transactionProcessingDetails:
+                        apiTraceId: 7027b61dbf7645399d204dbfa0de0870
+                        clientRequestId: 9bb0664a21fc48e3a1cef1f067fced3f
+                    error:
+                      - type: APIM
+                        message: Broken client connectivity.
+                example-3:
+                  summary: Update a Checkouts Orders Request
+                  value:
+                    gatewayResponse:
+                      transactionProcessingDetails:
+                        apiTraceId: 7027b61dbf7645399d204dbfa0de0870
+                        clientRequestId: 9bb0664a21fc48e3a1cef1f067fced3f
+                    error:
+                      - type: APIM
+                        message: Broken client connectivity.
+        '415':
+          description: Unsupported Media Type
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                example-0:
+                  summary: Create a Checkouts Orders Request
+                  value:
+                    gatewayResponse:
+                      transactionProcessingDetails:
+                        apiTraceId: 7027b61dbf7645399d204dbfa0de0870
+                        clientRequestId: 9bb0664a21fc48e3a1cef1f067fced3f
+                    error:
+                      - type: APIM
+                        message: Media type is not supported.
+                example-1:
+                  summary: Authorize a Checkouts Orders Request
+                  value:
+                    gatewayResponse:
+                      transactionProcessingDetails:
+                        apiTraceId: 7027b61dbf7645399d204dbfa0de0870
+                        clientRequestId: 9bb0664a21fc48e3a1cef1f067fced3f
+                    error:
+                      - type: APIM
+                        message: Media type is not supported.
+                example-2:
+                  summary: Capture a Checkouts Orders Request
+                  value:
+                    gatewayResponse:
+                      transactionProcessingDetails:
+                        apiTraceId: 7027b61dbf7645399d204dbfa0de0870
+                        clientRequestId: 9bb0664a21fc48e3a1cef1f067fced3f
+                    error:
+                      - type: APIM
+                        message: Media type is not supported.
+                example-3:
+                  summary: Update a Checkouts Orders Request
+                  value:
+                    gatewayResponse:
+                      transactionProcessingDetails:
+                        apiTraceId: 7027b61dbf7645399d204dbfa0de0870
+                        clientRequestId: 9bb0664a21fc48e3a1cef1f067fced3f
+                    error:
+                      - type: APIM
+                        message: Media type is not supported.
+        '425':
+          description: Unordered Collection (RFC 3648)
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                example-0:
+                  summary: Create a Checkouts Orders Request
+                  value:
+                    gatewayResponse:
+                      transactionProcessingDetails:
+                        apiTraceId: 7027b61dbf7645399d204dbfa0de0870
+                        clientRequestId: 9bb0664a21fc48e3a1cef1f067fced3f
+                    error:
+                      - type: GATEWAY
+                        message: The request was sent too early.
+                example-1:
+                  summary: Authorize a Checkouts Orders Request
+                  value:
+                    gatewayResponse:
+                      transactionProcessingDetails:
+                        apiTraceId: 7027b61dbf7645399d204dbfa0de0870
+                        clientRequestId: 9bb0664a21fc48e3a1cef1f067fced3f
+                    error:
+                      - type: GATEWAY
+                        message: The request was sent too early.
+                example-2:
+                  summary: Capture a Checkouts Orders Request
+                  value:
+                    gatewayResponse:
+                      transactionProcessingDetails:
+                        apiTraceId: 7027b61dbf7645399d204dbfa0de0870
+                        clientRequestId: 9bb0664a21fc48e3a1cef1f067fced3f
+                    error:
+                      - type: GATEWAY
+                        message: The request was sent too early.
+                example-3:
+                  summary: Update a Checkouts Orders Request
+                  value:
+                    gatewayResponse:
+                      transactionProcessingDetails:
+                        apiTraceId: 7027b61dbf7645399d204dbfa0de0870
+                        clientRequestId: 9bb0664a21fc48e3a1cef1f067fced3f
+                    error:
+                      - type: GATEWAY
+                        message: The request was sent too early.
+        '429':
+          description: Too Many Requests
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                example-0:
+                  summary: Create a Checkouts Orders Request
+                  value:
+                    gatewayResponse:
+                      transactionProcessingDetails:
+                        apiTraceId: 7027b61dbf7645399d204dbfa0de0870
+                        clientRequestId: 9bb0664a21fc48e3a1cef1f067fced3f
+                    error:
+                      - type: APIM
+                        message: Request volume is too high.
+                example-1:
+                  summary: Authorize a Checkouts Orders Request
+                  value:
+                    gatewayResponse:
+                      transactionProcessingDetails:
+                        apiTraceId: 7027b61dbf7645399d204dbfa0de0870
+                        clientRequestId: 9bb0664a21fc48e3a1cef1f067fced3f
+                    error:
+                      - type: APIM
+                        message: Request volume is too high.
+                example-2:
+                  summary: Capture a Checkouts Orders Request
+                  value:
+                    gatewayResponse:
+                      transactionProcessingDetails:
+                        apiTraceId: 7027b61dbf7645399d204dbfa0de0870
+                        clientRequestId: 9bb0664a21fc48e3a1cef1f067fced3f
+                    error:
+                      - type: APIM
+                        message: Request volume is too high.
+                example-3:
+                  summary: Update a Checkouts Orders Request
+                  value:
+                    gatewayResponse:
+                      transactionProcessingDetails:
+                        apiTraceId: 7027b61dbf7645399d204dbfa0de0870
+                        clientRequestId: 9bb0664a21fc48e3a1cef1f067fced3f
+                    error:
+                      - type: APIM
+                        message: Request volume is too high.
+        '500':
+          description: Internal Server Error
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                example-0:
+                  summary: Create a Checkouts Orders Request
+                  value:
+                    gatewayResponse:
+                      transactionProcessingDetails:
+                        apiTraceId: 7027b61dbf7645399d204dbfa0de0870
+                        clientRequestId: 9bb0664a21fc48e3a1cef1f067fced3f
+                      error:
+                        - type: GATEWAY
+                          message: Error sending request to Transarmor.
+                example-1:
+                  summary: Authorize a Checkouts Orders Request
+                  value:
+                    gatewayResponse:
+                      transactionProcessingDetails:
+                        apiTraceId: 7027b61dbf7645399d204dbfa0de0870
+                        clientRequestId: 9bb0664a21fc48e3a1cef1f067fced3f
+                      error:
+                        - type: GATEWAY
+                          message: Error sending request to Transarmor.
+                example-2:
+                  summary: Capture a Checkouts Orders Request
+                  value:
+                    gatewayResponse:
+                      transactionProcessingDetails:
+                        apiTraceId: 7027b61dbf7645399d204dbfa0de0870
+                        clientRequestId: 9bb0664a21fc48e3a1cef1f067fced3f
+                      error:
+                        - type: GATEWAY
+                          message: Error sending request to Transarmor.
+                example-3:
+                  summary: Update a Checkouts Orders Request
+                  value:
+                    gatewayResponse:
+                      transactionProcessingDetails:
+                        apiTraceId: 7027b61dbf7645399d204dbfa0de0870
+                        clientRequestId: 9bb0664a21fc48e3a1cef1f067fced3f
+                      error:
+                        - type: GATEWAY
+                          message: Error sending request to Transarmor.
+        '503':
+          description: Service Unavailable
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                example-0:
+                  summary: Create a Checkouts Orders Request
+                  value:
+                    gatewayResponse:
+                      transactionProcessingDetails:
+                        apiTraceId: 7027b61dbf7645399d204dbfa0de0870
+                        clientRequestId: 9bb0664a21fc48e3a1cef1f067fced3f
+                      error:
+                        - type: APIM
+                          message: Service unavailable.
+                example-1:
+                  summary: Authorize a Checkouts Orders Request
+                  value:
+                    gatewayResponse:
+                      transactionProcessingDetails:
+                        apiTraceId: 7027b61dbf7645399d204dbfa0de0870
+                        clientRequestId: 9bb0664a21fc48e3a1cef1f067fced3f
+                      error:
+                        - type: APIM
+                          message: Service unavailable.
+                example-2:
+                  summary: Capture a Checkouts Orders Request
+                  value:
+                    gatewayResponse:
+                      transactionProcessingDetails:
+                        apiTraceId: 7027b61dbf7645399d204dbfa0de0870
+                        clientRequestId: 9bb0664a21fc48e3a1cef1f067fced3f
+                      error:
+                        - type: APIM
+                          message: Service unavailable.
+                example-3:
+                  summary: Update a Checkouts Orders Request
+                  value:
+                    gatewayResponse:
+                      transactionProcessingDetails:
+                        apiTraceId: 7027b61dbf7645399d204dbfa0de0870
+                        clientRequestId: 9bb0664a21fc48e3a1cef1f067fced3f
+                      error:
+                        - type: APIM
+                          message: Service unavailable.
+        '504':
+          description: Gateway Timeout
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                example-0:
+                  summary: Create a Checkouts Orders Request
+                  value:
+                    gatewayResponse:
+                      transactionProcessingDetails:
+                        apiTraceId: 7027b61dbf7645399d204dbfa0de0870
+                        clientRequestId: 9bb0664a21fc48e3a1cef1f067fced3f
+                      error:
+                        - type: GATEWAY
+                          message: >-
+                            The request timed out while waiting for the
+                            response.
+                example-1:
+                  summary: Authorize a Checkouts Orders Request
+                  value:
+                    gatewayResponse:
+                      transactionProcessingDetails:
+                        apiTraceId: 7027b61dbf7645399d204dbfa0de0870
+                        clientRequestId: 9bb0664a21fc48e3a1cef1f067fced3f
+                      error:
+                        - type: GATEWAY
+                          message: >-
+                            The request timed out while waiting for the
+                            response.
+                example-2:
+                  summary: Capture a Checkouts Orders Request
+                  value:
+                    gatewayResponse:
+                      transactionProcessingDetails:
+                        apiTraceId: 7027b61dbf7645399d204dbfa0de0870
+                        clientRequestId: 9bb0664a21fc48e3a1cef1f067fced3f
+                      error:
+                        - type: GATEWAY
+                          message: >-
+                            The request timed out while waiting for the
+                            response.
+                example-3:
+                  summary: Update a Checkouts Orders Request
+                  value:
+                    gatewayResponse:
+                      transactionProcessingDetails:
+                        apiTraceId: 7027b61dbf7645399d204dbfa0de0870
+                        clientRequestId: 9bb0664a21fc48e3a1cef1f067fced3f
+                      error:
+                        - type: GATEWAY
+                          message: >-
+                            The request timed out while waiting for the
+                            response.

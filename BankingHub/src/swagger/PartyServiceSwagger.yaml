@@ -7,7 +7,8 @@ info:
     Party refers to a person or organization, who has a relationship with the financial institution.
   version: 11.0.0_PRM
 tags:
-  - Party Service
+  - name: Party Service
+    description: APIs related to Party Service
 servers:
   - url: https://bankinghub-cert-fiservapis.azure-api.net/premier-party-service/v1
 paths:
@@ -16,7 +17,7 @@ paths:
       tags:
         - Party Service
       summary: Update Party
-      description: 'Update Party API modifies the information related to the party record.<br>Party refers to a person or organization, who has a relationship with the financial institution.<br>Information related to parties are to be provided in the dedicated Person (if party is a person party) or Organization (if party is an organization) aggregate. Also it is required to sent the final state of the party record in order to make correct updates to party information.<br>For Premier, this API provides the ability to create the new address records for the party and update the existing address information or relate the existing address information to the party. <br> <br> To download the API Specifications and Postman Collection, click <a href="../docs/?path=docs/resources/resources.md" title="Click to open">Resources</a>.'
+      description: Update Party API modifies the information related to the party record
       operationId: UpdateParty
       security:
         - OAuth2ClientCredentials: []
@@ -39,7 +40,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/UpdatePartyResponse'
         default:
-          description: To view the complete list of response codes, <a href="../docs/?path=docs/response-codes.md" title="Click to open">click here.</a>
+          description: Default Response for Update Party
           content:
             application/json:
               schema:
@@ -53,7 +54,7 @@ paths:
       tags:
         - Party Service
       summary: Add Party.
-      description: 'Add Party API creates the new party record.<br>Party refers to a person or organization, who has a relationship with the financial institution.<br>The information about the new party needs to be provided in the dedicated Person (if party is a person party) or Organization (if party is an organization) aggregate. <br> <br> To download the API Specifications and Postman Collection, click <a href="../docs/?path=docs/resources/resources.md" title="Click to open">Resources</a>.'
+      description: Add Party API creates the new party record
       operationId: addParty
       security:
         - OAuth2ClientCredentials: []
@@ -76,7 +77,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/addPartyResponse'
         default:
-          description: To view the complete list of response codes, <a href="../docs/?path=docs/response-codes.md" title="Click to open">click here.</a>
+          description: Default Response for Add Party
           content:
             application/json:
               schema:
@@ -91,7 +92,7 @@ paths:
       tags:
         - Party Service
       summary: Get Party
-      description: 'Get Party API retrieves the information related to the party record.<br>For Premier, this API provides the information on names and addresses, birthdate, gender, issued identifications, tax data, phone numbers and e-mail addresses of the party (person or an organization).<br>The information about the party in the response is provided in the dedicated Person (if party is a person party) or Organization (if party is an organization) aggregate. <br> <br> To download the API Specifications and Postman Collection, click <a href="../docs/?path=docs/resources/resources.md" title="Click to open">Resources</a>.'
+      description: Get Party API retrieves the information related to the party record
       operationId: getPartyInqSecure
       security:
         - OAuth2ClientCredentials: []
@@ -114,7 +115,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/getPartyInqSecureResponse'
         default:
-          description: To view the complete list of response codes, <a href="../docs/?path=docs/response-codes.md" title="Click to open">click here.</a>
+          description: Default Response for Get Party
           content:
             application/json:
               schema:
@@ -129,7 +130,7 @@ paths:
       tags:
         - Party Service
       summary: Get Party List
-      description: 'Get Party List API retrieves the information of the parties as specified in search criteria in a list format.<br>For Premier, this API support multiple search options such as name, address, tax id, date of birth and others. <br> <br> To download the API Specifications and Postman Collection, click <a href="../docs/?path=docs/resources/resources.md" title="Click to open">Resources</a>.'
+      description: Get Party List API retrieves the information of the parties as specified in search criteria in a list format
       operationId: getPartyListInqSecured
       security:
         - OAuth2ClientCredentials: []
@@ -152,7 +153,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/getPartyListInqSecuredResponse'
         default:
-          description: To view the complete list of response codes, <a href="../docs/?path=docs/response-codes.md" title="Click to open">click here.</a>
+          description: Default Response for Get Party List
           content:
             application/json:
               schema:
@@ -344,6 +345,18 @@ components:
           $ref: '#/components/schemas/StatusType'
         PartyStatusRec:
           $ref: '#/components/schemas/addPartyResponse_PartyStatusRec'
+      example:
+        Status:
+          StatusCode: '0'
+          StatusDesc: Success
+          Severity: Info
+          SvcProviderName: Premier
+        PartyStatusRec:
+          PartyKeys:
+            PartyId: '3252039'
+          PartyStatus:
+            PartyStatusCode: Valid
+            EffDt: '2023-06-16T20:55:32.856'
     getPartyInqSecureRequest:
       type: object
       required:
@@ -359,6 +372,199 @@ components:
           $ref: '#/components/schemas/StatusType'
         PartyRec:
           $ref: '#/components/schemas/getPartyInqSecureResponse_PartyRec'
+      example:
+        Status:
+          StatusCode: '0'
+          StatusDesc: Success
+          Severity: Info
+          SvcProviderName: Premier
+        PartyRec:
+          PartyKeys:
+            PartyId: '3252039'
+          PersonPartyInfo:
+            Naics:
+              - '1'
+            PartyPref:
+              Language: Spanish
+            EstablishedDt: '2021-01-09'
+            OriginatingBranch: '2'
+            OriginatingBranchEnumDesc: Premier UAT Branch 2
+            ResponsibleBranch: '2'
+            ResponsibleBranchEnumDesc: Premier UAT Branch 2
+            CreditRisk:
+              - RiskCategory: CreditScore
+                InternalScore: '1'
+              - RiskCategory: RiskScore1
+                InternalScore: '2'
+              - RiskCategory: RiskScore2
+                InternalScore: '3'
+            RelationshipMgr:
+              - RelationshipMgrIdent: '99'
+                RelationshipMgrIdentEnumDesc: ''
+                RelationshipRole: Officer
+              - RelationshipMgrIdent: '51'
+                RelationshipMgrIdentEnumDesc: ''
+                RelationshipRole: ReferralOfficer
+            OEDCode: '9'
+            OEDCodeEnumDesc: ''
+            ClientDefinedData:
+              - DataIdent: '700'
+                DataType: Alpha
+                Value: '100002'
+                DataLength: 40
+                ExpDt: '2022-12-12'
+                Desc: GoldTier ID
+                RequiredFlag: false
+                SearchFlag: false
+              - DataIdent: '89901'
+                DataType: Currency
+                Value: '110102'
+                DataLength: 40
+                ExpDt: '2024-10-11'
+                Desc: Saranda
+                RequiredFlag: false
+                SearchFlag: true
+            PartyType: Partnership
+            TaxDataInfo:
+              TaxIdentType: SSN
+              TaxIdent: '988125678'
+              TaxIdentVerified: false
+              TaxIdentVerifiedDt: '2016-12-28'
+              TaxIdentVerifiedAttempts: 2
+              OtherTaxIdent: ''
+              BNotice1Dt: '2016-12-28'
+              BNotice2Dt: '2016-12-28'
+              ForeignTaxData:
+                ForeignTaxForms: None
+                IncomeCode: '2'
+                TaxRate: 30
+                ExemptionCode: '0'
+                ExceptionCodeEnumDesc: None
+                RecipientStateProv: ''
+                RecipientCountryCode:
+                  CountryCodeSource: IRS
+                  CountryCodeValue: IN
+                RecipientResidenceCountry:
+                  CountryCodeSource: IRS
+                  CountryCodeValue: IN
+                RecipientPostalCode: ''
+                ForeignWithholdingType: None
+                Chapter3Status: '0'
+                Chapter4FATCAStatus: '0'
+                RecipientGIIN: ''
+                W8FormType: W8-BEN-E
+                ForeignCertDt: '2014-12-28'
+                ForeignExpDt: '2019-12-28'
+            DisclosureData:
+              - DisclosureDt: '2022-12-28'
+                DisclosureAckType: '2'
+            NAICS:
+              - '1'
+            WithholdingOption: StateFederalTax
+            WithholdingOptionEnumDesc: Federal & State
+            Retention: true
+            SecretData:
+              - SecretIdent: County
+                SecretIdentEnumDesc: County
+                SecretValue: Broome
+              - SecretIdent: FreeFormMessage
+                SecretIdentEnumDesc: FreeFormMessage
+                SecretValue: 'New York City,NY'
+            LastUpdateDt: '2023-06-16'
+            ExemptOFAC: true
+            PartyOpenMethod: Internet
+            TelebancPswd: '112210'
+            RiskRanking: Medium
+            Reminder:
+              - ReminderCategory: Tickler
+                ReminderInd: false
+            PersonData:
+              Contact:
+                - PostAddr:
+                    OpenDt: '2019-08-17'
+                    RelationshipMgr:
+                      - RelationshipMgrIdent: '0'
+                        RelationshipRole: Officer
+                      - RelationshipMgrIdent: '0'
+                        RelationshipRole: ReferralOfficer
+                    OriginatingBranch: '2'
+                    ResponsibleBranch: '2'
+                    AddressIdent: '2113258'
+                    AddrUse: Business
+                    AddrUseEnumDesc: Business
+                    AddrFormatType: Label
+                    Addr1: 2221 MILLER
+                    Addr2: ''
+                    City: FALLS CITY
+                    StateProv: CA
+                    PostalCode: 68361-1234
+                    CountryCode:
+                      CountryCodeSource: SPCountryCode
+                      CountryCodeValue: '10'
+                      CountryCodeValueEnumDesc: ''
+                    AddrType: Primary
+                    Retention: true
+                    CensusTract: '9'
+                    CensusBlock: '1'
+                    ForeignFlag: true
+                    HandlingCode: '9'
+                    HandlingCodeOption: StatementsNotices
+                    MSACode: 1002
+                - PostAddr:
+                    OpenDt: '2019-08-17'
+                    RelationshipMgr:
+                      - RelationshipMgrIdent: '0'
+                        RelationshipRole: Officer
+                      - RelationshipMgrIdent: '0'
+                        RelationshipRole: ReferralOfficer
+                    OriginatingBranch: '2'
+                    ResponsibleBranch: '2'
+                    AddressIdent: '2113259'
+                    AddrUse: Business
+                    AddrUseEnumDesc: Business
+                    AddrFormatType: Label
+                    Addr1: 1129 G ST
+                    Addr2: ''
+                    City: MILFORD
+                    StateProv: NJ
+                    PostalCode: 68803-1234
+                    CountryCode:
+                      CountryCodeSource: SPCountryCode
+                      CountryCodeValue: '10'
+                      CountryCodeValueEnumDesc: ''
+                    AddrType: Secondary
+                    Retention: true
+                    CensusTract: '9'
+                    CensusBlock: '1'
+                    ForeignFlag: true
+                    HandlingCode: '9'
+                    HandlingCodeOption: StatementsNotices
+                    MSACode: 1002
+              IssuedIdent:
+                - IssuedIdentType: '1'
+                  IssuedIdentTypeEnumDesc: ''
+                  IssuedIdentId: '1'
+                  IssuedIdentValue: DEF8789
+                  Issuer: '22'
+                  IssuerEnumDesc: ''
+                  IssueDt: '2016-12-29'
+                  ExpDt: '2017-01-01'
+              PersonName:
+                - NameType: Primary
+                  NameIdent: '3252039'
+                  FullName: JOSEPH N HOWARD
+                  FamilyName: JOSEPH
+                  GivenName: HOWARD
+                  MiddleName: 'N'
+                  LegalName: ''
+                  NameFormat: None
+            BirthDt: '1929-09-14'
+            Gender: Male
+            ImmigrationStat: '0'
+            Race: '1'
+          PartyStatus:
+            PartyStatusCode: Valid
+            EffDt: '2023-06-16T20:55:52.170'
     getPartyListInqSecuredRequest:
       type: object
       required:
@@ -383,6 +589,1613 @@ components:
 
           items:
             $ref: '#/components/schemas/getPartyListInqSecuredResponse_PartyListRec'
+      example:
+        Status:
+          StatusCode: '0'
+          StatusDesc: Success
+          Severity: Info
+          SvcProviderName: Premier
+        RecCtrlOut:
+          SentRecCount: 25
+          Cursor: '40080'
+        PartyListRec:
+          - PartyKeys:
+              PartyId: '3251984'
+            PersonPartyListInfo:
+              PartyType: Partnership
+              Contact:
+                - PostAddr:
+                    AddressIdent: '2112979'
+                    AddrUse: Business
+                    AddrFormatType: Label
+                    Addr1: 2221 MILLER
+                    Addr2: ''
+                    City: FALLS CITY
+                    StateProv: CA
+                    PostalCode: 68361-1234
+                    CountryCode:
+                      CountryCodeSource: SPCountryCode
+                      CountryCodeValue: '10'
+                    AddrType: Primary
+                    Retention: true
+                    CensusTract: '9'
+                    CensusBlock: '1'
+                    ForeignFlag: true
+                    HandlingCode: '9'
+                    HandlingCodeOption: StatementsNotices
+                    MSACode: 1002
+                - PostAddr:
+                    AddressIdent: '2112980'
+                    AddrUse: Business
+                    AddrFormatType: Label
+                    Addr1: 1129 G ST
+                    Addr2: ''
+                    City: MILFORD
+                    StateProv: NJ
+                    PostalCode: 68803-1234
+                    CountryCode:
+                      CountryCodeSource: SPCountryCode
+                      CountryCodeValue: '10'
+                    AddrType: Secondary
+                    Retention: true
+                    CensusTract: '9'
+                    CensusBlock: '1'
+                    ForeignFlag: true
+                    HandlingCode: '9'
+                    HandlingCodeOption: StatementsNotices
+                    MSACode: 1002
+              TaxIdentType: SSN
+              TaxIdent: '988125678'
+              OriginatingBranch: '2'
+              PersonName:
+                NameType: Primary
+                NameIdent: '3251984'
+                FullName: JOHN N WEST
+                FamilyName: JOHN
+                GivenName: WEST
+                MiddleName: 'N'
+                LegalName: ''
+              BirthDt: '1929-09-14'
+            PartyStatus:
+              PartyStatusCode: Valid
+              EffDt: '2023-06-16T20:59:40.543'
+          - PartyKeys:
+              PartyId: '3251985'
+            PersonPartyListInfo:
+              PartyType: Partnership
+              Contact:
+                - PostAddr:
+                    AddressIdent: '2112983'
+                    AddrUse: Business
+                    AddrFormatType: Label
+                    Addr1: 2221 MILLER
+                    Addr2: ''
+                    City: FALLS CITY
+                    StateProv: CA
+                    PostalCode: 68361-1234
+                    CountryCode:
+                      CountryCodeSource: SPCountryCode
+                      CountryCodeValue: '10'
+                    AddrType: Primary
+                    Retention: true
+                    CensusTract: '9'
+                    CensusBlock: '1'
+                    ForeignFlag: true
+                    HandlingCode: '9'
+                    HandlingCodeOption: StatementsNotices
+                    MSACode: 1002
+                - PostAddr:
+                    AddressIdent: '2112984'
+                    AddrUse: Business
+                    AddrFormatType: Label
+                    Addr1: 1129 G ST
+                    Addr2: ''
+                    City: MILFORD
+                    StateProv: NJ
+                    PostalCode: 68803-1234
+                    CountryCode:
+                      CountryCodeSource: SPCountryCode
+                      CountryCodeValue: '10'
+                    AddrType: Secondary
+                    Retention: true
+                    CensusTract: '9'
+                    CensusBlock: '1'
+                    ForeignFlag: true
+                    HandlingCode: '9'
+                    HandlingCodeOption: StatementsNotices
+                    MSACode: 1002
+              TaxIdentType: SSN
+              TaxIdent: '988125678'
+              OriginatingBranch: '2'
+              PersonName:
+                NameType: Primary
+                NameIdent: '3251985'
+                FullName: JOSEPH N HOWARD
+                FamilyName: JOSEPH
+                GivenName: HOWARD
+                MiddleName: 'N'
+                LegalName: ''
+              BirthDt: '1929-09-14'
+            PartyStatus:
+              PartyStatusCode: Valid
+              EffDt: '2023-06-16T20:59:40.546'
+          - PartyKeys:
+              PartyId: '3251983'
+            PersonPartyListInfo:
+              PartyType: Partnership
+              Contact:
+                - PostAddr:
+                    AddressIdent: '2112977'
+                    AddrUse: Business
+                    AddrFormatType: Label
+                    Addr1: 2221 MILLER
+                    Addr2: ''
+                    City: FALLS CITY
+                    StateProv: CA
+                    PostalCode: 68361-1234
+                    CountryCode:
+                      CountryCodeSource: SPCountryCode
+                      CountryCodeValue: '10'
+                    AddrType: Primary
+                    Retention: true
+                    CensusTract: '9'
+                    CensusBlock: '1'
+                    ForeignFlag: true
+                    HandlingCode: '9'
+                    HandlingCodeOption: StatementsNotices
+                    MSACode: 1002
+                - PostAddr:
+                    AddressIdent: '2112978'
+                    AddrUse: Business
+                    AddrFormatType: Label
+                    Addr1: 1129 G ST
+                    Addr2: ''
+                    City: MILFORD
+                    StateProv: NJ
+                    PostalCode: 68803-1234
+                    CountryCode:
+                      CountryCodeSource: SPCountryCode
+                      CountryCodeValue: '10'
+                    AddrType: Secondary
+                    Retention: true
+                    CensusTract: '9'
+                    CensusBlock: '1'
+                    ForeignFlag: true
+                    HandlingCode: '9'
+                    HandlingCodeOption: StatementsNotices
+                    MSACode: 1002
+              TaxIdentType: SSN
+              TaxIdent: '988125678'
+              OriginatingBranch: '2'
+              PersonName:
+                NameType: Primary
+                NameIdent: '3251983'
+                FullName: JOSEPH N HOWARD
+                FamilyName: JOSEPH
+                GivenName: HOWARD
+                MiddleName: 'N'
+                LegalName: ''
+              BirthDt: '1929-09-14'
+            PartyStatus:
+              PartyStatusCode: Valid
+              EffDt: '2023-06-16T20:59:40.549'
+          - PartyKeys:
+              PartyId: '3251986'
+            PersonPartyListInfo:
+              PartyType: Partnership
+              Contact:
+                - PostAddr:
+                    AddressIdent: '2112985'
+                    AddrUse: Business
+                    AddrFormatType: Label
+                    Addr1: 2221 MILLER
+                    Addr2: ''
+                    City: FALLS CITY
+                    StateProv: CA
+                    PostalCode: 68361-1234
+                    CountryCode:
+                      CountryCodeSource: SPCountryCode
+                      CountryCodeValue: '10'
+                    AddrType: Primary
+                    Retention: true
+                    CensusTract: '9'
+                    CensusBlock: '1'
+                    ForeignFlag: true
+                    HandlingCode: '9'
+                    HandlingCodeOption: StatementsNotices
+                    MSACode: 1002
+                - PostAddr:
+                    AddressIdent: '2112986'
+                    AddrUse: Business
+                    AddrFormatType: Label
+                    Addr1: 1129 G ST
+                    Addr2: ''
+                    City: MILFORD
+                    StateProv: NJ
+                    PostalCode: 68803-1234
+                    CountryCode:
+                      CountryCodeSource: SPCountryCode
+                      CountryCodeValue: '10'
+                    AddrType: Secondary
+                    Retention: true
+                    CensusTract: '9'
+                    CensusBlock: '1'
+                    ForeignFlag: true
+                    HandlingCode: '9'
+                    HandlingCodeOption: StatementsNotices
+                    MSACode: 1002
+              TaxIdentType: SSN
+              TaxIdent: '988125678'
+              OriginatingBranch: '2'
+              PersonName:
+                NameType: Primary
+                NameIdent: '3251986'
+                FullName: JOHN N WEST
+                FamilyName: JOHN
+                GivenName: WEST
+                MiddleName: 'N'
+                LegalName: ''
+              BirthDt: '1929-09-14'
+            PartyStatus:
+              PartyStatusCode: Valid
+              EffDt: '2023-06-16T20:59:40.551'
+          - PartyKeys:
+              PartyId: '3251987'
+            PersonPartyListInfo:
+              PartyType: Partnership
+              Contact:
+                - PostAddr:
+                    AddressIdent: '2112987'
+                    AddrUse: Business
+                    AddrFormatType: Label
+                    Addr1: 2221 MILLER
+                    Addr2: ''
+                    City: FALLS CITY
+                    StateProv: CA
+                    PostalCode: 68361-1234
+                    CountryCode:
+                      CountryCodeSource: SPCountryCode
+                      CountryCodeValue: '10'
+                    AddrType: Primary
+                    Retention: true
+                    CensusTract: '9'
+                    CensusBlock: '1'
+                    ForeignFlag: true
+                    HandlingCode: '9'
+                    HandlingCodeOption: StatementsNotices
+                    MSACode: 1002
+                - PostAddr:
+                    AddressIdent: '2112988'
+                    AddrUse: Business
+                    AddrFormatType: Label
+                    Addr1: 1129 G ST
+                    Addr2: ''
+                    City: MILFORD
+                    StateProv: NJ
+                    PostalCode: 68803-1234
+                    CountryCode:
+                      CountryCodeSource: SPCountryCode
+                      CountryCodeValue: '10'
+                    AddrType: Secondary
+                    Retention: true
+                    CensusTract: '9'
+                    CensusBlock: '1'
+                    ForeignFlag: true
+                    HandlingCode: '9'
+                    HandlingCodeOption: StatementsNotices
+                    MSACode: 1002
+              TaxIdentType: SSN
+              TaxIdent: '988125678'
+              OriginatingBranch: '2'
+              PersonName:
+                NameType: Primary
+                NameIdent: '3251987'
+                FullName: JOHN N WEST
+                FamilyName: JOHN
+                GivenName: WEST
+                MiddleName: 'N'
+                LegalName: ''
+              BirthDt: '1929-09-14'
+            PartyStatus:
+              PartyStatusCode: Valid
+              EffDt: '2023-06-16T20:59:40.552'
+          - PartyKeys:
+              PartyId: '3251988'
+            PersonPartyListInfo:
+              PartyType: Partnership
+              Contact:
+                - PostAddr:
+                    AddressIdent: '2112990'
+                    AddrUse: Business
+                    AddrFormatType: Label
+                    Addr1: 2221 MILLER
+                    Addr2: ''
+                    City: FALLS CITY
+                    StateProv: CA
+                    PostalCode: 68361-1234
+                    CountryCode:
+                      CountryCodeSource: SPCountryCode
+                      CountryCodeValue: '10'
+                    AddrType: Primary
+                    Retention: true
+                    CensusTract: '9'
+                    CensusBlock: '1'
+                    ForeignFlag: true
+                    HandlingCode: '9'
+                    HandlingCodeOption: StatementsNotices
+                    MSACode: 1002
+                - PostAddr:
+                    AddressIdent: '2112991'
+                    AddrUse: Business
+                    AddrFormatType: Label
+                    Addr1: 1129 G ST
+                    Addr2: ''
+                    City: MILFORD
+                    StateProv: NJ
+                    PostalCode: 68803-1234
+                    CountryCode:
+                      CountryCodeSource: SPCountryCode
+                      CountryCodeValue: '10'
+                    AddrType: Secondary
+                    Retention: true
+                    CensusTract: '9'
+                    CensusBlock: '1'
+                    ForeignFlag: true
+                    HandlingCode: '9'
+                    HandlingCodeOption: StatementsNotices
+                    MSACode: 1002
+              TaxIdentType: SSN
+              TaxIdent: '988125678'
+              OriginatingBranch: '2'
+              PersonName:
+                NameType: Primary
+                NameIdent: '3251988'
+                FullName: JOSEPH N HOWARD
+                FamilyName: JOSEPH
+                GivenName: HOWARD
+                MiddleName: 'N'
+                LegalName: ''
+              BirthDt: '1929-09-14'
+            PartyStatus:
+              PartyStatusCode: Valid
+              EffDt: '2023-06-16T20:59:40.554'
+          - PartyKeys:
+              PartyId: '3231572'
+            OrgPartyListInfo:
+              PartyType: Partnership
+              Contact:
+                - Email:
+                    EmailIdent: '10'
+                    EmailType: Business
+                    EmailAddr: cleanenvironmentinc@outlook.com
+                    PreferredEmail: true
+                - PostAddr:
+                    AddressIdent: '2097982'
+                    AddrUse: Business
+                    AddrFormatType: Label
+                    Addr1: 2221 MILLER
+                    Addr2: ''
+                    City: FALLS CITY
+                    StateProv: CA
+                    PostalCode: 68361-1234
+                    CountryCode:
+                      CountryCodeSource: SPCountryCode
+                      CountryCodeValue: '10'
+                    AddrType: Primary
+                    Retention: true
+                    CensusTract: '0'
+                    CensusBlock: '0'
+                    ForeignFlag: true
+                    HandlingCode: ''
+                    HandlingCodeOption: StatementsNoticesChecks
+                    MSACode: 0
+              TaxIdentType: EIN
+              TaxIdent: '988125678'
+              OriginatingBranch: '2'
+              OrgName:
+                NameType: Primary
+                NameIdent: '3231572'
+                Name: Life savers inc
+                LegalName: Lif
+            PartyStatus:
+              PartyStatusCode: Valid
+              EffDt: '2023-06-16T20:59:40.556'
+          - PartyKeys:
+              PartyId: '3252002'
+            PersonPartyListInfo:
+              PartyType: Partnership
+              Contact:
+                - PhoneNum:
+                    PhoneType: Mobile
+                    PhoneIdent: 1
+                    Phone: +00001-402-2190001
+                    PreferredPhone: true
+                    PhoneDesc: Mobile
+                - PhoneNum:
+                    PhoneType: Work
+                    PhoneIdent: 2
+                    Phone: +00001-402-2190002
+                    PreferredPhone: false
+                    PhoneDesc: Work Phone
+                - PhoneNum:
+                    PhoneType: Home
+                    PhoneIdent: 3
+                    Phone: +00001-402-2190003
+                    PreferredPhone: false
+                    PhoneDesc: Home Phone
+                - PhoneNum:
+                    PhoneType: Fax
+                    PhoneIdent: 4
+                    Phone: +00001-402-2190004
+                    PreferredPhone: false
+                    PhoneDesc: Fax
+                - Email:
+                    EmailIdent: '1'
+                    EmailType: PERSON
+                    EmailAddr: X_EMAIL2@HOTMAIL1.COM
+                    PreferredEmail: false
+                - PostAddr:
+                    AddressIdent: '2113039'
+                    AddrUse: Business
+                    AddrFormatType: Label
+                    Addr1: 2221 MILLER
+                    Addr2: ''
+                    City: FALLS CITY
+                    StateProv: CA
+                    PostalCode: 68361-1234
+                    CountryCode:
+                      CountryCodeSource: SPCountryCode
+                      CountryCodeValue: '10'
+                    AddrType: Primary
+                    Retention: true
+                    CensusTract: '9'
+                    CensusBlock: '1'
+                    ForeignFlag: true
+                    HandlingCode: '9'
+                    HandlingCodeOption: StatementsNotices
+                    MSACode: 1002
+                - PostAddr:
+                    AddressIdent: '2113040'
+                    AddrUse: Business
+                    AddrFormatType: Label
+                    Addr1: 1129 G ST
+                    Addr2: ''
+                    City: MILFORD
+                    StateProv: NJ
+                    PostalCode: 68803-1234
+                    CountryCode:
+                      CountryCodeSource: SPCountryCode
+                      CountryCodeValue: '10'
+                    AddrType: Secondary
+                    Retention: true
+                    CensusTract: '9'
+                    CensusBlock: '1'
+                    ForeignFlag: true
+                    HandlingCode: '9'
+                    HandlingCodeOption: StatementsNotices
+                    MSACode: 1002
+              TaxIdentType: SSN
+              TaxIdent: '988125678'
+              OriginatingBranch: '2'
+              PersonName:
+                NameType: Primary
+                NameIdent: '3252002'
+                FullName: JOSEPH N HOWARD
+                FamilyName: JOSEPH
+                GivenName: HOWARD
+                MiddleName: 'N'
+                LegalName: ''
+              BirthDt: '1929-09-14'
+            PartyStatus:
+              PartyStatusCode: Valid
+              EffDt: '2023-06-16T20:59:40.635'
+          - PartyKeys:
+              PartyId: '3252004'
+            PersonPartyListInfo:
+              PartyType: Partnership
+              Contact:
+                - PostAddr:
+                    AddressIdent: '2113052'
+                    AddrUse: Business
+                    AddrFormatType: Label
+                    Addr1: 2221 MILLER
+                    Addr2: ''
+                    City: FALLS CITY
+                    StateProv: CA
+                    PostalCode: 68361-1234
+                    CountryCode:
+                      CountryCodeSource: SPCountryCode
+                      CountryCodeValue: '10'
+                    AddrType: Primary
+                    Retention: true
+                    CensusTract: '9'
+                    CensusBlock: '1'
+                    ForeignFlag: true
+                    HandlingCode: '9'
+                    HandlingCodeOption: StatementsNotices
+                    MSACode: 1002
+                - PostAddr:
+                    AddressIdent: '2113053'
+                    AddrUse: Business
+                    AddrFormatType: Label
+                    Addr1: 1129 G ST
+                    Addr2: ''
+                    City: MILFORD
+                    StateProv: NJ
+                    PostalCode: 68803-1234
+                    CountryCode:
+                      CountryCodeSource: SPCountryCode
+                      CountryCodeValue: '10'
+                    AddrType: Secondary
+                    Retention: true
+                    CensusTract: '9'
+                    CensusBlock: '1'
+                    ForeignFlag: true
+                    HandlingCode: '9'
+                    HandlingCodeOption: StatementsNotices
+                    MSACode: 1002
+              TaxIdentType: SSN
+              TaxIdent: '988125678'
+              OriginatingBranch: '2'
+              PersonName:
+                NameType: Primary
+                NameIdent: '3252004'
+                FullName: JOSEPH N HOWARD
+                FamilyName: JOSEPH
+                GivenName: HOWARD
+                MiddleName: 'N'
+                LegalName: ''
+              BirthDt: '1929-09-14'
+            PartyStatus:
+              PartyStatusCode: Valid
+              EffDt: '2023-06-16T20:59:40.641'
+          - PartyKeys:
+              PartyId: '3252007'
+            PersonPartyListInfo:
+              PartyType: Partnership
+              Contact:
+                - PostAddr:
+                    AddressIdent: '2113058'
+                    AddrUse: Business
+                    AddrFormatType: Label
+                    Addr1: 2221 MILLER
+                    Addr2: ''
+                    City: FALLS CITY
+                    StateProv: CA
+                    PostalCode: 68361-1234
+                    CountryCode:
+                      CountryCodeSource: SPCountryCode
+                      CountryCodeValue: '10'
+                    AddrType: Primary
+                    Retention: true
+                    CensusTract: '9'
+                    CensusBlock: '1'
+                    ForeignFlag: true
+                    HandlingCode: '9'
+                    HandlingCodeOption: StatementsNotices
+                    MSACode: 1002
+                - PostAddr:
+                    AddressIdent: '2113059'
+                    AddrUse: Business
+                    AddrFormatType: Label
+                    Addr1: 1129 G ST
+                    Addr2: ''
+                    City: MILFORD
+                    StateProv: NJ
+                    PostalCode: 68803-1234
+                    CountryCode:
+                      CountryCodeSource: SPCountryCode
+                      CountryCodeValue: '10'
+                    AddrType: Secondary
+                    Retention: true
+                    CensusTract: '9'
+                    CensusBlock: '1'
+                    ForeignFlag: true
+                    HandlingCode: '9'
+                    HandlingCodeOption: StatementsNotices
+                    MSACode: 1002
+              TaxIdentType: SSN
+              TaxIdent: '988125678'
+              OriginatingBranch: '2'
+              PersonName:
+                NameType: Primary
+                NameIdent: '3252007'
+                FullName: JOSEPH N HOWARD
+                FamilyName: JOSEPH
+                GivenName: HOWARD
+                MiddleName: 'N'
+                LegalName: ''
+              BirthDt: '1929-09-14'
+            PartyStatus:
+              PartyStatusCode: Valid
+              EffDt: '2023-06-16T20:59:40.643'
+          - PartyKeys:
+              PartyId: '3252008'
+            PersonPartyListInfo:
+              PartyType: Partnership
+              Contact:
+                - PostAddr:
+                    AddressIdent: '2113066'
+                    AddrUse: Business
+                    AddrFormatType: Label
+                    Addr1: 2221 MILLER
+                    Addr2: ''
+                    City: FALLS CITY
+                    StateProv: CA
+                    PostalCode: 68361-1234
+                    CountryCode:
+                      CountryCodeSource: SPCountryCode
+                      CountryCodeValue: '10'
+                    AddrType: Primary
+                    Retention: true
+                    CensusTract: '9'
+                    CensusBlock: '1'
+                    ForeignFlag: true
+                    HandlingCode: '9'
+                    HandlingCodeOption: StatementsNotices
+                    MSACode: 1002
+                - PostAddr:
+                    AddressIdent: '2113067'
+                    AddrUse: Business
+                    AddrFormatType: Label
+                    Addr1: 1129 G ST
+                    Addr2: ''
+                    City: MILFORD
+                    StateProv: NJ
+                    PostalCode: 68803-1234
+                    CountryCode:
+                      CountryCodeSource: SPCountryCode
+                      CountryCodeValue: '10'
+                    AddrType: Secondary
+                    Retention: true
+                    CensusTract: '9'
+                    CensusBlock: '1'
+                    ForeignFlag: true
+                    HandlingCode: '9'
+                    HandlingCodeOption: StatementsNotices
+                    MSACode: 1002
+              TaxIdentType: SSN
+              TaxIdent: '988125678'
+              OriginatingBranch: '2'
+              PersonName:
+                NameType: Primary
+                NameIdent: '3252008'
+                FullName: JOSEPH N HOWARD
+                FamilyName: JOSEPH
+                GivenName: HOWARD
+                MiddleName: 'N'
+                LegalName: ''
+              BirthDt: '1929-09-14'
+            PartyStatus:
+              PartyStatusCode: Valid
+              EffDt: '2023-06-16T20:59:40.645'
+          - PartyKeys:
+              PartyId: '3252009'
+            PersonPartyListInfo:
+              PartyType: Partnership
+              Contact:
+                - PostAddr:
+                    AddressIdent: '2113079'
+                    AddrUse: Business
+                    AddrFormatType: Label
+                    Addr1: 2221 MILLER
+                    Addr2: ''
+                    City: FALLS CITY
+                    StateProv: CA
+                    PostalCode: 68361-1234
+                    CountryCode:
+                      CountryCodeSource: SPCountryCode
+                      CountryCodeValue: '10'
+                    AddrType: Primary
+                    Retention: true
+                    CensusTract: '9'
+                    CensusBlock: '1'
+                    ForeignFlag: true
+                    HandlingCode: '9'
+                    HandlingCodeOption: StatementsNotices
+                    MSACode: 1002
+                - PostAddr:
+                    AddressIdent: '2113080'
+                    AddrUse: Business
+                    AddrFormatType: Label
+                    Addr1: 1129 G ST
+                    Addr2: ''
+                    City: MILFORD
+                    StateProv: NJ
+                    PostalCode: 68803-1234
+                    CountryCode:
+                      CountryCodeSource: SPCountryCode
+                      CountryCodeValue: '10'
+                    AddrType: Secondary
+                    Retention: true
+                    CensusTract: '9'
+                    CensusBlock: '1'
+                    ForeignFlag: true
+                    HandlingCode: '9'
+                    HandlingCodeOption: StatementsNotices
+                    MSACode: 1002
+              TaxIdentType: SSN
+              TaxIdent: '988125678'
+              OriginatingBranch: '2'
+              PersonName:
+                NameType: Primary
+                NameIdent: '3252009'
+                FullName: JOSEPH N HOWARD
+                FamilyName: JOSEPH
+                GivenName: HOWARD
+                MiddleName: 'N'
+                LegalName: ''
+              BirthDt: '1929-09-14'
+            PartyStatus:
+              PartyStatusCode: Valid
+              EffDt: '2023-06-16T20:59:40.647'
+          - PartyKeys:
+              PartyId: '3252017'
+            PersonPartyListInfo:
+              PartyType: Partnership
+              Contact:
+                - PostAddr:
+                    AddressIdent: '2113110'
+                    AddrUse: Business
+                    AddrFormatType: Label
+                    Addr1: 2221 MILLER
+                    Addr2: ''
+                    City: FALLS CITY
+                    StateProv: CA
+                    PostalCode: 68361-1234
+                    CountryCode:
+                      CountryCodeSource: SPCountryCode
+                      CountryCodeValue: '10'
+                    AddrType: Primary
+                    Retention: true
+                    CensusTract: '9'
+                    CensusBlock: '1'
+                    ForeignFlag: true
+                    HandlingCode: '9'
+                    HandlingCodeOption: StatementsNotices
+                    MSACode: 1002
+                - PostAddr:
+                    AddressIdent: '2113111'
+                    AddrUse: Business
+                    AddrFormatType: Label
+                    Addr1: 1129 G ST
+                    Addr2: ''
+                    City: MILFORD
+                    StateProv: NJ
+                    PostalCode: 68803-1234
+                    CountryCode:
+                      CountryCodeSource: SPCountryCode
+                      CountryCodeValue: '10'
+                    AddrType: Secondary
+                    Retention: true
+                    CensusTract: '9'
+                    CensusBlock: '1'
+                    ForeignFlag: true
+                    HandlingCode: '9'
+                    HandlingCodeOption: StatementsNotices
+                    MSACode: 1002
+              TaxIdentType: SSN
+              TaxIdent: '988125678'
+              OriginatingBranch: '2'
+              PersonName:
+                NameType: Primary
+                NameIdent: '3252017'
+                FullName: JOHN N WEST
+                FamilyName: JOHN
+                GivenName: WEST
+                MiddleName: 'N'
+                LegalName: ''
+              BirthDt: '1929-09-14'
+            PartyStatus:
+              PartyStatusCode: Valid
+              EffDt: '2023-06-16T20:59:40.650'
+          - PartyKeys:
+              PartyId: '3252018'
+            PersonPartyListInfo:
+              PartyType: Partnership
+              Contact:
+                - PostAddr:
+                    AddressIdent: '2113119'
+                    AddrUse: Business
+                    AddrFormatType: Label
+                    Addr1: 2221 MILLER
+                    Addr2: ''
+                    City: FALLS CITY
+                    StateProv: CA
+                    PostalCode: 68361-1234
+                    CountryCode:
+                      CountryCodeSource: SPCountryCode
+                      CountryCodeValue: '10'
+                    AddrType: Primary
+                    Retention: true
+                    CensusTract: '9'
+                    CensusBlock: '1'
+                    ForeignFlag: true
+                    HandlingCode: '9'
+                    HandlingCodeOption: StatementsNotices
+                    MSACode: 1002
+                - PostAddr:
+                    AddressIdent: '2113120'
+                    AddrUse: Business
+                    AddrFormatType: Label
+                    Addr1: 1129 G ST
+                    Addr2: ''
+                    City: MILFORD
+                    StateProv: NJ
+                    PostalCode: 68803-1234
+                    CountryCode:
+                      CountryCodeSource: SPCountryCode
+                      CountryCodeValue: '10'
+                    AddrType: Secondary
+                    Retention: true
+                    CensusTract: '9'
+                    CensusBlock: '1'
+                    ForeignFlag: true
+                    HandlingCode: '9'
+                    HandlingCodeOption: StatementsNotices
+                    MSACode: 1002
+              TaxIdentType: SSN
+              TaxIdent: '988125678'
+              OriginatingBranch: '2'
+              PersonName:
+                NameType: Primary
+                NameIdent: '3252018'
+                FullName: JOSEPH N HOWARD
+                FamilyName: JOSEPH
+                GivenName: HOWARD
+                MiddleName: 'N'
+                LegalName: ''
+              BirthDt: '1929-09-14'
+            PartyStatus:
+              PartyStatusCode: Valid
+              EffDt: '2023-06-16T20:59:40.653'
+          - PartyKeys:
+              PartyId: '3252021'
+            PersonPartyListInfo:
+              PartyType: Partnership
+              Contact:
+                - PostAddr:
+                    AddressIdent: '2113131'
+                    AddrUse: Business
+                    AddrFormatType: Label
+                    Addr1: 2221 MILLER
+                    Addr2: ''
+                    City: FALLS CITY
+                    StateProv: CA
+                    PostalCode: 68361-1234
+                    CountryCode:
+                      CountryCodeSource: SPCountryCode
+                      CountryCodeValue: '10'
+                    AddrType: Primary
+                    Retention: true
+                    CensusTract: '9'
+                    CensusBlock: '1'
+                    ForeignFlag: true
+                    HandlingCode: '9'
+                    HandlingCodeOption: StatementsNotices
+                    MSACode: 1002
+                - PostAddr:
+                    AddressIdent: '2113132'
+                    AddrUse: Business
+                    AddrFormatType: Label
+                    Addr1: 1129 G ST
+                    Addr2: ''
+                    City: MILFORD
+                    StateProv: NJ
+                    PostalCode: 68803-1234
+                    CountryCode:
+                      CountryCodeSource: SPCountryCode
+                      CountryCodeValue: '10'
+                    AddrType: Secondary
+                    Retention: true
+                    CensusTract: '9'
+                    CensusBlock: '1'
+                    ForeignFlag: true
+                    HandlingCode: '9'
+                    HandlingCodeOption: StatementsNotices
+                    MSACode: 1002
+              TaxIdentType: SSN
+              TaxIdent: '988125678'
+              OriginatingBranch: '2'
+              PersonName:
+                NameType: Primary
+                NameIdent: '3252021'
+                FullName: JOHN N WEST
+                FamilyName: JOHN
+                GivenName: WEST
+                MiddleName: 'N'
+                LegalName: ''
+              BirthDt: '1929-09-14'
+            PartyStatus:
+              PartyStatusCode: Valid
+              EffDt: '2023-06-16T20:59:40.655'
+          - PartyKeys:
+              PartyId: '3252020'
+            PersonPartyListInfo:
+              PartyType: Partnership
+              Contact:
+                - PostAddr:
+                    AddressIdent: '2113129'
+                    AddrUse: Business
+                    AddrFormatType: Label
+                    Addr1: 2221 MILLER
+                    Addr2: ''
+                    City: FALLS CITY
+                    StateProv: CA
+                    PostalCode: 68361-1234
+                    CountryCode:
+                      CountryCodeSource: SPCountryCode
+                      CountryCodeValue: '10'
+                    AddrType: Primary
+                    Retention: true
+                    CensusTract: '9'
+                    CensusBlock: '1'
+                    ForeignFlag: true
+                    HandlingCode: '9'
+                    HandlingCodeOption: StatementsNotices
+                    MSACode: 1002
+                - PostAddr:
+                    AddressIdent: '2113130'
+                    AddrUse: Business
+                    AddrFormatType: Label
+                    Addr1: 1129 G ST
+                    Addr2: ''
+                    City: MILFORD
+                    StateProv: NJ
+                    PostalCode: 68803-1234
+                    CountryCode:
+                      CountryCodeSource: SPCountryCode
+                      CountryCodeValue: '10'
+                    AddrType: Secondary
+                    Retention: true
+                    CensusTract: '9'
+                    CensusBlock: '1'
+                    ForeignFlag: true
+                    HandlingCode: '9'
+                    HandlingCodeOption: StatementsNotices
+                    MSACode: 1002
+              TaxIdentType: SSN
+              TaxIdent: '988125678'
+              OriginatingBranch: '2'
+              PersonName:
+                NameType: Primary
+                NameIdent: '3252020'
+                FullName: JOSEPH N HOWARD
+                FamilyName: JOSEPH
+                GivenName: HOWARD
+                MiddleName: 'N'
+                LegalName: ''
+              BirthDt: '1929-09-14'
+            PartyStatus:
+              PartyStatusCode: Valid
+              EffDt: '2023-06-16T20:59:40.657'
+          - PartyKeys:
+              PartyId: '3252019'
+            PersonPartyListInfo:
+              PartyType: Partnership
+              Contact:
+                - PhoneNum:
+                    PhoneType: Mobile
+                    PhoneIdent: 1
+                    Phone: +00001-402-2190001
+                    PreferredPhone: true
+                    PhoneDesc: Mobile
+                - PhoneNum:
+                    PhoneType: Work
+                    PhoneIdent: 2
+                    Phone: +00001-402-2190002
+                    PreferredPhone: false
+                    PhoneDesc: Work Phone
+                - PhoneNum:
+                    PhoneType: Home
+                    PhoneIdent: 3
+                    Phone: +00001-402-2190003
+                    PreferredPhone: false
+                    PhoneDesc: Home Phone
+                - PhoneNum:
+                    PhoneType: Fax
+                    PhoneIdent: 4
+                    Phone: +00001-402-2190004
+                    PreferredPhone: false
+                    PhoneDesc: Fax
+                - Email:
+                    EmailIdent: '1'
+                    EmailType: PERSON
+                    EmailAddr: X_EMAIL2_Modified@HOTMAIL1.COM
+                    PreferredEmail: false
+                - PostAddr:
+                    AddressIdent: '2113127'
+                    AddrUse: Business
+                    AddrFormatType: Label
+                    Addr1: 2221 MILLER
+                    Addr2: ''
+                    City: FALLS CITY
+                    StateProv: CA
+                    PostalCode: 68361-1234
+                    CountryCode:
+                      CountryCodeSource: SPCountryCode
+                      CountryCodeValue: '10'
+                    AddrType: Primary
+                    Retention: true
+                    CensusTract: '9'
+                    CensusBlock: '1'
+                    ForeignFlag: true
+                    HandlingCode: '9'
+                    HandlingCodeOption: StatementsNotices
+                    MSACode: 1002
+                - PostAddr:
+                    AddressIdent: '2113128'
+                    AddrUse: Business
+                    AddrFormatType: Label
+                    Addr1: 1129 G ST
+                    Addr2: ''
+                    City: MILFORD
+                    StateProv: NJ
+                    PostalCode: 68803-1234
+                    CountryCode:
+                      CountryCodeSource: SPCountryCode
+                      CountryCodeValue: '10'
+                    AddrType: Secondary
+                    Retention: true
+                    CensusTract: '9'
+                    CensusBlock: '1'
+                    ForeignFlag: true
+                    HandlingCode: '9'
+                    HandlingCodeOption: StatementsNotices
+                    MSACode: 1002
+              TaxIdentType: SSN
+              TaxIdent: '988125678'
+              OriginatingBranch: '2'
+              PersonName:
+                NameType: Primary
+                NameIdent: '3252019'
+                FullName: JOSEPH N HOWARD
+                FamilyName: JOSEPH
+                GivenName: HOWARD
+                MiddleName: 'N'
+                LegalName: ''
+              BirthDt: '1929-09-14'
+            PartyStatus:
+              PartyStatusCode: Valid
+              EffDt: '2023-06-16T20:59:40.659'
+          - PartyKeys:
+              PartyId: '3252012'
+            PersonPartyListInfo:
+              PartyType: Partnership
+              Contact:
+                - PostAddr:
+                    AddressIdent: '2113090'
+                    AddrUse: Business
+                    AddrFormatType: Label
+                    Addr1: 2221 MILLER
+                    Addr2: ''
+                    City: FALLS CITY
+                    StateProv: CA
+                    PostalCode: 68361-1234
+                    CountryCode:
+                      CountryCodeSource: SPCountryCode
+                      CountryCodeValue: '10'
+                    AddrType: Primary
+                    Retention: true
+                    CensusTract: '9'
+                    CensusBlock: '1'
+                    ForeignFlag: true
+                    HandlingCode: '9'
+                    HandlingCodeOption: StatementsNotices
+                    MSACode: 1002
+                - PostAddr:
+                    AddressIdent: '2113091'
+                    AddrUse: Business
+                    AddrFormatType: Label
+                    Addr1: 1129 G ST
+                    Addr2: ''
+                    City: MILFORD
+                    StateProv: NJ
+                    PostalCode: 68803-1234
+                    CountryCode:
+                      CountryCodeSource: SPCountryCode
+                      CountryCodeValue: '10'
+                    AddrType: Secondary
+                    Retention: true
+                    CensusTract: '9'
+                    CensusBlock: '1'
+                    ForeignFlag: true
+                    HandlingCode: '9'
+                    HandlingCodeOption: StatementsNotices
+                    MSACode: 1002
+              TaxIdentType: SSN
+              TaxIdent: '988125678'
+              OriginatingBranch: '2'
+              PersonName:
+                NameType: Primary
+                NameIdent: '3252012'
+                FullName: JOHN N WEST
+                FamilyName: JOHN
+                GivenName: WEST
+                MiddleName: 'N'
+                LegalName: ''
+              BirthDt: '1929-09-14'
+            PartyStatus:
+              PartyStatusCode: Valid
+              EffDt: '2023-06-16T20:59:40.664'
+          - PartyKeys:
+              PartyId: '3252011'
+            PersonPartyListInfo:
+              PartyType: Partnership
+              Contact:
+                - PostAddr:
+                    AddressIdent: '2113088'
+                    AddrUse: Business
+                    AddrFormatType: Label
+                    Addr1: 2221 MILLER
+                    Addr2: ''
+                    City: FALLS CITY
+                    StateProv: CA
+                    PostalCode: 68361-1234
+                    CountryCode:
+                      CountryCodeSource: SPCountryCode
+                      CountryCodeValue: '10'
+                    AddrType: Primary
+                    Retention: true
+                    CensusTract: '9'
+                    CensusBlock: '1'
+                    ForeignFlag: true
+                    HandlingCode: '9'
+                    HandlingCodeOption: StatementsNotices
+                    MSACode: 1002
+                - PostAddr:
+                    AddressIdent: '2113089'
+                    AddrUse: Business
+                    AddrFormatType: Label
+                    Addr1: 1129 G ST
+                    Addr2: ''
+                    City: MILFORD
+                    StateProv: NJ
+                    PostalCode: 68803-1234
+                    CountryCode:
+                      CountryCodeSource: SPCountryCode
+                      CountryCodeValue: '10'
+                    AddrType: Secondary
+                    Retention: true
+                    CensusTract: '9'
+                    CensusBlock: '1'
+                    ForeignFlag: true
+                    HandlingCode: '9'
+                    HandlingCodeOption: StatementsNotices
+                    MSACode: 1002
+              TaxIdentType: SSN
+              TaxIdent: '988125678'
+              OriginatingBranch: '2'
+              PersonName:
+                NameType: Primary
+                NameIdent: '3252011'
+                FullName: JOSEPH N HOWARD
+                FamilyName: JOSEPH
+                GivenName: HOWARD
+                MiddleName: 'N'
+                LegalName: ''
+              BirthDt: '1929-09-14'
+            PartyStatus:
+              PartyStatusCode: Valid
+              EffDt: '2023-06-16T20:59:40.665'
+          - PartyKeys:
+              PartyId: '3252010'
+            PersonPartyListInfo:
+              PartyType: Partnership
+              Contact:
+                - PhoneNum:
+                    PhoneType: Mobile
+                    PhoneIdent: 1
+                    Phone: +00001-402-2190001
+                    PreferredPhone: true
+                    PhoneDesc: Mobile
+                - PhoneNum:
+                    PhoneType: Work
+                    PhoneIdent: 2
+                    Phone: +00001-402-2190002
+                    PreferredPhone: false
+                    PhoneDesc: Work Phone
+                - PhoneNum:
+                    PhoneType: Home
+                    PhoneIdent: 3
+                    Phone: +00001-402-2190003
+                    PreferredPhone: false
+                    PhoneDesc: Home Phone
+                - PhoneNum:
+                    PhoneType: Fax
+                    PhoneIdent: 4
+                    Phone: +00001-402-2190004
+                    PreferredPhone: false
+                    PhoneDesc: Fax
+                - Email:
+                    EmailIdent: '1'
+                    EmailType: PERSON
+                    EmailAddr: X_EMAIL2_Modified@HOTMAIL1.COM
+                    PreferredEmail: false
+                - PostAddr:
+                    AddressIdent: '2113086'
+                    AddrUse: Business
+                    AddrFormatType: Label
+                    Addr1: 2221 MILLER
+                    Addr2: ''
+                    City: FALLS CITY
+                    StateProv: CA
+                    PostalCode: 68361-1234
+                    CountryCode:
+                      CountryCodeSource: SPCountryCode
+                      CountryCodeValue: '10'
+                    AddrType: Primary
+                    Retention: true
+                    CensusTract: '9'
+                    CensusBlock: '1'
+                    ForeignFlag: true
+                    HandlingCode: '9'
+                    HandlingCodeOption: StatementsNotices
+                    MSACode: 1002
+                - PostAddr:
+                    AddressIdent: '2113087'
+                    AddrUse: Business
+                    AddrFormatType: Label
+                    Addr1: 1129 G ST
+                    Addr2: ''
+                    City: MILFORD
+                    StateProv: NJ
+                    PostalCode: 68803-1234
+                    CountryCode:
+                      CountryCodeSource: SPCountryCode
+                      CountryCodeValue: '10'
+                    AddrType: Secondary
+                    Retention: true
+                    CensusTract: '9'
+                    CensusBlock: '1'
+                    ForeignFlag: true
+                    HandlingCode: '9'
+                    HandlingCodeOption: StatementsNotices
+                    MSACode: 1002
+              TaxIdentType: SSN
+              TaxIdent: '988125678'
+              OriginatingBranch: '2'
+              PersonName:
+                NameType: Primary
+                NameIdent: '3252010'
+                FullName: JOSEPH N HOWARD
+                FamilyName: JOSEPH
+                GivenName: HOWARD
+                MiddleName: 'N'
+                LegalName: ''
+              BirthDt: '1929-09-14'
+            PartyStatus:
+              PartyStatusCode: Valid
+              EffDt: '2023-06-16T20:59:40.667'
+          - PartyKeys:
+              PartyId: '3252015'
+            PersonPartyListInfo:
+              PartyType: Partnership
+              Contact:
+                - PhoneNum:
+                    PhoneType: Mobile
+                    PhoneIdent: 1
+                    Phone: +00001-402-2190001
+                    PreferredPhone: true
+                    PhoneDesc: Mobile
+                - PhoneNum:
+                    PhoneType: Work
+                    PhoneIdent: 2
+                    Phone: +00001-402-2190002
+                    PreferredPhone: false
+                    PhoneDesc: Work Phone
+                - PhoneNum:
+                    PhoneType: Home
+                    PhoneIdent: 3
+                    Phone: +00001-402-2190003
+                    PreferredPhone: false
+                    PhoneDesc: Home Phone
+                - PhoneNum:
+                    PhoneType: Fax
+                    PhoneIdent: 4
+                    Phone: +00001-402-2190004
+                    PreferredPhone: false
+                    PhoneDesc: Fax
+                - Email:
+                    EmailIdent: '1'
+                    EmailType: PERSON
+                    EmailAddr: X_EMAIL2_Modified@HOTMAIL1.COM
+                    PreferredEmail: false
+                - PostAddr:
+                    AddressIdent: '2113106'
+                    AddrUse: Business
+                    AddrFormatType: Label
+                    Addr1: 2221 MILLER
+                    Addr2: ''
+                    City: FALLS CITY
+                    StateProv: CA
+                    PostalCode: 68361-1234
+                    CountryCode:
+                      CountryCodeSource: SPCountryCode
+                      CountryCodeValue: '10'
+                    AddrType: Primary
+                    Retention: true
+                    CensusTract: '9'
+                    CensusBlock: '1'
+                    ForeignFlag: true
+                    HandlingCode: '9'
+                    HandlingCodeOption: StatementsNotices
+                    MSACode: 1002
+                - PostAddr:
+                    AddressIdent: '2113107'
+                    AddrUse: Business
+                    AddrFormatType: Label
+                    Addr1: 1129 G ST
+                    Addr2: ''
+                    City: MILFORD
+                    StateProv: NJ
+                    PostalCode: 68803-1234
+                    CountryCode:
+                      CountryCodeSource: SPCountryCode
+                      CountryCodeValue: '10'
+                    AddrType: Secondary
+                    Retention: true
+                    CensusTract: '9'
+                    CensusBlock: '1'
+                    ForeignFlag: true
+                    HandlingCode: '9'
+                    HandlingCodeOption: StatementsNotices
+                    MSACode: 1002
+              TaxIdentType: SSN
+              TaxIdent: '988125678'
+              OriginatingBranch: '2'
+              PersonName:
+                NameType: Primary
+                NameIdent: '3252015'
+                FullName: JOSEPH N HOWARD
+                FamilyName: JOSEPH
+                GivenName: HOWARD
+                MiddleName: 'N'
+                LegalName: ''
+              BirthDt: '1929-09-14'
+            PartyStatus:
+              PartyStatusCode: Valid
+              EffDt: '2023-06-16T20:59:40.672'
+          - PartyKeys:
+              PartyId: '3252016'
+            PersonPartyListInfo:
+              PartyType: Partnership
+              Contact:
+                - PostAddr:
+                    AddressIdent: '2113108'
+                    AddrUse: Business
+                    AddrFormatType: Label
+                    Addr1: 2221 MILLER
+                    Addr2: ''
+                    City: FALLS CITY
+                    StateProv: CA
+                    PostalCode: 68361-1234
+                    CountryCode:
+                      CountryCodeSource: SPCountryCode
+                      CountryCodeValue: '10'
+                    AddrType: Primary
+                    Retention: true
+                    CensusTract: '9'
+                    CensusBlock: '1'
+                    ForeignFlag: true
+                    HandlingCode: '9'
+                    HandlingCodeOption: StatementsNotices
+                    MSACode: 1002
+                - PostAddr:
+                    AddressIdent: '2113109'
+                    AddrUse: Business
+                    AddrFormatType: Label
+                    Addr1: 1129 G ST
+                    Addr2: ''
+                    City: MILFORD
+                    StateProv: NJ
+                    PostalCode: 68803-1234
+                    CountryCode:
+                      CountryCodeSource: SPCountryCode
+                      CountryCodeValue: '10'
+                    AddrType: Secondary
+                    Retention: true
+                    CensusTract: '9'
+                    CensusBlock: '1'
+                    ForeignFlag: true
+                    HandlingCode: '9'
+                    HandlingCodeOption: StatementsNotices
+                    MSACode: 1002
+              TaxIdentType: SSN
+              TaxIdent: '988125678'
+              OriginatingBranch: '2'
+              PersonName:
+                NameType: Primary
+                NameIdent: '3252016'
+                FullName: JOSEPH N HOWARD
+                FamilyName: JOSEPH
+                GivenName: HOWARD
+                MiddleName: 'N'
+                LegalName: ''
+              BirthDt: '1929-09-14'
+            PartyStatus:
+              PartyStatusCode: Valid
+              EffDt: '2023-06-16T20:59:40.677'
+          - PartyKeys:
+              PartyId: '3252013'
+            PersonPartyListInfo:
+              PartyType: Partnership
+              Contact:
+                - PostAddr:
+                    AddressIdent: '2113098'
+                    AddrUse: Business
+                    AddrFormatType: Label
+                    Addr1: 2221 MILLER
+                    Addr2: ''
+                    City: FALLS CITY
+                    StateProv: CA
+                    PostalCode: 68361-1234
+                    CountryCode:
+                      CountryCodeSource: SPCountryCode
+                      CountryCodeValue: '10'
+                    AddrType: Primary
+                    Retention: true
+                    CensusTract: '9'
+                    CensusBlock: '1'
+                    ForeignFlag: true
+                    HandlingCode: '9'
+                    HandlingCodeOption: StatementsNotices
+                    MSACode: 1002
+                - PostAddr:
+                    AddressIdent: '2113099'
+                    AddrUse: Business
+                    AddrFormatType: Label
+                    Addr1: 1129 G ST
+                    Addr2: ''
+                    City: MILFORD
+                    StateProv: NJ
+                    PostalCode: 68803-1234
+                    CountryCode:
+                      CountryCodeSource: SPCountryCode
+                      CountryCodeValue: '10'
+                    AddrType: Secondary
+                    Retention: true
+                    CensusTract: '9'
+                    CensusBlock: '1'
+                    ForeignFlag: true
+                    HandlingCode: '9'
+                    HandlingCodeOption: StatementsNotices
+                    MSACode: 1002
+              TaxIdentType: SSN
+              TaxIdent: '988125678'
+              OriginatingBranch: '2'
+              PersonName:
+                NameType: Primary
+                NameIdent: '3252013'
+                FullName: JOSEPH N HOWARD
+                FamilyName: JOSEPH
+                GivenName: HOWARD
+                MiddleName: 'N'
+                LegalName: ''
+              BirthDt: '1929-09-14'
+            PartyStatus:
+              PartyStatusCode: Valid
+              EffDt: '2023-06-16T20:59:40.678'
+          - PartyKeys:
+              PartyId: '3252025'
+            PersonPartyListInfo:
+              PartyType: Partnership
+              Contact:
+                - PostAddr:
+                    AddressIdent: '2113151'
+                    AddrUse: Business
+                    AddrFormatType: Label
+                    Addr1: 2221 MILLER
+                    Addr2: ''
+                    City: FALLS CITY
+                    StateProv: CA
+                    PostalCode: 68361-1234
+                    CountryCode:
+                      CountryCodeSource: SPCountryCode
+                      CountryCodeValue: '10'
+                    AddrType: Primary
+                    Retention: true
+                    CensusTract: '9'
+                    CensusBlock: '1'
+                    ForeignFlag: true
+                    HandlingCode: '9'
+                    HandlingCodeOption: StatementsNotices
+                    MSACode: 1002
+                - PostAddr:
+                    AddressIdent: '2113152'
+                    AddrUse: Business
+                    AddrFormatType: Label
+                    Addr1: 1129 G ST
+                    Addr2: ''
+                    City: MILFORD
+                    StateProv: NJ
+                    PostalCode: 68803-1234
+                    CountryCode:
+                      CountryCodeSource: SPCountryCode
+                      CountryCodeValue: '10'
+                    AddrType: Secondary
+                    Retention: true
+                    CensusTract: '9'
+                    CensusBlock: '1'
+                    ForeignFlag: true
+                    HandlingCode: '9'
+                    HandlingCodeOption: StatementsNotices
+                    MSACode: 1002
+              TaxIdentType: SSN
+              TaxIdent: '988125678'
+              OriginatingBranch: '2'
+              PersonName:
+                NameType: Primary
+                NameIdent: '3252025'
+                FullName: JOHN N WEST
+                FamilyName: JOHN
+                GivenName: WEST
+                MiddleName: 'N'
+                LegalName: ''
+              BirthDt: '1929-09-14'
+            PartyStatus:
+              PartyStatusCode: Valid
+              EffDt: '2023-06-16T20:59:40.680'
+          - PartyKeys:
+              PartyId: '3252024'
+            PersonPartyListInfo:
+              PartyType: Partnership
+              Contact:
+                - PostAddr:
+                    AddressIdent: '2113149'
+                    AddrUse: Business
+                    AddrFormatType: Label
+                    Addr1: 2221 MILLER
+                    Addr2: ''
+                    City: FALLS CITY
+                    StateProv: CA
+                    PostalCode: 68361-1234
+                    CountryCode:
+                      CountryCodeSource: SPCountryCode
+                      CountryCodeValue: '10'
+                    AddrType: Primary
+                    Retention: true
+                    CensusTract: '9'
+                    CensusBlock: '1'
+                    ForeignFlag: true
+                    HandlingCode: '9'
+                    HandlingCodeOption: StatementsNotices
+                    MSACode: 1002
+                - PostAddr:
+                    AddressIdent: '2113150'
+                    AddrUse: Business
+                    AddrFormatType: Label
+                    Addr1: 1129 G ST
+                    Addr2: ''
+                    City: MILFORD
+                    StateProv: NJ
+                    PostalCode: 68803-1234
+                    CountryCode:
+                      CountryCodeSource: SPCountryCode
+                      CountryCodeValue: '10'
+                    AddrType: Secondary
+                    Retention: true
+                    CensusTract: '9'
+                    CensusBlock: '1'
+                    ForeignFlag: true
+                    HandlingCode: '9'
+                    HandlingCodeOption: StatementsNotices
+                    MSACode: 1002
+              TaxIdentType: SSN
+              TaxIdent: '988125678'
+              OriginatingBranch: '2'
+              PersonName:
+                NameType: Primary
+                NameIdent: '3252024'
+                FullName: JOSEPH N HOWARD
+                FamilyName: JOSEPH
+                GivenName: HOWARD
+                MiddleName: 'N'
+                LegalName: ''
+              BirthDt: '1929-09-14'
+            PartyStatus:
+              PartyStatusCode: Valid
+              EffDt: '2023-06-16T20:59:40.681'
     UpdatePartyRequest:
       type: object
       required:
@@ -436,43 +2249,24 @@ components:
     UpdatePartyResponse:
       required:
         - PartyStatusRec
+        - Status
       properties:
         Status:
           $ref: '#/components/schemas/StatusType'
         PartyStatusRec:
           $ref: '#/components/schemas/UpdatePartyResponse_PartyStatusRec'
-    OvrdExceptionDataType:
-      title: OvrdExceptionDataType
-      type: object
-      properties:
-        OvrdAutoAckInd:
-          type: boolean
-          description: Flag to indicate if the exceptions should be auto-acknowledged by the system. If this value is set to True, then any exception that can be overridden will be automatically acknowledged by the system and exceptions that cannot be overridden will be returned in the Status aggregate of the response message.
-      description: Details of the exceptions that can be manually acknowledged by the client.
-    OverrideExceptionType:
-      title: OverrideExceptionType
-      type: object
-      properties:
-        SubjectRole:
-          type: string
-          description: Role of the subject who is overriding the exception.
-        SubjectIdent:
-          maxLength: 36
-          type: string
-          description: Subject identification value to identify the subject who is overriding the exception.
-        OvrdExceptionCode:
-          maxLength: 40
-          type: string
-          description: Override exception code to be overridden. This can be the ServerStatusCode from the Message Status section.
-        OvrdElement:
-          $ref: '#/components/schemas/OvrdElementType'
-    OvrdElementType:
-      title: OvrdElementType
-      type: object
-      description: Information about the elements that corresponds to the override exception code.
-      allOf:
-        - $ref: '#/components/schemas/SubjectElementType'
-        - type: object
+      example:
+        Status:
+          StatusCode: '0'
+          StatusDesc: 'Success'
+          Severity: 'Info'
+          SvcProviderName: 'Premier'
+        PartyStatusRec:
+          PartyKeys:
+            PartyId: '3252039'
+          PartyStatus:
+            PartyStatusCode: 'Valid'
+            EffDt: '2023-06-16T20:56:03.780'
     SubjectElementType:
       title: SubjectElementType
       type: object
@@ -763,21 +2557,19 @@ components:
         IncomeCode:
           maxLength: 2
           type: string
-          description: Income code of the foreign tax as per IRS data. For more information visit <a href"https://www.irs.gov/" title="Click to open" target="_blank">IRS official website</a>.
+          description: Income code of the foreign tax as per IRS data.
         TaxRate:
           type: number
-          description: Tax rate of the foreign tax as per IRS data. For more information visit <a href"https://www.irs.gov/" title="Click to open" target="_blank">IRS official website</a>.
+          description: Tax rate of the foreign tax as per IRS data.
         ExemptionCode:
           maxLength: 2
           type: string
-          description: "Exemption code of the foreign tax as per IRS data. \n\nFor more information visit <a href\"https://www.irs.gov/\" title=\"Click to open\" target=\"_blank\">IRS official website</a>."
+          description: Exemption code of the foreign tax as per IRS data.
         RecipientStateProv:
           maxLength: 32
           type: string
           description: |-
-            State province name as per <a href="https://en.wikipedia.org/wiki/ISO_3166-2:US" title="Click to open" target="_blank" >ISO 3166-2:US codes</a>.
-
-            **Note:** Maximum length: two characters.
+            State province name
         RecipientCountryCode:
           $ref: '#/components/schemas/addPartyRequest_PersonPartyInfo_TaxDataInfo_ForeignTaxData_RecipientCountryCode'
         RecipientResidenceCountry:
@@ -1080,17 +2872,7 @@ components:
         StateProv:
           type: string
           description: |-
-            State province name as per <a href="https://en.wikipedia.org/wiki/ISO_3166-2:US" title="Click to open" target="_blank" >ISO 3166-2:US codes</a>.
-
-            **Note:** *Conditionally Required field*
-
-
-
-            Provide this field is new address record is to created and country is United States.
-
-
-
-            Format of value in this field is not required to be in ISO 3166-2 standard and ESF will pass all the values irrespective of format.
+            State province name
         PostalCode:
           maxLength: 11
           type: string
@@ -1530,7 +3312,6 @@ components:
           items:
             $ref: '#/components/schemas/addPartyRequest_PersonPartyInfo_DisclosureData'
         NAICS:
-          maxLength: 6
           type: array
           description: Six-digit North American Industry Classification System (NAICS) code used to indicate the type of customer based upon standard government definitions.
           items: {}
@@ -1745,10 +3526,10 @@ components:
         IncomeCode:
           maxLength: 2
           type: string
-          description: Income code of the foreign tax as per IRS data. For more information visit <a href"https://www.irs.gov/" title="Click to open" target="_blank">IRS official website</a>.
+          description: Income code of the foreign tax as per IRS data.
         TaxRate:
           type: number
-          description: Tax rate of the foreign tax as per IRS data. For more information visit <a href"https://www.irs.gov/" title="Click to open" target="_blank">IRS official website</a>.
+          description: Tax rate of the foreign tax as per IRS data
         RecipientCode:
           maxLength: 2
           type: string
@@ -1757,9 +3538,7 @@ components:
           maxLength: 32
           type: string
           description: |-
-            State province name as per <a href="https://en.wikipedia.org/wiki/ISO_3166-2:US" title="Click to open" target="_blank" >ISO 3166-2:US codes</a>.
-
-            **Note:** Maximum length: Two characters
+            State province name
         RecipientCountryCode:
           $ref: '#/components/schemas/addPartyRequest_PersonPartyInfo_TaxDataInfo_ForeignTaxData_RecipientCountryCode'
         RecipientResidenceCountry:
@@ -2013,19 +3792,7 @@ components:
         StateProv:
           type: string
           description: |-
-            State province name as per <a href="https://en.wikipedia.org/wiki/ISO_3166-2:US" title="Click to open" target="_blank" >ISO 3166-2:US codes</a>.
-
-            **Note:** *Conditionally Required field*
-
-
-
-            Required if new address record is created and the address country is United States.
-
-
-
-            The format is not required to be ISO 3166-2 for this field and any value sent in the core will be passed irrespective of the format.
-
-            For example: FI, VA etc.
+            State province name
         PostalCode:
           maxLength: 11
           type: string
@@ -2406,7 +4173,6 @@ components:
           items:
             $ref: '#/components/schemas/addPartyRequest_PersonPartyInfo_DisclosureData'
         NAICS:
-          maxLength: 6
           type: array
           description: Six-digit North American Industry Classification System (NAICS) code used to indicate the type of customer based upon standard government definitions.
           items: {}
@@ -2477,6 +4243,7 @@ components:
     addPartyResponse_PartyStatusRec_PartyStatus:
       required:
         - PartyStatusCode
+        - EffDt
       type: object
       properties:
         PartyStatusCode:
@@ -2487,6 +4254,7 @@ components:
         EffDt:
           pattern: '[0-9]{4}-[0-9]{2}-[0-9]{2}(T[0-9]{2}:[0-9]{2}(:[0-9]{2}(\.[0-9]{3})?((-|\+)[0-9]{2}:[0-9]{2})?)?)?'
           type: string
+          example: '2023-06-16T20:56:03.780'
           description: "Effective date and time when the party status is changed. \n\n\n\nFormat: yyyy-MM-ddTHH:mm:ss.SSS\n\nExample: 2021-01-31T23:59:59.999"
       description: |+
         Details of the party status.
@@ -2660,19 +4428,15 @@ components:
           maxLength: 2
           type: string
           description: |-
-            Income code of the foreign tax as per IRS data. For more information visit <a href"https://www.irs.gov/" title="Click to open" target="_blank">IRS official website</a>.
-
-            **Note:** Values are user-defined.
+            Income code of the foreign tax as per IRS data.
         TaxRate:
           type: number
           description: |-
-            Tax rate of the foreign tax as per IRS data. For more information visit <a href"https://www.irs.gov/" title="Click to open" target="_blank">IRS official website</a>.
-
-            **Note:** Value of the tax rate entered is sent in the core but it is compared with the current rates defined for the IRS form 1042-S.
+            Tax rate of the foreign tax as per IRS data.
         ExemptionCode:
           maxLength: 2
           type: string
-          description: "Exemption code of the foreign tax as per IRS data. \n\nFor more information visit <a href\"https://www.irs.gov/\" title=\"Click to open\" target=\"_blank\">IRS official website</a>.\n\n**Note:** Values are user-defined."
+          description: Exemption code of the foreign tax as per IRS data.
         ExceptionCodeEnumDesc:
           maxLength: 80
           type: string
@@ -2680,7 +4444,7 @@ components:
         RecipientStateProv:
           maxLength: 32
           type: string
-          description: State province name as per <a href="https://en.wikipedia.org/wiki/ISO_3166-2:US" title="Click to open" target="_blank" >ISO 3166-2:US codes</a>.
+          description: State province name
         RecipientCountryCode:
           $ref: '#/components/schemas/getPartyInqSecureResponse_PartyRec_PersonPartyInfo_TaxDataInfo_ForeignTaxData_RecipientCountryCode'
         RecipientResidenceCountry:
@@ -3020,7 +4784,7 @@ components:
           description: Name of the city.
         StateProv:
           type: string
-          description: State province name as per <a href="https://en.wikipedia.org/wiki/ISO_3166-2:US" title="Click to open" target="_blank" >ISO 3166-2:US codes</a>.
+          description: State province name
         PostalCode:
           maxLength: 11
           type: string
@@ -3361,7 +5125,6 @@ components:
           items:
             $ref: '#/components/schemas/getPartyInqSecureResponse_PartyRec_PersonPartyInfo_DisclosureData'
         NAICS:
-          maxLength: 6
           type: array
           description: Six-digit North American Industry Classification System (NAICS) code used to indicate the type of customer based upon standard government definitions.
           items: {}
@@ -3588,16 +5351,14 @@ components:
           maxLength: 2
           type: string
           description: |-
-            Income code of the foreign tax as per IRS data. For more information visit <a href"https://www.irs.gov/" title="Click to open" target="_blank">IRS official website</a>.
-
-            **Note:** Values are user-defined.
+            Income code of the foreign tax as per IRS data
         TaxRate:
           type: number
-          description: Tax rate of the foreign tax as per IRS data. For more information visit <a href"https://www.irs.gov/" title="Click to open" target="_blank">IRS official website</a>.
+          description: Tax rate of the foreign tax as per IRS data.
         ExemptionCode:
           maxLength: 2
           type: string
-          description: "Exemption code of the foreign tax as per IRS data. \n\nFor more information visit <a href\"https://www.irs.gov/\" title=\"Click to open\" target=\"_blank\">IRS official website</a>.\n\n**Note:** Values are client defined."
+          description: Exemption code of the foreign tax as per IRS data.
         ExceptionCodeEnumDesc:
           maxLength: 80
           type: string
@@ -3605,7 +5366,7 @@ components:
         RecipientStateProv:
           maxLength: 32
           type: string
-          description: State province name as per <a href="https://en.wikipedia.org/wiki/ISO_3166-2:US" title="Click to open" target="_blank" >ISO 3166-2:US codes</a>.
+          description: State province namepen" target="_blank" >ISO 3166-2:US codes</a>.
         RecipientCountryCode:
           $ref: '#/components/schemas/getPartyInqSecureResponse_PartyRec_PersonPartyInfo_TaxDataInfo_ForeignTaxData_RecipientCountryCode'
         RecipientResidenceCountry:
@@ -3890,7 +5651,7 @@ components:
           description: Name of the city.
         StateProv:
           type: string
-          description: State province name as per <a href="https://en.wikipedia.org/wiki/ISO_3166-2:US" title="Click to open" target="_blank" >ISO 3166-2:US codes</a>.
+          description: State province name
         PostalCode:
           maxLength: 11
           type: string
@@ -4192,7 +5953,6 @@ components:
           items:
             $ref: '#/components/schemas/getPartyInqSecureResponse_PartyRec_PersonPartyInfo_DisclosureData'
         NAICS:
-          maxLength: 6
           type: array
           description: Six-digit North American Industry Classification System (NAICS) code used to indicate the type of customer based upon standard government definitions.
           items: {}
@@ -4362,9 +6122,7 @@ components:
         StateProv:
           type: string
           description: |-
-            State province name as per <a href="https://en.wikipedia.org/wiki/ISO_3166-2:US" title="Click to open" target="_blank" >ISO 3166-2:US codes</a>.
-
-            **Note:** When searching through city, customer search criteria such as name or TaxIdent must also be supplied.
+            State province name
         PostalCode:
           maxLength: 11
           type: string
@@ -4544,7 +6302,7 @@ components:
           description: Name of the city.
         StateProv:
           type: string
-          description: State province name as per <a href="https://en.wikipedia.org/wiki/ISO_3166-2:US" title="Click to open" target="_blank" >ISO 3166-2:US codes</a>.
+          description: State province name
         PostalCode:
           maxLength: 11
           type: string
@@ -4887,7 +6645,7 @@ components:
           description: Name of the city.
         StateProv:
           type: string
-          description: State province name as per <a href="https://en.wikipedia.org/wiki/ISO_3166-2:US" title="Click to open" target="_blank" >ISO 3166-2:US codes</a>.
+          description: State province name
         PostalCode:
           maxLength: 11
           type: string
@@ -5181,20 +6939,20 @@ components:
           maxLength: 2
           type: string
           example: '2'
-          description: Income code of the foreign tax as per IRS data. For more information visit <a href"https://www.irs.gov/" title="Click to open" target="_blank">IRS official website</a>.
+          description: Income code of the foreign tax as per IRS data.
         TaxRate:
           type: number
           example: 30.00
-          description: Tax rate of the foreign tax as per IRS data. For more information visit <a href"https://www.irs.gov/" title="Click to open" target="_blank">IRS official website</a>.
+          description: Tax rate of the foreign tax as per IRS data.
         ExemptionCode:
           maxLength: 2
           type: string
           example: '0'
-          description: "Exemption code of the foreign tax as per IRS data. \n\nFor more information visit <a href\"https://www.irs.gov/\" title=\"Click to open\" target=\"_blank\">IRS official website</a>."
+          description: Exemption code of the foreign tax as per IRS data.
         RecipientStateProv:
           maxLength: 32
           type: string
-          description: State province name as per <a href="https://en.wikipedia.org/wiki/ISO_3166-2:US" title="Click to open" target="_blank" >ISO 3166-2:US codes</a>.
+          description: State province name
         RecipientCountryCode:
           $ref: '#/components/schemas/getPartyInqSecureResponse_PartyRec_PersonPartyInfo_TaxDataInfo_ForeignTaxData_RecipientCountryCode'
         RecipientResidenceCountry:
@@ -5208,7 +6966,7 @@ components:
           description: "Type of foreign withholding as per the selected IRS form type in the ForeignTaxForms field. \n\n**Note:** Refers to foreign withholding type."
           enum:
             - None
-            - 2
+            - '2'
             - Chapter3
             - Chapter4
           example: '2'
@@ -5511,13 +7269,7 @@ components:
         StateProv:
           type: string
           description: |-
-            State province name as per <a href="https://en.wikipedia.org/wiki/ISO_3166-2:US" title="Click to open" target="_blank" >ISO 3166-2:US codes</a>.
-
-            **Note:** *Conditionally Required field*
-
-
-
-            Required if new address record is to created and country is United States.
+            State province name
         PostalCode:
           maxLength: 11
           type: string
@@ -5910,7 +7662,6 @@ components:
           items:
             $ref: '#/components/schemas/UpdatePartyRequest_PersonPartyInfo_DisclosureData'
         NAICS:
-          maxLength: 6
           type: array
           description: Six-digit North American Industry Classification System (NAICS) code used to indicate the type of customer based upon standard government definitions.
           items: {}
@@ -6104,18 +7855,18 @@ components:
         IncomeCode:
           maxLength: 2
           type: string
-          description: Income code of the foreign tax as per IRS data. For more information visit <a href"https://www.irs.gov/" title="Click to open" target="_blank">IRS official website</a>.
+          description: Income code of the foreign tax as per IRS data.
         TaxRate:
           type: number
-          description: Tax rate of the foreign tax as per IRS data. For more information visit <a href"https://www.irs.gov/" title="Click to open" target="_blank">IRS official website</a>.
+          description: Tax rate of the foreign tax as per IRS data.
         ExemptionCode:
           maxLength: 2
           type: string
-          description: "Exemption code of the foreign tax as per IRS data. \n\nFor more information visit <a href\"https://www.irs.gov/\" title=\"Click to open\" target=\"_blank\">IRS official website</a>."
+          description: Exemption code of the foreign tax as per IRS data.
         RecipientStateProv:
           maxLength: 32
           type: string
-          description: State province name as per <a href="https://en.wikipedia.org/wiki/ISO_3166-2:US" title="Click to open" target="_blank" >ISO 3166-2:US codes</a>.
+          description: State province name
         RecipientCountryCode:
           $ref: '#/components/schemas/getPartyInqSecureResponse_PartyRec_PersonPartyInfo_TaxDataInfo_ForeignTaxData_RecipientCountryCode'
         RecipientResidenceCountry:
@@ -6431,13 +8182,7 @@ components:
         StateProv:
           type: string
           description: |-
-            State province name as per <a href="https://en.wikipedia.org/wiki/ISO_3166-2:US" title="Click to open" target="_blank" >ISO 3166-2:US codes</a>.
-
-            **Note:** *Conditionally Required field*
-
-
-
-            Required if new address record is created and the address country is United States.
+            State province name
         PostalCode:
           maxLength: 11
           type: string
@@ -6815,7 +8560,6 @@ components:
           items:
             $ref: '#/components/schemas/UpdatePartyRequest_PersonPartyInfo_DisclosureData'
         NAICS:
-          maxLength: 6
           type: array
           description: Six-digit North American Industry Classification System (NAICS) code used to indicate the type of customer based upon standard government definitions.
           items: {}

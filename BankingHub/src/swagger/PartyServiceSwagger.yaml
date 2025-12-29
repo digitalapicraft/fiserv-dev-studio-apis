@@ -39,6 +39,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UpdatePartyResponse'
+              example:
+                Status:
+                  StatusCode: '0'
+                  StatusDesc: Success
+                  Severity: Info
+                  SvcProviderName: Premier
+                PartyStatusRec:
+                  PartyKeys:
+                    PartyId: '3252039'
+                  PartyStatus:
+                    PartyStatusCode: Valid
+                    EffDt: '2023-06-16T20:56:03.780'
         default:
           description: Default Response for Update Party
           content:
@@ -76,6 +88,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/addPartyResponse'
+              example:
+                Status:
+                  StatusCode: '0'
+                  StatusDesc: Success
+                  Severity: Info
+                  SvcProviderName: Premier
+                PartyStatusRec:
+                  PartyKeys:
+                    PartyId: '3252039'
+                  PartyStatus:
+                    PartyStatusCode: Valid
+                    EffDt: '2023-06-16T20:55:32.856'
         default:
           description: Default Response for Add Party
           content:
@@ -114,6 +138,200 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/getPartyInqSecureResponse'
+              example:
+                Status:
+                  StatusCode: '0'
+                  StatusDesc: Success
+                  Severity: Info
+                  SvcProviderName: Premier
+                PartyRec:
+                  PartyKeys:
+                    PartyId: '3252039'
+                  PersonPartyInfo:
+                    Naics:
+                      - '1'
+                    PartyPref:
+                      Language: Spanish
+                    EstablishedDt: '2021-01-09'
+                    OriginatingBranch: '2'
+                    OriginatingBranchEnumDesc: Premier UAT Branch 2
+                    ResponsibleBranch: '2'
+                    ResponsibleBranchEnumDesc: Premier UAT Branch 2
+                    CreditRisk:
+                      - RiskCategory: CreditScore
+                        InternalScore: '1'
+                      - RiskCategory: RiskScore1
+                        InternalScore: '2'
+                      - RiskCategory: RiskScore2
+                        InternalScore: '3'
+                    RelationshipMgr:
+                      - RelationshipMgrIdent: '99'
+                        RelationshipMgrIdentEnumDesc: ''
+                        RelationshipRole: Officer
+                      - RelationshipMgrIdent: '51'
+                        RelationshipMgrIdentEnumDesc: ''
+                        RelationshipRole: ReferralOfficer
+                    OEDCode: '9'
+                    OEDCodeEnumDesc: ''
+                    ClientDefinedData:
+                      - DataIdent: '700'
+                        DataType: Alpha
+                        Value: '100002'
+                        DataLength: 40
+                        ExpDt: '2022-12-12'
+                        Desc: GoldTier ID
+                        RequiredFlag: false
+                        SearchFlag: false
+                      - DataIdent: '89901'
+                        DataType: Currency
+                        Value: '110102'
+                        DataLength: 40
+                        ExpDt: '2024-10-11'
+                        Desc: Saranda
+                        RequiredFlag: false
+                        SearchFlag: true
+                    PartyType: Partnership
+                    TaxDataInfo:
+                      TaxIdentType: SSN
+                      TaxIdent: '988125678'
+                      TaxIdentVerified: false
+                      TaxIdentVerifiedDt: '2016-12-28'
+                      TaxIdentVerifiedAttempts: 2
+                      OtherTaxIdent: ''
+                      BNotice1Dt: '2016-12-28'
+                      BNotice2Dt: '2016-12-28'
+                      ForeignTaxData:
+                        ForeignTaxForms: None
+                        IncomeCode: '2'
+                        TaxRate: 30
+                        ExemptionCode: '0'
+                        ExceptionCodeEnumDesc: None
+                        RecipientStateProv: ''
+                        RecipientCountryCode:
+                          CountryCodeSource: IRS
+                          CountryCodeValue: IN
+                        RecipientResidenceCountry:
+                          CountryCodeSource: IRS
+                          CountryCodeValue: IN
+                        RecipientPostalCode: ''
+                        ForeignWithholdingType: None
+                        Chapter3Status: '0'
+                        Chapter4FATCAStatus: '0'
+                        RecipientGIIN: ''
+                        W8FormType: W8-BEN-E
+                        ForeignCertDt: '2014-12-28'
+                        ForeignExpDt: '2019-12-28'
+                    DisclosureData:
+                      - DisclosureDt: '2022-12-28'
+                        DisclosureAckType: '2'
+                    NAICS:
+                      - '1'
+                    WithholdingOption: StateFederalTax
+                    WithholdingOptionEnumDesc: Federal & State
+                    Retention: true
+                    SecretData:
+                      - SecretIdent: County
+                        SecretIdentEnumDesc: County
+                        SecretValue: Broome
+                      - SecretIdent: FreeFormMessage
+                        SecretIdentEnumDesc: FreeFormMessage
+                        SecretValue: 'New York City,NY'
+                    LastUpdateDt: '2023-06-16'
+                    ExemptOFAC: true
+                    PartyOpenMethod: Internet
+                    TelebancPswd: '112210'
+                    RiskRanking: Medium
+                    Reminder:
+                      - ReminderCategory: Tickler
+                        ReminderInd: false
+                    PersonData:
+                      Contact:
+                        - PostAddr:
+                            OpenDt: '2019-08-17'
+                            RelationshipMgr:
+                              - RelationshipMgrIdent: '0'
+                                RelationshipRole: Officer
+                              - RelationshipMgrIdent: '0'
+                                RelationshipRole: ReferralOfficer
+                            OriginatingBranch: '2'
+                            ResponsibleBranch: '2'
+                            AddressIdent: '2113258'
+                            AddrUse: Business
+                            AddrUseEnumDesc: Business
+                            AddrFormatType: Label
+                            Addr1: 2221 MILLER
+                            Addr2: ''
+                            City: FALLS CITY
+                            StateProv: CA
+                            PostalCode: 68361-1234
+                            CountryCode:
+                              CountryCodeSource: SPCountryCode
+                              CountryCodeValue: '10'
+                              CountryCodeValueEnumDesc: ''
+                            AddrType: Primary
+                            Retention: true
+                            CensusTract: '9'
+                            CensusBlock: '1'
+                            ForeignFlag: true
+                            HandlingCode: '9'
+                            HandlingCodeOption: StatementsNotices
+                            MSACode: 1002
+                        - PostAddr:
+                            OpenDt: '2019-08-17'
+                            RelationshipMgr:
+                              - RelationshipMgrIdent: '0'
+                                RelationshipRole: Officer
+                              - RelationshipMgrIdent: '0'
+                                RelationshipRole: ReferralOfficer
+                            OriginatingBranch: '2'
+                            ResponsibleBranch: '2'
+                            AddressIdent: '2113259'
+                            AddrUse: Business
+                            AddrUseEnumDesc: Business
+                            AddrFormatType: Label
+                            Addr1: 1129 G ST
+                            Addr2: ''
+                            City: MILFORD
+                            StateProv: NJ
+                            PostalCode: 68803-1234
+                            CountryCode:
+                              CountryCodeSource: SPCountryCode
+                              CountryCodeValue: '10'
+                              CountryCodeValueEnumDesc: ''
+                            AddrType: Secondary
+                            Retention: true
+                            CensusTract: '9'
+                            CensusBlock: '1'
+                            ForeignFlag: true
+                            HandlingCode: '9'
+                            HandlingCodeOption: StatementsNotices
+                            MSACode: 1002
+                      IssuedIdent:
+                        - IssuedIdentType: '1'
+                          IssuedIdentTypeEnumDesc: ''
+                          IssuedIdentId: '1'
+                          IssuedIdentValue: DEF8789
+                          Issuer: '22'
+                          IssuerEnumDesc: ''
+                          IssueDt: '2016-12-29'
+                          ExpDt: '2017-01-01'
+                      PersonName:
+                        - NameType: Primary
+                          NameIdent: '3252039'
+                          FullName: JOSEPH N HOWARD
+                          FamilyName: JOSEPH
+                          GivenName: HOWARD
+                          MiddleName: 'N'
+                          LegalName: ''
+                          NameFormat: None
+                    BirthDt: '1929-09-14'
+                    Gender: Male
+                    ImmigrationStat: '0'
+                    Race: '1'
+                  PartyStatus:
+                    PartyStatusCode: Valid
+                    EffDt: '2023-06-16T20:55:52.170'
+
         default:
           description: Default Response for Get Party
           content:
@@ -152,6 +370,1613 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/getPartyListInqSecuredResponse'
+              example:
+                Status:
+                  StatusCode: '0'
+                  StatusDesc: Success
+                  Severity: Info
+                  SvcProviderName: Premier
+                RecCtrlOut:
+                  SentRecCount: 25
+                  Cursor: '40080'
+                PartyListRec:
+                  - PartyKeys:
+                      PartyId: '3251984'
+                    PersonPartyListInfo:
+                      PartyType: Partnership
+                      Contact:
+                        - PostAddr:
+                            AddressIdent: '2112979'
+                            AddrUse: Business
+                            AddrFormatType: Label
+                            Addr1: 2221 MILLER
+                            Addr2: ''
+                            City: FALLS CITY
+                            StateProv: CA
+                            PostalCode: 68361-1234
+                            CountryCode:
+                              CountryCodeSource: SPCountryCode
+                              CountryCodeValue: '10'
+                            AddrType: Primary
+                            Retention: true
+                            CensusTract: '9'
+                            CensusBlock: '1'
+                            ForeignFlag: true
+                            HandlingCode: '9'
+                            HandlingCodeOption: StatementsNotices
+                            MSACode: 1002
+                        - PostAddr:
+                            AddressIdent: '2112980'
+                            AddrUse: Business
+                            AddrFormatType: Label
+                            Addr1: 1129 G ST
+                            Addr2: ''
+                            City: MILFORD
+                            StateProv: NJ
+                            PostalCode: 68803-1234
+                            CountryCode:
+                              CountryCodeSource: SPCountryCode
+                              CountryCodeValue: '10'
+                            AddrType: Secondary
+                            Retention: true
+                            CensusTract: '9'
+                            CensusBlock: '1'
+                            ForeignFlag: true
+                            HandlingCode: '9'
+                            HandlingCodeOption: StatementsNotices
+                            MSACode: 1002
+                      TaxIdentType: SSN
+                      TaxIdent: '988125678'
+                      OriginatingBranch: '2'
+                      PersonName:
+                        NameType: Primary
+                        NameIdent: '3251984'
+                        FullName: JOHN N WEST
+                        FamilyName: JOHN
+                        GivenName: WEST
+                        MiddleName: 'N'
+                        LegalName: ''
+                      BirthDt: '1929-09-14'
+                    PartyStatus:
+                      PartyStatusCode: Valid
+                      EffDt: '2023-06-16T20:59:40.543'
+                  - PartyKeys:
+                      PartyId: '3251985'
+                    PersonPartyListInfo:
+                      PartyType: Partnership
+                      Contact:
+                        - PostAddr:
+                            AddressIdent: '2112983'
+                            AddrUse: Business
+                            AddrFormatType: Label
+                            Addr1: 2221 MILLER
+                            Addr2: ''
+                            City: FALLS CITY
+                            StateProv: CA
+                            PostalCode: 68361-1234
+                            CountryCode:
+                              CountryCodeSource: SPCountryCode
+                              CountryCodeValue: '10'
+                            AddrType: Primary
+                            Retention: true
+                            CensusTract: '9'
+                            CensusBlock: '1'
+                            ForeignFlag: true
+                            HandlingCode: '9'
+                            HandlingCodeOption: StatementsNotices
+                            MSACode: 1002
+                        - PostAddr:
+                            AddressIdent: '2112984'
+                            AddrUse: Business
+                            AddrFormatType: Label
+                            Addr1: 1129 G ST
+                            Addr2: ''
+                            City: MILFORD
+                            StateProv: NJ
+                            PostalCode: 68803-1234
+                            CountryCode:
+                              CountryCodeSource: SPCountryCode
+                              CountryCodeValue: '10'
+                            AddrType: Secondary
+                            Retention: true
+                            CensusTract: '9'
+                            CensusBlock: '1'
+                            ForeignFlag: true
+                            HandlingCode: '9'
+                            HandlingCodeOption: StatementsNotices
+                            MSACode: 1002
+                      TaxIdentType: SSN
+                      TaxIdent: '988125678'
+                      OriginatingBranch: '2'
+                      PersonName:
+                        NameType: Primary
+                        NameIdent: '3251985'
+                        FullName: JOSEPH N HOWARD
+                        FamilyName: JOSEPH
+                        GivenName: HOWARD
+                        MiddleName: 'N'
+                        LegalName: ''
+                      BirthDt: '1929-09-14'
+                    PartyStatus:
+                      PartyStatusCode: Valid
+                      EffDt: '2023-06-16T20:59:40.546'
+                  - PartyKeys:
+                      PartyId: '3251983'
+                    PersonPartyListInfo:
+                      PartyType: Partnership
+                      Contact:
+                        - PostAddr:
+                            AddressIdent: '2112977'
+                            AddrUse: Business
+                            AddrFormatType: Label
+                            Addr1: 2221 MILLER
+                            Addr2: ''
+                            City: FALLS CITY
+                            StateProv: CA
+                            PostalCode: 68361-1234
+                            CountryCode:
+                              CountryCodeSource: SPCountryCode
+                              CountryCodeValue: '10'
+                            AddrType: Primary
+                            Retention: true
+                            CensusTract: '9'
+                            CensusBlock: '1'
+                            ForeignFlag: true
+                            HandlingCode: '9'
+                            HandlingCodeOption: StatementsNotices
+                            MSACode: 1002
+                        - PostAddr:
+                            AddressIdent: '2112978'
+                            AddrUse: Business
+                            AddrFormatType: Label
+                            Addr1: 1129 G ST
+                            Addr2: ''
+                            City: MILFORD
+                            StateProv: NJ
+                            PostalCode: 68803-1234
+                            CountryCode:
+                              CountryCodeSource: SPCountryCode
+                              CountryCodeValue: '10'
+                            AddrType: Secondary
+                            Retention: true
+                            CensusTract: '9'
+                            CensusBlock: '1'
+                            ForeignFlag: true
+                            HandlingCode: '9'
+                            HandlingCodeOption: StatementsNotices
+                            MSACode: 1002
+                      TaxIdentType: SSN
+                      TaxIdent: '988125678'
+                      OriginatingBranch: '2'
+                      PersonName:
+                        NameType: Primary
+                        NameIdent: '3251983'
+                        FullName: JOSEPH N HOWARD
+                        FamilyName: JOSEPH
+                        GivenName: HOWARD
+                        MiddleName: 'N'
+                        LegalName: ''
+                      BirthDt: '1929-09-14'
+                    PartyStatus:
+                      PartyStatusCode: Valid
+                      EffDt: '2023-06-16T20:59:40.549'
+                  - PartyKeys:
+                      PartyId: '3251986'
+                    PersonPartyListInfo:
+                      PartyType: Partnership
+                      Contact:
+                        - PostAddr:
+                            AddressIdent: '2112985'
+                            AddrUse: Business
+                            AddrFormatType: Label
+                            Addr1: 2221 MILLER
+                            Addr2: ''
+                            City: FALLS CITY
+                            StateProv: CA
+                            PostalCode: 68361-1234
+                            CountryCode:
+                              CountryCodeSource: SPCountryCode
+                              CountryCodeValue: '10'
+                            AddrType: Primary
+                            Retention: true
+                            CensusTract: '9'
+                            CensusBlock: '1'
+                            ForeignFlag: true
+                            HandlingCode: '9'
+                            HandlingCodeOption: StatementsNotices
+                            MSACode: 1002
+                        - PostAddr:
+                            AddressIdent: '2112986'
+                            AddrUse: Business
+                            AddrFormatType: Label
+                            Addr1: 1129 G ST
+                            Addr2: ''
+                            City: MILFORD
+                            StateProv: NJ
+                            PostalCode: 68803-1234
+                            CountryCode:
+                              CountryCodeSource: SPCountryCode
+                              CountryCodeValue: '10'
+                            AddrType: Secondary
+                            Retention: true
+                            CensusTract: '9'
+                            CensusBlock: '1'
+                            ForeignFlag: true
+                            HandlingCode: '9'
+                            HandlingCodeOption: StatementsNotices
+                            MSACode: 1002
+                      TaxIdentType: SSN
+                      TaxIdent: '988125678'
+                      OriginatingBranch: '2'
+                      PersonName:
+                        NameType: Primary
+                        NameIdent: '3251986'
+                        FullName: JOHN N WEST
+                        FamilyName: JOHN
+                        GivenName: WEST
+                        MiddleName: 'N'
+                        LegalName: ''
+                      BirthDt: '1929-09-14'
+                    PartyStatus:
+                      PartyStatusCode: Valid
+                      EffDt: '2023-06-16T20:59:40.551'
+                  - PartyKeys:
+                      PartyId: '3251987'
+                    PersonPartyListInfo:
+                      PartyType: Partnership
+                      Contact:
+                        - PostAddr:
+                            AddressIdent: '2112987'
+                            AddrUse: Business
+                            AddrFormatType: Label
+                            Addr1: 2221 MILLER
+                            Addr2: ''
+                            City: FALLS CITY
+                            StateProv: CA
+                            PostalCode: 68361-1234
+                            CountryCode:
+                              CountryCodeSource: SPCountryCode
+                              CountryCodeValue: '10'
+                            AddrType: Primary
+                            Retention: true
+                            CensusTract: '9'
+                            CensusBlock: '1'
+                            ForeignFlag: true
+                            HandlingCode: '9'
+                            HandlingCodeOption: StatementsNotices
+                            MSACode: 1002
+                        - PostAddr:
+                            AddressIdent: '2112988'
+                            AddrUse: Business
+                            AddrFormatType: Label
+                            Addr1: 1129 G ST
+                            Addr2: ''
+                            City: MILFORD
+                            StateProv: NJ
+                            PostalCode: 68803-1234
+                            CountryCode:
+                              CountryCodeSource: SPCountryCode
+                              CountryCodeValue: '10'
+                            AddrType: Secondary
+                            Retention: true
+                            CensusTract: '9'
+                            CensusBlock: '1'
+                            ForeignFlag: true
+                            HandlingCode: '9'
+                            HandlingCodeOption: StatementsNotices
+                            MSACode: 1002
+                      TaxIdentType: SSN
+                      TaxIdent: '988125678'
+                      OriginatingBranch: '2'
+                      PersonName:
+                        NameType: Primary
+                        NameIdent: '3251987'
+                        FullName: JOHN N WEST
+                        FamilyName: JOHN
+                        GivenName: WEST
+                        MiddleName: 'N'
+                        LegalName: ''
+                      BirthDt: '1929-09-14'
+                    PartyStatus:
+                      PartyStatusCode: Valid
+                      EffDt: '2023-06-16T20:59:40.552'
+                  - PartyKeys:
+                      PartyId: '3251988'
+                    PersonPartyListInfo:
+                      PartyType: Partnership
+                      Contact:
+                        - PostAddr:
+                            AddressIdent: '2112990'
+                            AddrUse: Business
+                            AddrFormatType: Label
+                            Addr1: 2221 MILLER
+                            Addr2: ''
+                            City: FALLS CITY
+                            StateProv: CA
+                            PostalCode: 68361-1234
+                            CountryCode:
+                              CountryCodeSource: SPCountryCode
+                              CountryCodeValue: '10'
+                            AddrType: Primary
+                            Retention: true
+                            CensusTract: '9'
+                            CensusBlock: '1'
+                            ForeignFlag: true
+                            HandlingCode: '9'
+                            HandlingCodeOption: StatementsNotices
+                            MSACode: 1002
+                        - PostAddr:
+                            AddressIdent: '2112991'
+                            AddrUse: Business
+                            AddrFormatType: Label
+                            Addr1: 1129 G ST
+                            Addr2: ''
+                            City: MILFORD
+                            StateProv: NJ
+                            PostalCode: 68803-1234
+                            CountryCode:
+                              CountryCodeSource: SPCountryCode
+                              CountryCodeValue: '10'
+                            AddrType: Secondary
+                            Retention: true
+                            CensusTract: '9'
+                            CensusBlock: '1'
+                            ForeignFlag: true
+                            HandlingCode: '9'
+                            HandlingCodeOption: StatementsNotices
+                            MSACode: 1002
+                      TaxIdentType: SSN
+                      TaxIdent: '988125678'
+                      OriginatingBranch: '2'
+                      PersonName:
+                        NameType: Primary
+                        NameIdent: '3251988'
+                        FullName: JOSEPH N HOWARD
+                        FamilyName: JOSEPH
+                        GivenName: HOWARD
+                        MiddleName: 'N'
+                        LegalName: ''
+                      BirthDt: '1929-09-14'
+                    PartyStatus:
+                      PartyStatusCode: Valid
+                      EffDt: '2023-06-16T20:59:40.554'
+                  - PartyKeys:
+                      PartyId: '3231572'
+                    OrgPartyListInfo:
+                      PartyType: Partnership
+                      Contact:
+                        - Email:
+                            EmailIdent: '10'
+                            EmailType: Business
+                            EmailAddr: cleanenvironmentinc@outlook.com
+                            PreferredEmail: true
+                        - PostAddr:
+                            AddressIdent: '2097982'
+                            AddrUse: Business
+                            AddrFormatType: Label
+                            Addr1: 2221 MILLER
+                            Addr2: ''
+                            City: FALLS CITY
+                            StateProv: CA
+                            PostalCode: 68361-1234
+                            CountryCode:
+                              CountryCodeSource: SPCountryCode
+                              CountryCodeValue: '10'
+                            AddrType: Primary
+                            Retention: true
+                            CensusTract: '0'
+                            CensusBlock: '0'
+                            ForeignFlag: true
+                            HandlingCode: ''
+                            HandlingCodeOption: StatementsNoticesChecks
+                            MSACode: 0
+                      TaxIdentType: EIN
+                      TaxIdent: '988125678'
+                      OriginatingBranch: '2'
+                      OrgName:
+                        NameType: Primary
+                        NameIdent: '3231572'
+                        Name: Life savers inc
+                        LegalName: Lif
+                    PartyStatus:
+                      PartyStatusCode: Valid
+                      EffDt: '2023-06-16T20:59:40.556'
+                  - PartyKeys:
+                      PartyId: '3252002'
+                    PersonPartyListInfo:
+                      PartyType: Partnership
+                      Contact:
+                        - PhoneNum:
+                            PhoneType: Mobile
+                            PhoneIdent: 1
+                            Phone: +00001-402-2190001
+                            PreferredPhone: true
+                            PhoneDesc: Mobile
+                        - PhoneNum:
+                            PhoneType: Work
+                            PhoneIdent: 2
+                            Phone: +00001-402-2190002
+                            PreferredPhone: false
+                            PhoneDesc: Work Phone
+                        - PhoneNum:
+                            PhoneType: Home
+                            PhoneIdent: 3
+                            Phone: +00001-402-2190003
+                            PreferredPhone: false
+                            PhoneDesc: Home Phone
+                        - PhoneNum:
+                            PhoneType: Fax
+                            PhoneIdent: 4
+                            Phone: +00001-402-2190004
+                            PreferredPhone: false
+                            PhoneDesc: Fax
+                        - Email:
+                            EmailIdent: '1'
+                            EmailType: PERSON
+                            EmailAddr: X_EMAIL2@HOTMAIL1.COM
+                            PreferredEmail: false
+                        - PostAddr:
+                            AddressIdent: '2113039'
+                            AddrUse: Business
+                            AddrFormatType: Label
+                            Addr1: 2221 MILLER
+                            Addr2: ''
+                            City: FALLS CITY
+                            StateProv: CA
+                            PostalCode: 68361-1234
+                            CountryCode:
+                              CountryCodeSource: SPCountryCode
+                              CountryCodeValue: '10'
+                            AddrType: Primary
+                            Retention: true
+                            CensusTract: '9'
+                            CensusBlock: '1'
+                            ForeignFlag: true
+                            HandlingCode: '9'
+                            HandlingCodeOption: StatementsNotices
+                            MSACode: 1002
+                        - PostAddr:
+                            AddressIdent: '2113040'
+                            AddrUse: Business
+                            AddrFormatType: Label
+                            Addr1: 1129 G ST
+                            Addr2: ''
+                            City: MILFORD
+                            StateProv: NJ
+                            PostalCode: 68803-1234
+                            CountryCode:
+                              CountryCodeSource: SPCountryCode
+                              CountryCodeValue: '10'
+                            AddrType: Secondary
+                            Retention: true
+                            CensusTract: '9'
+                            CensusBlock: '1'
+                            ForeignFlag: true
+                            HandlingCode: '9'
+                            HandlingCodeOption: StatementsNotices
+                            MSACode: 1002
+                      TaxIdentType: SSN
+                      TaxIdent: '988125678'
+                      OriginatingBranch: '2'
+                      PersonName:
+                        NameType: Primary
+                        NameIdent: '3252002'
+                        FullName: JOSEPH N HOWARD
+                        FamilyName: JOSEPH
+                        GivenName: HOWARD
+                        MiddleName: 'N'
+                        LegalName: ''
+                      BirthDt: '1929-09-14'
+                    PartyStatus:
+                      PartyStatusCode: Valid
+                      EffDt: '2023-06-16T20:59:40.635'
+                  - PartyKeys:
+                      PartyId: '3252004'
+                    PersonPartyListInfo:
+                      PartyType: Partnership
+                      Contact:
+                        - PostAddr:
+                            AddressIdent: '2113052'
+                            AddrUse: Business
+                            AddrFormatType: Label
+                            Addr1: 2221 MILLER
+                            Addr2: ''
+                            City: FALLS CITY
+                            StateProv: CA
+                            PostalCode: 68361-1234
+                            CountryCode:
+                              CountryCodeSource: SPCountryCode
+                              CountryCodeValue: '10'
+                            AddrType: Primary
+                            Retention: true
+                            CensusTract: '9'
+                            CensusBlock: '1'
+                            ForeignFlag: true
+                            HandlingCode: '9'
+                            HandlingCodeOption: StatementsNotices
+                            MSACode: 1002
+                        - PostAddr:
+                            AddressIdent: '2113053'
+                            AddrUse: Business
+                            AddrFormatType: Label
+                            Addr1: 1129 G ST
+                            Addr2: ''
+                            City: MILFORD
+                            StateProv: NJ
+                            PostalCode: 68803-1234
+                            CountryCode:
+                              CountryCodeSource: SPCountryCode
+                              CountryCodeValue: '10'
+                            AddrType: Secondary
+                            Retention: true
+                            CensusTract: '9'
+                            CensusBlock: '1'
+                            ForeignFlag: true
+                            HandlingCode: '9'
+                            HandlingCodeOption: StatementsNotices
+                            MSACode: 1002
+                      TaxIdentType: SSN
+                      TaxIdent: '988125678'
+                      OriginatingBranch: '2'
+                      PersonName:
+                        NameType: Primary
+                        NameIdent: '3252004'
+                        FullName: JOSEPH N HOWARD
+                        FamilyName: JOSEPH
+                        GivenName: HOWARD
+                        MiddleName: 'N'
+                        LegalName: ''
+                      BirthDt: '1929-09-14'
+                    PartyStatus:
+                      PartyStatusCode: Valid
+                      EffDt: '2023-06-16T20:59:40.641'
+                  - PartyKeys:
+                      PartyId: '3252007'
+                    PersonPartyListInfo:
+                      PartyType: Partnership
+                      Contact:
+                        - PostAddr:
+                            AddressIdent: '2113058'
+                            AddrUse: Business
+                            AddrFormatType: Label
+                            Addr1: 2221 MILLER
+                            Addr2: ''
+                            City: FALLS CITY
+                            StateProv: CA
+                            PostalCode: 68361-1234
+                            CountryCode:
+                              CountryCodeSource: SPCountryCode
+                              CountryCodeValue: '10'
+                            AddrType: Primary
+                            Retention: true
+                            CensusTract: '9'
+                            CensusBlock: '1'
+                            ForeignFlag: true
+                            HandlingCode: '9'
+                            HandlingCodeOption: StatementsNotices
+                            MSACode: 1002
+                        - PostAddr:
+                            AddressIdent: '2113059'
+                            AddrUse: Business
+                            AddrFormatType: Label
+                            Addr1: 1129 G ST
+                            Addr2: ''
+                            City: MILFORD
+                            StateProv: NJ
+                            PostalCode: 68803-1234
+                            CountryCode:
+                              CountryCodeSource: SPCountryCode
+                              CountryCodeValue: '10'
+                            AddrType: Secondary
+                            Retention: true
+                            CensusTract: '9'
+                            CensusBlock: '1'
+                            ForeignFlag: true
+                            HandlingCode: '9'
+                            HandlingCodeOption: StatementsNotices
+                            MSACode: 1002
+                      TaxIdentType: SSN
+                      TaxIdent: '988125678'
+                      OriginatingBranch: '2'
+                      PersonName:
+                        NameType: Primary
+                        NameIdent: '3252007'
+                        FullName: JOSEPH N HOWARD
+                        FamilyName: JOSEPH
+                        GivenName: HOWARD
+                        MiddleName: 'N'
+                        LegalName: ''
+                      BirthDt: '1929-09-14'
+                    PartyStatus:
+                      PartyStatusCode: Valid
+                      EffDt: '2023-06-16T20:59:40.643'
+                  - PartyKeys:
+                      PartyId: '3252008'
+                    PersonPartyListInfo:
+                      PartyType: Partnership
+                      Contact:
+                        - PostAddr:
+                            AddressIdent: '2113066'
+                            AddrUse: Business
+                            AddrFormatType: Label
+                            Addr1: 2221 MILLER
+                            Addr2: ''
+                            City: FALLS CITY
+                            StateProv: CA
+                            PostalCode: 68361-1234
+                            CountryCode:
+                              CountryCodeSource: SPCountryCode
+                              CountryCodeValue: '10'
+                            AddrType: Primary
+                            Retention: true
+                            CensusTract: '9'
+                            CensusBlock: '1'
+                            ForeignFlag: true
+                            HandlingCode: '9'
+                            HandlingCodeOption: StatementsNotices
+                            MSACode: 1002
+                        - PostAddr:
+                            AddressIdent: '2113067'
+                            AddrUse: Business
+                            AddrFormatType: Label
+                            Addr1: 1129 G ST
+                            Addr2: ''
+                            City: MILFORD
+                            StateProv: NJ
+                            PostalCode: 68803-1234
+                            CountryCode:
+                              CountryCodeSource: SPCountryCode
+                              CountryCodeValue: '10'
+                            AddrType: Secondary
+                            Retention: true
+                            CensusTract: '9'
+                            CensusBlock: '1'
+                            ForeignFlag: true
+                            HandlingCode: '9'
+                            HandlingCodeOption: StatementsNotices
+                            MSACode: 1002
+                      TaxIdentType: SSN
+                      TaxIdent: '988125678'
+                      OriginatingBranch: '2'
+                      PersonName:
+                        NameType: Primary
+                        NameIdent: '3252008'
+                        FullName: JOSEPH N HOWARD
+                        FamilyName: JOSEPH
+                        GivenName: HOWARD
+                        MiddleName: 'N'
+                        LegalName: ''
+                      BirthDt: '1929-09-14'
+                    PartyStatus:
+                      PartyStatusCode: Valid
+                      EffDt: '2023-06-16T20:59:40.645'
+                  - PartyKeys:
+                      PartyId: '3252009'
+                    PersonPartyListInfo:
+                      PartyType: Partnership
+                      Contact:
+                        - PostAddr:
+                            AddressIdent: '2113079'
+                            AddrUse: Business
+                            AddrFormatType: Label
+                            Addr1: 2221 MILLER
+                            Addr2: ''
+                            City: FALLS CITY
+                            StateProv: CA
+                            PostalCode: 68361-1234
+                            CountryCode:
+                              CountryCodeSource: SPCountryCode
+                              CountryCodeValue: '10'
+                            AddrType: Primary
+                            Retention: true
+                            CensusTract: '9'
+                            CensusBlock: '1'
+                            ForeignFlag: true
+                            HandlingCode: '9'
+                            HandlingCodeOption: StatementsNotices
+                            MSACode: 1002
+                        - PostAddr:
+                            AddressIdent: '2113080'
+                            AddrUse: Business
+                            AddrFormatType: Label
+                            Addr1: 1129 G ST
+                            Addr2: ''
+                            City: MILFORD
+                            StateProv: NJ
+                            PostalCode: 68803-1234
+                            CountryCode:
+                              CountryCodeSource: SPCountryCode
+                              CountryCodeValue: '10'
+                            AddrType: Secondary
+                            Retention: true
+                            CensusTract: '9'
+                            CensusBlock: '1'
+                            ForeignFlag: true
+                            HandlingCode: '9'
+                            HandlingCodeOption: StatementsNotices
+                            MSACode: 1002
+                      TaxIdentType: SSN
+                      TaxIdent: '988125678'
+                      OriginatingBranch: '2'
+                      PersonName:
+                        NameType: Primary
+                        NameIdent: '3252009'
+                        FullName: JOSEPH N HOWARD
+                        FamilyName: JOSEPH
+                        GivenName: HOWARD
+                        MiddleName: 'N'
+                        LegalName: ''
+                      BirthDt: '1929-09-14'
+                    PartyStatus:
+                      PartyStatusCode: Valid
+                      EffDt: '2023-06-16T20:59:40.647'
+                  - PartyKeys:
+                      PartyId: '3252017'
+                    PersonPartyListInfo:
+                      PartyType: Partnership
+                      Contact:
+                        - PostAddr:
+                            AddressIdent: '2113110'
+                            AddrUse: Business
+                            AddrFormatType: Label
+                            Addr1: 2221 MILLER
+                            Addr2: ''
+                            City: FALLS CITY
+                            StateProv: CA
+                            PostalCode: 68361-1234
+                            CountryCode:
+                              CountryCodeSource: SPCountryCode
+                              CountryCodeValue: '10'
+                            AddrType: Primary
+                            Retention: true
+                            CensusTract: '9'
+                            CensusBlock: '1'
+                            ForeignFlag: true
+                            HandlingCode: '9'
+                            HandlingCodeOption: StatementsNotices
+                            MSACode: 1002
+                        - PostAddr:
+                            AddressIdent: '2113111'
+                            AddrUse: Business
+                            AddrFormatType: Label
+                            Addr1: 1129 G ST
+                            Addr2: ''
+                            City: MILFORD
+                            StateProv: NJ
+                            PostalCode: 68803-1234
+                            CountryCode:
+                              CountryCodeSource: SPCountryCode
+                              CountryCodeValue: '10'
+                            AddrType: Secondary
+                            Retention: true
+                            CensusTract: '9'
+                            CensusBlock: '1'
+                            ForeignFlag: true
+                            HandlingCode: '9'
+                            HandlingCodeOption: StatementsNotices
+                            MSACode: 1002
+                      TaxIdentType: SSN
+                      TaxIdent: '988125678'
+                      OriginatingBranch: '2'
+                      PersonName:
+                        NameType: Primary
+                        NameIdent: '3252017'
+                        FullName: JOHN N WEST
+                        FamilyName: JOHN
+                        GivenName: WEST
+                        MiddleName: 'N'
+                        LegalName: ''
+                      BirthDt: '1929-09-14'
+                    PartyStatus:
+                      PartyStatusCode: Valid
+                      EffDt: '2023-06-16T20:59:40.650'
+                  - PartyKeys:
+                      PartyId: '3252018'
+                    PersonPartyListInfo:
+                      PartyType: Partnership
+                      Contact:
+                        - PostAddr:
+                            AddressIdent: '2113119'
+                            AddrUse: Business
+                            AddrFormatType: Label
+                            Addr1: 2221 MILLER
+                            Addr2: ''
+                            City: FALLS CITY
+                            StateProv: CA
+                            PostalCode: 68361-1234
+                            CountryCode:
+                              CountryCodeSource: SPCountryCode
+                              CountryCodeValue: '10'
+                            AddrType: Primary
+                            Retention: true
+                            CensusTract: '9'
+                            CensusBlock: '1'
+                            ForeignFlag: true
+                            HandlingCode: '9'
+                            HandlingCodeOption: StatementsNotices
+                            MSACode: 1002
+                        - PostAddr:
+                            AddressIdent: '2113120'
+                            AddrUse: Business
+                            AddrFormatType: Label
+                            Addr1: 1129 G ST
+                            Addr2: ''
+                            City: MILFORD
+                            StateProv: NJ
+                            PostalCode: 68803-1234
+                            CountryCode:
+                              CountryCodeSource: SPCountryCode
+                              CountryCodeValue: '10'
+                            AddrType: Secondary
+                            Retention: true
+                            CensusTract: '9'
+                            CensusBlock: '1'
+                            ForeignFlag: true
+                            HandlingCode: '9'
+                            HandlingCodeOption: StatementsNotices
+                            MSACode: 1002
+                      TaxIdentType: SSN
+                      TaxIdent: '988125678'
+                      OriginatingBranch: '2'
+                      PersonName:
+                        NameType: Primary
+                        NameIdent: '3252018'
+                        FullName: JOSEPH N HOWARD
+                        FamilyName: JOSEPH
+                        GivenName: HOWARD
+                        MiddleName: 'N'
+                        LegalName: ''
+                      BirthDt: '1929-09-14'
+                    PartyStatus:
+                      PartyStatusCode: Valid
+                      EffDt: '2023-06-16T20:59:40.653'
+                  - PartyKeys:
+                      PartyId: '3252021'
+                    PersonPartyListInfo:
+                      PartyType: Partnership
+                      Contact:
+                        - PostAddr:
+                            AddressIdent: '2113131'
+                            AddrUse: Business
+                            AddrFormatType: Label
+                            Addr1: 2221 MILLER
+                            Addr2: ''
+                            City: FALLS CITY
+                            StateProv: CA
+                            PostalCode: 68361-1234
+                            CountryCode:
+                              CountryCodeSource: SPCountryCode
+                              CountryCodeValue: '10'
+                            AddrType: Primary
+                            Retention: true
+                            CensusTract: '9'
+                            CensusBlock: '1'
+                            ForeignFlag: true
+                            HandlingCode: '9'
+                            HandlingCodeOption: StatementsNotices
+                            MSACode: 1002
+                        - PostAddr:
+                            AddressIdent: '2113132'
+                            AddrUse: Business
+                            AddrFormatType: Label
+                            Addr1: 1129 G ST
+                            Addr2: ''
+                            City: MILFORD
+                            StateProv: NJ
+                            PostalCode: 68803-1234
+                            CountryCode:
+                              CountryCodeSource: SPCountryCode
+                              CountryCodeValue: '10'
+                            AddrType: Secondary
+                            Retention: true
+                            CensusTract: '9'
+                            CensusBlock: '1'
+                            ForeignFlag: true
+                            HandlingCode: '9'
+                            HandlingCodeOption: StatementsNotices
+                            MSACode: 1002
+                      TaxIdentType: SSN
+                      TaxIdent: '988125678'
+                      OriginatingBranch: '2'
+                      PersonName:
+                        NameType: Primary
+                        NameIdent: '3252021'
+                        FullName: JOHN N WEST
+                        FamilyName: JOHN
+                        GivenName: WEST
+                        MiddleName: 'N'
+                        LegalName: ''
+                      BirthDt: '1929-09-14'
+                    PartyStatus:
+                      PartyStatusCode: Valid
+                      EffDt: '2023-06-16T20:59:40.655'
+                  - PartyKeys:
+                      PartyId: '3252020'
+                    PersonPartyListInfo:
+                      PartyType: Partnership
+                      Contact:
+                        - PostAddr:
+                            AddressIdent: '2113129'
+                            AddrUse: Business
+                            AddrFormatType: Label
+                            Addr1: 2221 MILLER
+                            Addr2: ''
+                            City: FALLS CITY
+                            StateProv: CA
+                            PostalCode: 68361-1234
+                            CountryCode:
+                              CountryCodeSource: SPCountryCode
+                              CountryCodeValue: '10'
+                            AddrType: Primary
+                            Retention: true
+                            CensusTract: '9'
+                            CensusBlock: '1'
+                            ForeignFlag: true
+                            HandlingCode: '9'
+                            HandlingCodeOption: StatementsNotices
+                            MSACode: 1002
+                        - PostAddr:
+                            AddressIdent: '2113130'
+                            AddrUse: Business
+                            AddrFormatType: Label
+                            Addr1: 1129 G ST
+                            Addr2: ''
+                            City: MILFORD
+                            StateProv: NJ
+                            PostalCode: 68803-1234
+                            CountryCode:
+                              CountryCodeSource: SPCountryCode
+                              CountryCodeValue: '10'
+                            AddrType: Secondary
+                            Retention: true
+                            CensusTract: '9'
+                            CensusBlock: '1'
+                            ForeignFlag: true
+                            HandlingCode: '9'
+                            HandlingCodeOption: StatementsNotices
+                            MSACode: 1002
+                      TaxIdentType: SSN
+                      TaxIdent: '988125678'
+                      OriginatingBranch: '2'
+                      PersonName:
+                        NameType: Primary
+                        NameIdent: '3252020'
+                        FullName: JOSEPH N HOWARD
+                        FamilyName: JOSEPH
+                        GivenName: HOWARD
+                        MiddleName: 'N'
+                        LegalName: ''
+                      BirthDt: '1929-09-14'
+                    PartyStatus:
+                      PartyStatusCode: Valid
+                      EffDt: '2023-06-16T20:59:40.657'
+                  - PartyKeys:
+                      PartyId: '3252019'
+                    PersonPartyListInfo:
+                      PartyType: Partnership
+                      Contact:
+                        - PhoneNum:
+                            PhoneType: Mobile
+                            PhoneIdent: 1
+                            Phone: +00001-402-2190001
+                            PreferredPhone: true
+                            PhoneDesc: Mobile
+                        - PhoneNum:
+                            PhoneType: Work
+                            PhoneIdent: 2
+                            Phone: +00001-402-2190002
+                            PreferredPhone: false
+                            PhoneDesc: Work Phone
+                        - PhoneNum:
+                            PhoneType: Home
+                            PhoneIdent: 3
+                            Phone: +00001-402-2190003
+                            PreferredPhone: false
+                            PhoneDesc: Home Phone
+                        - PhoneNum:
+                            PhoneType: Fax
+                            PhoneIdent: 4
+                            Phone: +00001-402-2190004
+                            PreferredPhone: false
+                            PhoneDesc: Fax
+                        - Email:
+                            EmailIdent: '1'
+                            EmailType: PERSON
+                            EmailAddr: X_EMAIL2_Modified@HOTMAIL1.COM
+                            PreferredEmail: false
+                        - PostAddr:
+                            AddressIdent: '2113127'
+                            AddrUse: Business
+                            AddrFormatType: Label
+                            Addr1: 2221 MILLER
+                            Addr2: ''
+                            City: FALLS CITY
+                            StateProv: CA
+                            PostalCode: 68361-1234
+                            CountryCode:
+                              CountryCodeSource: SPCountryCode
+                              CountryCodeValue: '10'
+                            AddrType: Primary
+                            Retention: true
+                            CensusTract: '9'
+                            CensusBlock: '1'
+                            ForeignFlag: true
+                            HandlingCode: '9'
+                            HandlingCodeOption: StatementsNotices
+                            MSACode: 1002
+                        - PostAddr:
+                            AddressIdent: '2113128'
+                            AddrUse: Business
+                            AddrFormatType: Label
+                            Addr1: 1129 G ST
+                            Addr2: ''
+                            City: MILFORD
+                            StateProv: NJ
+                            PostalCode: 68803-1234
+                            CountryCode:
+                              CountryCodeSource: SPCountryCode
+                              CountryCodeValue: '10'
+                            AddrType: Secondary
+                            Retention: true
+                            CensusTract: '9'
+                            CensusBlock: '1'
+                            ForeignFlag: true
+                            HandlingCode: '9'
+                            HandlingCodeOption: StatementsNotices
+                            MSACode: 1002
+                      TaxIdentType: SSN
+                      TaxIdent: '988125678'
+                      OriginatingBranch: '2'
+                      PersonName:
+                        NameType: Primary
+                        NameIdent: '3252019'
+                        FullName: JOSEPH N HOWARD
+                        FamilyName: JOSEPH
+                        GivenName: HOWARD
+                        MiddleName: 'N'
+                        LegalName: ''
+                      BirthDt: '1929-09-14'
+                    PartyStatus:
+                      PartyStatusCode: Valid
+                      EffDt: '2023-06-16T20:59:40.659'
+                  - PartyKeys:
+                      PartyId: '3252012'
+                    PersonPartyListInfo:
+                      PartyType: Partnership
+                      Contact:
+                        - PostAddr:
+                            AddressIdent: '2113090'
+                            AddrUse: Business
+                            AddrFormatType: Label
+                            Addr1: 2221 MILLER
+                            Addr2: ''
+                            City: FALLS CITY
+                            StateProv: CA
+                            PostalCode: 68361-1234
+                            CountryCode:
+                              CountryCodeSource: SPCountryCode
+                              CountryCodeValue: '10'
+                            AddrType: Primary
+                            Retention: true
+                            CensusTract: '9'
+                            CensusBlock: '1'
+                            ForeignFlag: true
+                            HandlingCode: '9'
+                            HandlingCodeOption: StatementsNotices
+                            MSACode: 1002
+                        - PostAddr:
+                            AddressIdent: '2113091'
+                            AddrUse: Business
+                            AddrFormatType: Label
+                            Addr1: 1129 G ST
+                            Addr2: ''
+                            City: MILFORD
+                            StateProv: NJ
+                            PostalCode: 68803-1234
+                            CountryCode:
+                              CountryCodeSource: SPCountryCode
+                              CountryCodeValue: '10'
+                            AddrType: Secondary
+                            Retention: true
+                            CensusTract: '9'
+                            CensusBlock: '1'
+                            ForeignFlag: true
+                            HandlingCode: '9'
+                            HandlingCodeOption: StatementsNotices
+                            MSACode: 1002
+                      TaxIdentType: SSN
+                      TaxIdent: '988125678'
+                      OriginatingBranch: '2'
+                      PersonName:
+                        NameType: Primary
+                        NameIdent: '3252012'
+                        FullName: JOHN N WEST
+                        FamilyName: JOHN
+                        GivenName: WEST
+                        MiddleName: 'N'
+                        LegalName: ''
+                      BirthDt: '1929-09-14'
+                    PartyStatus:
+                      PartyStatusCode: Valid
+                      EffDt: '2023-06-16T20:59:40.664'
+                  - PartyKeys:
+                      PartyId: '3252011'
+                    PersonPartyListInfo:
+                      PartyType: Partnership
+                      Contact:
+                        - PostAddr:
+                            AddressIdent: '2113088'
+                            AddrUse: Business
+                            AddrFormatType: Label
+                            Addr1: 2221 MILLER
+                            Addr2: ''
+                            City: FALLS CITY
+                            StateProv: CA
+                            PostalCode: 68361-1234
+                            CountryCode:
+                              CountryCodeSource: SPCountryCode
+                              CountryCodeValue: '10'
+                            AddrType: Primary
+                            Retention: true
+                            CensusTract: '9'
+                            CensusBlock: '1'
+                            ForeignFlag: true
+                            HandlingCode: '9'
+                            HandlingCodeOption: StatementsNotices
+                            MSACode: 1002
+                        - PostAddr:
+                            AddressIdent: '2113089'
+                            AddrUse: Business
+                            AddrFormatType: Label
+                            Addr1: 1129 G ST
+                            Addr2: ''
+                            City: MILFORD
+                            StateProv: NJ
+                            PostalCode: 68803-1234
+                            CountryCode:
+                              CountryCodeSource: SPCountryCode
+                              CountryCodeValue: '10'
+                            AddrType: Secondary
+                            Retention: true
+                            CensusTract: '9'
+                            CensusBlock: '1'
+                            ForeignFlag: true
+                            HandlingCode: '9'
+                            HandlingCodeOption: StatementsNotices
+                            MSACode: 1002
+                      TaxIdentType: SSN
+                      TaxIdent: '988125678'
+                      OriginatingBranch: '2'
+                      PersonName:
+                        NameType: Primary
+                        NameIdent: '3252011'
+                        FullName: JOSEPH N HOWARD
+                        FamilyName: JOSEPH
+                        GivenName: HOWARD
+                        MiddleName: 'N'
+                        LegalName: ''
+                      BirthDt: '1929-09-14'
+                    PartyStatus:
+                      PartyStatusCode: Valid
+                      EffDt: '2023-06-16T20:59:40.665'
+                  - PartyKeys:
+                      PartyId: '3252010'
+                    PersonPartyListInfo:
+                      PartyType: Partnership
+                      Contact:
+                        - PhoneNum:
+                            PhoneType: Mobile
+                            PhoneIdent: 1
+                            Phone: +00001-402-2190001
+                            PreferredPhone: true
+                            PhoneDesc: Mobile
+                        - PhoneNum:
+                            PhoneType: Work
+                            PhoneIdent: 2
+                            Phone: +00001-402-2190002
+                            PreferredPhone: false
+                            PhoneDesc: Work Phone
+                        - PhoneNum:
+                            PhoneType: Home
+                            PhoneIdent: 3
+                            Phone: +00001-402-2190003
+                            PreferredPhone: false
+                            PhoneDesc: Home Phone
+                        - PhoneNum:
+                            PhoneType: Fax
+                            PhoneIdent: 4
+                            Phone: +00001-402-2190004
+                            PreferredPhone: false
+                            PhoneDesc: Fax
+                        - Email:
+                            EmailIdent: '1'
+                            EmailType: PERSON
+                            EmailAddr: X_EMAIL2_Modified@HOTMAIL1.COM
+                            PreferredEmail: false
+                        - PostAddr:
+                            AddressIdent: '2113086'
+                            AddrUse: Business
+                            AddrFormatType: Label
+                            Addr1: 2221 MILLER
+                            Addr2: ''
+                            City: FALLS CITY
+                            StateProv: CA
+                            PostalCode: 68361-1234
+                            CountryCode:
+                              CountryCodeSource: SPCountryCode
+                              CountryCodeValue: '10'
+                            AddrType: Primary
+                            Retention: true
+                            CensusTract: '9'
+                            CensusBlock: '1'
+                            ForeignFlag: true
+                            HandlingCode: '9'
+                            HandlingCodeOption: StatementsNotices
+                            MSACode: 1002
+                        - PostAddr:
+                            AddressIdent: '2113087'
+                            AddrUse: Business
+                            AddrFormatType: Label
+                            Addr1: 1129 G ST
+                            Addr2: ''
+                            City: MILFORD
+                            StateProv: NJ
+                            PostalCode: 68803-1234
+                            CountryCode:
+                              CountryCodeSource: SPCountryCode
+                              CountryCodeValue: '10'
+                            AddrType: Secondary
+                            Retention: true
+                            CensusTract: '9'
+                            CensusBlock: '1'
+                            ForeignFlag: true
+                            HandlingCode: '9'
+                            HandlingCodeOption: StatementsNotices
+                            MSACode: 1002
+                      TaxIdentType: SSN
+                      TaxIdent: '988125678'
+                      OriginatingBranch: '2'
+                      PersonName:
+                        NameType: Primary
+                        NameIdent: '3252010'
+                        FullName: JOSEPH N HOWARD
+                        FamilyName: JOSEPH
+                        GivenName: HOWARD
+                        MiddleName: 'N'
+                        LegalName: ''
+                      BirthDt: '1929-09-14'
+                    PartyStatus:
+                      PartyStatusCode: Valid
+                      EffDt: '2023-06-16T20:59:40.667'
+                  - PartyKeys:
+                      PartyId: '3252015'
+                    PersonPartyListInfo:
+                      PartyType: Partnership
+                      Contact:
+                        - PhoneNum:
+                            PhoneType: Mobile
+                            PhoneIdent: 1
+                            Phone: +00001-402-2190001
+                            PreferredPhone: true
+                            PhoneDesc: Mobile
+                        - PhoneNum:
+                            PhoneType: Work
+                            PhoneIdent: 2
+                            Phone: +00001-402-2190002
+                            PreferredPhone: false
+                            PhoneDesc: Work Phone
+                        - PhoneNum:
+                            PhoneType: Home
+                            PhoneIdent: 3
+                            Phone: +00001-402-2190003
+                            PreferredPhone: false
+                            PhoneDesc: Home Phone
+                        - PhoneNum:
+                            PhoneType: Fax
+                            PhoneIdent: 4
+                            Phone: +00001-402-2190004
+                            PreferredPhone: false
+                            PhoneDesc: Fax
+                        - Email:
+                            EmailIdent: '1'
+                            EmailType: PERSON
+                            EmailAddr: X_EMAIL2_Modified@HOTMAIL1.COM
+                            PreferredEmail: false
+                        - PostAddr:
+                            AddressIdent: '2113106'
+                            AddrUse: Business
+                            AddrFormatType: Label
+                            Addr1: 2221 MILLER
+                            Addr2: ''
+                            City: FALLS CITY
+                            StateProv: CA
+                            PostalCode: 68361-1234
+                            CountryCode:
+                              CountryCodeSource: SPCountryCode
+                              CountryCodeValue: '10'
+                            AddrType: Primary
+                            Retention: true
+                            CensusTract: '9'
+                            CensusBlock: '1'
+                            ForeignFlag: true
+                            HandlingCode: '9'
+                            HandlingCodeOption: StatementsNotices
+                            MSACode: 1002
+                        - PostAddr:
+                            AddressIdent: '2113107'
+                            AddrUse: Business
+                            AddrFormatType: Label
+                            Addr1: 1129 G ST
+                            Addr2: ''
+                            City: MILFORD
+                            StateProv: NJ
+                            PostalCode: 68803-1234
+                            CountryCode:
+                              CountryCodeSource: SPCountryCode
+                              CountryCodeValue: '10'
+                            AddrType: Secondary
+                            Retention: true
+                            CensusTract: '9'
+                            CensusBlock: '1'
+                            ForeignFlag: true
+                            HandlingCode: '9'
+                            HandlingCodeOption: StatementsNotices
+                            MSACode: 1002
+                      TaxIdentType: SSN
+                      TaxIdent: '988125678'
+                      OriginatingBranch: '2'
+                      PersonName:
+                        NameType: Primary
+                        NameIdent: '3252015'
+                        FullName: JOSEPH N HOWARD
+                        FamilyName: JOSEPH
+                        GivenName: HOWARD
+                        MiddleName: 'N'
+                        LegalName: ''
+                      BirthDt: '1929-09-14'
+                    PartyStatus:
+                      PartyStatusCode: Valid
+                      EffDt: '2023-06-16T20:59:40.672'
+                  - PartyKeys:
+                      PartyId: '3252016'
+                    PersonPartyListInfo:
+                      PartyType: Partnership
+                      Contact:
+                        - PostAddr:
+                            AddressIdent: '2113108'
+                            AddrUse: Business
+                            AddrFormatType: Label
+                            Addr1: 2221 MILLER
+                            Addr2: ''
+                            City: FALLS CITY
+                            StateProv: CA
+                            PostalCode: 68361-1234
+                            CountryCode:
+                              CountryCodeSource: SPCountryCode
+                              CountryCodeValue: '10'
+                            AddrType: Primary
+                            Retention: true
+                            CensusTract: '9'
+                            CensusBlock: '1'
+                            ForeignFlag: true
+                            HandlingCode: '9'
+                            HandlingCodeOption: StatementsNotices
+                            MSACode: 1002
+                        - PostAddr:
+                            AddressIdent: '2113109'
+                            AddrUse: Business
+                            AddrFormatType: Label
+                            Addr1: 1129 G ST
+                            Addr2: ''
+                            City: MILFORD
+                            StateProv: NJ
+                            PostalCode: 68803-1234
+                            CountryCode:
+                              CountryCodeSource: SPCountryCode
+                              CountryCodeValue: '10'
+                            AddrType: Secondary
+                            Retention: true
+                            CensusTract: '9'
+                            CensusBlock: '1'
+                            ForeignFlag: true
+                            HandlingCode: '9'
+                            HandlingCodeOption: StatementsNotices
+                            MSACode: 1002
+                      TaxIdentType: SSN
+                      TaxIdent: '988125678'
+                      OriginatingBranch: '2'
+                      PersonName:
+                        NameType: Primary
+                        NameIdent: '3252016'
+                        FullName: JOSEPH N HOWARD
+                        FamilyName: JOSEPH
+                        GivenName: HOWARD
+                        MiddleName: 'N'
+                        LegalName: ''
+                      BirthDt: '1929-09-14'
+                    PartyStatus:
+                      PartyStatusCode: Valid
+                      EffDt: '2023-06-16T20:59:40.677'
+                  - PartyKeys:
+                      PartyId: '3252013'
+                    PersonPartyListInfo:
+                      PartyType: Partnership
+                      Contact:
+                        - PostAddr:
+                            AddressIdent: '2113098'
+                            AddrUse: Business
+                            AddrFormatType: Label
+                            Addr1: 2221 MILLER
+                            Addr2: ''
+                            City: FALLS CITY
+                            StateProv: CA
+                            PostalCode: 68361-1234
+                            CountryCode:
+                              CountryCodeSource: SPCountryCode
+                              CountryCodeValue: '10'
+                            AddrType: Primary
+                            Retention: true
+                            CensusTract: '9'
+                            CensusBlock: '1'
+                            ForeignFlag: true
+                            HandlingCode: '9'
+                            HandlingCodeOption: StatementsNotices
+                            MSACode: 1002
+                        - PostAddr:
+                            AddressIdent: '2113099'
+                            AddrUse: Business
+                            AddrFormatType: Label
+                            Addr1: 1129 G ST
+                            Addr2: ''
+                            City: MILFORD
+                            StateProv: NJ
+                            PostalCode: 68803-1234
+                            CountryCode:
+                              CountryCodeSource: SPCountryCode
+                              CountryCodeValue: '10'
+                            AddrType: Secondary
+                            Retention: true
+                            CensusTract: '9'
+                            CensusBlock: '1'
+                            ForeignFlag: true
+                            HandlingCode: '9'
+                            HandlingCodeOption: StatementsNotices
+                            MSACode: 1002
+                      TaxIdentType: SSN
+                      TaxIdent: '988125678'
+                      OriginatingBranch: '2'
+                      PersonName:
+                        NameType: Primary
+                        NameIdent: '3252013'
+                        FullName: JOSEPH N HOWARD
+                        FamilyName: JOSEPH
+                        GivenName: HOWARD
+                        MiddleName: 'N'
+                        LegalName: ''
+                      BirthDt: '1929-09-14'
+                    PartyStatus:
+                      PartyStatusCode: Valid
+                      EffDt: '2023-06-16T20:59:40.678'
+                  - PartyKeys:
+                      PartyId: '3252025'
+                    PersonPartyListInfo:
+                      PartyType: Partnership
+                      Contact:
+                        - PostAddr:
+                            AddressIdent: '2113151'
+                            AddrUse: Business
+                            AddrFormatType: Label
+                            Addr1: 2221 MILLER
+                            Addr2: ''
+                            City: FALLS CITY
+                            StateProv: CA
+                            PostalCode: 68361-1234
+                            CountryCode:
+                              CountryCodeSource: SPCountryCode
+                              CountryCodeValue: '10'
+                            AddrType: Primary
+                            Retention: true
+                            CensusTract: '9'
+                            CensusBlock: '1'
+                            ForeignFlag: true
+                            HandlingCode: '9'
+                            HandlingCodeOption: StatementsNotices
+                            MSACode: 1002
+                        - PostAddr:
+                            AddressIdent: '2113152'
+                            AddrUse: Business
+                            AddrFormatType: Label
+                            Addr1: 1129 G ST
+                            Addr2: ''
+                            City: MILFORD
+                            StateProv: NJ
+                            PostalCode: 68803-1234
+                            CountryCode:
+                              CountryCodeSource: SPCountryCode
+                              CountryCodeValue: '10'
+                            AddrType: Secondary
+                            Retention: true
+                            CensusTract: '9'
+                            CensusBlock: '1'
+                            ForeignFlag: true
+                            HandlingCode: '9'
+                            HandlingCodeOption: StatementsNotices
+                            MSACode: 1002
+                      TaxIdentType: SSN
+                      TaxIdent: '988125678'
+                      OriginatingBranch: '2'
+                      PersonName:
+                        NameType: Primary
+                        NameIdent: '3252025'
+                        FullName: JOHN N WEST
+                        FamilyName: JOHN
+                        GivenName: WEST
+                        MiddleName: 'N'
+                        LegalName: ''
+                      BirthDt: '1929-09-14'
+                    PartyStatus:
+                      PartyStatusCode: Valid
+                      EffDt: '2023-06-16T20:59:40.680'
+                  - PartyKeys:
+                      PartyId: '3252024'
+                    PersonPartyListInfo:
+                      PartyType: Partnership
+                      Contact:
+                        - PostAddr:
+                            AddressIdent: '2113149'
+                            AddrUse: Business
+                            AddrFormatType: Label
+                            Addr1: 2221 MILLER
+                            Addr2: ''
+                            City: FALLS CITY
+                            StateProv: CA
+                            PostalCode: 68361-1234
+                            CountryCode:
+                              CountryCodeSource: SPCountryCode
+                              CountryCodeValue: '10'
+                            AddrType: Primary
+                            Retention: true
+                            CensusTract: '9'
+                            CensusBlock: '1'
+                            ForeignFlag: true
+                            HandlingCode: '9'
+                            HandlingCodeOption: StatementsNotices
+                            MSACode: 1002
+                        - PostAddr:
+                            AddressIdent: '2113150'
+                            AddrUse: Business
+                            AddrFormatType: Label
+                            Addr1: 1129 G ST
+                            Addr2: ''
+                            City: MILFORD
+                            StateProv: NJ
+                            PostalCode: 68803-1234
+                            CountryCode:
+                              CountryCodeSource: SPCountryCode
+                              CountryCodeValue: '10'
+                            AddrType: Secondary
+                            Retention: true
+                            CensusTract: '9'
+                            CensusBlock: '1'
+                            ForeignFlag: true
+                            HandlingCode: '9'
+                            HandlingCodeOption: StatementsNotices
+                            MSACode: 1002
+                      TaxIdentType: SSN
+                      TaxIdent: '988125678'
+                      OriginatingBranch: '2'
+                      PersonName:
+                        NameType: Primary
+                        NameIdent: '3252024'
+                        FullName: JOSEPH N HOWARD
+                        FamilyName: JOSEPH
+                        GivenName: HOWARD
+                        MiddleName: 'N'
+                        LegalName: ''
+                      BirthDt: '1929-09-14'
+                    PartyStatus:
+                      PartyStatusCode: Valid
+                      EffDt: '2023-06-16T20:59:40.681'
         default:
           description: Default Response for Get Party List
           content:

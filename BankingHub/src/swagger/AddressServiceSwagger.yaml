@@ -1,0 +1,952 @@
+---
+openapi: 3.0.1
+info:
+  title: Address Service
+  description: The Address service manages addresses related to parties and product accounts.
+  version: 11.0.0_PRM
+servers:
+  - url: https://bankinghub-cert-fiservapis.azure-api.net/address-service
+paths:
+  /banking/efx/v1/addrservice/partyacctsvc/address:
+    put:
+      tags:
+        - Address Service
+      summary: Update Address
+      description: Update Address API modifies the existing address record associated with the financial account or Party.
+      operationId: modifyAddr
+      security:
+        - OAuth2ClientCredentials: []
+      parameters:
+        - name: EFXHeader
+          in: header
+          schema:
+            type: string
+          example: '{"OrganizationId":"999990300","TrnId":"123"}'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/modifyAddrRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/modifyAddrResponse'
+        default:
+          description: Default Response for Update Address
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/modifyAddrResponse'
+      x-group-name: Address Service
+      x-proxy-name: Update Address
+      x-child-product-name: Accountholder
+      x-core: Premier
+    post:
+      tags:
+        - Address Service
+      summary: Add Address
+      description: Add Address API creates a new address record for a party or a financial account.<br>This API can also link a newly created address record to the existing party.
+      operationId: addAddress
+      security:
+        - OAuth2ClientCredentials: []
+      parameters:
+        - name: EFXHeader
+          in: header
+          schema:
+            type: string
+          example: '{"OrganizationId":"999990300","TrnId":"123"}'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/addAddressRequest'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/addAddressResponse'
+        default:
+          description: Default Response for Add Address
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/addAddressResponse'
+      x-group-name: Address Service
+      x-proxy-name: Add Address
+      x-child-product-name: Accountholder
+      x-core: Premier
+  /banking/efx/v1/addrservice/partyacctsvc/address/secured:
+    put:
+      tags:
+        - Address Service
+      summary: Delete Address
+      description: Delete Address API deletes the existing address record associated with an account or party.
+      operationId: deleteAddrByPut
+      security:
+        - OAuth2ClientCredentials: []
+      parameters:
+        - name: EFXHeader
+          in: header
+          schema:
+            type: string
+          example: '{"OrganizationId":"999990300","TrnId":"123"}'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/deleteAddrByPutRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/deleteAddrByPutResponse'
+        default:
+          description: Default Response for Delete Address
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/deleteAddrByPutResponse'
+      x-group-name: Address Service
+      x-proxy-name: Delete Address
+      x-child-product-name: Accountholder
+      x-core: Premier
+components:
+  securitySchemes:
+    OAuth2ClientCredentials:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://bankinghub-cert-fiservapis.azure-api.net/address-service/fts-apim/oauth2/v2
+          scopes:
+            type: string
+            example: ok
+  schemas:
+    addAddressRequest:
+      type: object
+      required:
+        - AddrInfo
+      properties:
+        AddrInfo:
+          $ref: '#/components/schemas/addAddressRequest_AddrInfo'
+    StatusType:
+      title: StatusType
+      required:
+        - Severity
+        - StatusCode
+        - StatusDesc
+        - SvcProviderName
+      type: object
+      properties:
+        Id:
+          type: string
+          description: Status identification number.
+        StatusCode:
+          maxLength: 20
+          type: string
+          description: EFX Standard Status code that indicates the result of API response. Refer to the <a href="../docs?path=docs/response-codes.md">Response Codes</a> section to view the list of all possible status codes.
+        StatusDesc:
+          maxLength: 255
+          type: string
+          description: Brief information about the EFX status code. Refer to the <a href="../docs?path=docs/response-codes.md">Response Codes</a> section for more information.
+        Severity:
+          $ref: '#/components/schemas/SeverityType'
+        SvcProviderName:
+          maxLength: 1024
+          type: string
+          description: |-
+            Name of a service provider. Possible values are:
+              -  Cleartouch
+              -  DNA
+              -  Precision
+              -  Premier
+              -  Signature
+        ServerStatusCode:
+          maxLength: 20
+          type: string
+          description: Server status code of the service provider's application.
+        ServerStatusDesc:
+          maxLength: 255
+          type: string
+          description: Description of the server status code of the service provider's application.
+        OvrdExceptionInd:
+          type: boolean
+          description: Value to indicate whether the exception can be overridden by resubmitting the request message.
+        SubjectRole:
+          type: string
+          description: Authorization level required to override, such as Teller and Supervisor.
+        SubjectElement:
+          type: array
+          description: Information about the elements that caused the status.
+          items:
+            $ref: '#/components/schemas/SubjectElementType'
+        ContentHTML:
+          type: string
+          description: Response status in HTML format. This parameter returns only in some cases.
+        AdditionalStatus:
+          type: array
+          description: Details of the additional status of the response message. This aggregate can appear once for each additional status that the server is expected to provide.
+          items:
+            $ref: '#/components/schemas/AdditionalStatusType'
+      description: Details of the API response messages.
+    SeverityType:
+      title: SeverityType
+      type: string
+      description: Severity type of the EFX status code. Refer to the <a href="../docs?path=docs/response-codes.md">Response Codes</a> section for more information.
+      enum:
+        - Error
+        - Warning
+        - Info
+    SubjectElementType:
+      title: SubjectElementType
+      type: object
+      properties:
+        Path:
+          type: string
+          description: Path of the element (in XPath absolute notation format) where the error occurred.  If the error occurred at the top-level element, then name of the element is returned in the response.
+        ServerPath:
+          maxLength: 256
+          type: string
+          description: Server Path is the Service Providers identification of the field in their schema, such as an XPath, field ID, or field name that is associated with the ServerStatusCode. If this element is set, it must be returned in the ServerPath element of the OvrdExceptionData aggregate if the exception is being overridden.
+        Value:
+          maxLength: 256
+          type: string
+          description: Human readable information of the EFX data value of the element to be overridden. This value should not be provided for the fields that cannot be represented as a string, for example, binary data.
+      description: Information about the subject element
+    AdditionalStatusType:
+      title: AdditionalStatusType
+      type: object
+      properties:
+        StatusCode:
+          maxLength: 20
+          type: string
+          description: EFX Standard Status code that indicates the result of API response. Refer to the <a href="../docs?path=docs/response-codes.md">Response Codes</a> section to view the list of all possible status codes.
+        StatusDesc:
+          maxLength: 255
+          type: string
+          description: Brief information about the EFX status code. Refer to the <a href="../docs?path=docs/response-codes.md">Response Codes</a> for more information.
+        Severity:
+          $ref: '#/components/schemas/SeverityType'
+        SvcProviderName:
+          maxLength: 1024
+          type: string
+          description: |-
+            Name of a service provider. Possible values are:
+              - Cleartouch
+              - DNA
+              - Precision
+              - Premier
+              - Signature
+        ServerStatusCode:
+          maxLength: 20
+          type: string
+          description: "Server status code of the service provider's application.  "
+        ServerStatusDesc:
+          maxLength: 255
+          type: string
+          description: Description of the server status code of the service provider's application.
+        OvrdExceptionInd:
+          type: boolean
+          description: Value that indicates whether the exception can be overridden by resubmitting the request message.
+        SubjectElement:
+          type: array
+          description: Information about the elements that caused the status.
+          items:
+            $ref: '#/components/schemas/SubjectElementType'
+    addAddressResponse:
+      required:
+        - AddrStatusRec
+      properties:
+        Status:
+          $ref: '#/components/schemas/StatusType'
+        AddrStatusRec:
+          $ref: '#/components/schemas/addAddressResponse_AddrStatusRec'
+      example:
+        Status:
+          StatusCode: '0'
+          StatusDesc: Sucess
+          Severity: Info
+          SvcProviderName: Premier
+        AddrStatusRec:
+          AddrKeys:
+            AddrId: '2113248'
+          AddrStatus:
+            AddrStatusCode: Valid
+            EffDt: '2023-06-16T19:57:50.938'
+    deleteAddrByPutRequest:
+      type: object
+      required:
+        - AddrKeys
+      properties:
+        AddrKeys:
+          $ref: '#/components/schemas/deleteAddrByPutRequest_AddrKeys'
+    deleteAddrByPutResponse:
+      required:
+        - AddrStatusRec
+      properties:
+        Status:
+          $ref: '#/components/schemas/StatusType'
+        AddrStatusRec:
+          $ref: '#/components/schemas/deleteAddrByPutResponse_AddrStatusRec'
+      example:
+        Status:
+          StatusCode: '0'
+          StatusDesc: Success
+          Severity: Info
+          SvcProviderName: Premier
+        AddrStatusRec:
+          AddrKeys:
+            AddrId: '2113248'
+          AddrStatus:
+            AddrStatusCode: Deleted
+            EffDt: '2023-06-16T19:59:32.787'
+    modifyAddrRequest:
+      type: object
+      required:
+        - AddrInfo
+        - AddrKeys
+      properties:
+        OvrdAutoAckInd:
+          type: boolean
+          example: true
+          description: Value to indicate that the system should autoacknowledge the exceptions. If this value is set to "true," then the exceptions that cannot be overridden are returned in the Status aggregate of the response message.
+        AddrKeys:
+          $ref: '#/components/schemas/deleteAddrByPutRequest_AddrKeys'
+        AddrInfo:
+          $ref: '#/components/schemas/modifyAddrRequest_AddrInfo'
+    modifyAddrResponse:
+      required:
+        - AddrStatusRec
+      properties:
+        Status:
+          $ref: '#/components/schemas/StatusType'
+        AddrStatusRec:
+          $ref: '#/components/schemas/modifyAddrResponse_AddrStatusRec'
+      example:
+        Status:
+          StatusCode: '0'
+          StatusDesc: Success
+          Severity: Info
+          SvcProviderName: Premier
+        AddrStatusRec:
+          AddrKeys:
+            AddrId: '2113248'
+          AddrStatus:
+            AddrStatusCode: Valid
+            EffDt: '2023-06-16T19:58:28.423'
+
+    addAddressRequest_AddrInfo_RelationshipMgr:
+      required:
+        - RelationshipMgrIdent
+      properties:
+        RelationshipMgrIdent:
+          maxLength: 36
+          type: string
+          description: |-
+            Unique identifier of a relationship manager.
+
+
+
+            **Note:** Does not apply to seasonal address type.
+
+            Max provider length: 5
+        RelationshipRole:
+          type: string
+          description: "Type of relationship manager's role.\n\n\n\n**Note:** Values refers to: \n\n- Officer: responsibility code\n\n- Referral Officer: referral responsibility code"
+          enum:
+            - Officer
+            - ReferralOfficer
+    addAddressRequest_AddrInfo_TimeFrame:
+      type: object
+      properties:
+        StartDt:
+          pattern: '[0-9]{4}-[0-9]{2}-[0-9]{2}(T[0-9]{2}:[0-9]{2}(:[0-9]{2}(\.[0-9]{3})?((-|\+)[0-9]{2}:[0-9]{2})?)?)?'
+          type: string
+          example: '2023-06-06'
+          description: "Start date and time value to search the address records. \n\n\n\nFormat: yyyy-MM-ddTHH:mm:ss.SSS\n\n\n\nExample: 2021-12-31T23:59:59.999\n\n\n\n**Note:** Applicable only for seasonal address type.  \n\n\n\nThe seasonal address begins on the same start date and ends on the same end date every year, therefore Premier only stores seasonal address start month and start day. \n\n\n\nYear can be provided as 9999."
+        EndDt:
+          pattern: '[0-9]{4}-[0-9]{2}-[0-9]{2}(T[0-9]{2}:[0-9]{2}(:[0-9]{2}(\.[0-9]{3})?((-|\+)[0-9]{2}:[0-9]{2})?)?)?'
+          type: string
+          example: '2023-07-05'
+          description: "End date and time value to search the address records. \n\n\n\nFormat: yyyy-MM-ddTHH:mm:ss.SSS\n\nExample: 2021-12-31T23:59:59.999\n\n\n\n**Note:** Applicable only for seasonal address type.  \n\nThe seasonal address begins on the same start date and ends on the same end date every year, therefore Premier only stores seasonal address end month and end day. \n\n\n\nYear can be provided as 9999."
+      description: Details of the time frame when the postal address is active.
+    addAddressRequest_AddrInfo_PostAddr:
+      required:
+        - AddrType
+      properties:
+        OpenDt:
+          type: string
+          example: '2023-02-28'
+          description: "Date on which the account is created.\n\n\n\nFormat: yyyy-mm-dd \n\nExample: 2021-11-20\n\n\n\n**Note:** *Conditionally Required field*\n\nShould be provided when creating a new Address record.\n\nDoes not apply to seasonal address type.\n\n\n\n"
+          format: date
+        RelationshipMgr:
+          type: array
+          description: Information about the financial institution officers who have management-related responsibilities of the account.
+          items:
+            $ref: '#/components/schemas/addAddressRequest_AddrInfo_RelationshipMgr'
+          example:
+            - RelationshipMgrIdent: '0'
+              RelationshipRole: 'Officer'
+            - RelationshipMgrIdent: '0'
+              RelationshipRole: 'ReferralOfficer'
+        OriginatingBranch:
+          maxLength: 32
+          example: '2'
+          type: string
+          description: |-
+            Branch that primarily created the account with the party.
+
+
+
+            **Note:** *Conditionally Required field*
+
+            Should be provided while creating a new address record.
+
+            Values are user-defined.
+
+            Does not apply to seasonal address type.
+        ResponsibleBranch:
+          maxLength: 32
+          example: '2'
+          type: string
+          description: |-
+            Branch responsible for the relationship.
+
+
+
+            **Note:** Refers to Accounting Branch associated to the address record.
+
+            Values are user-defined.
+
+            Does not apply to Seasonal Address type.
+
+            Max provider length: 5
+        AddrFormatType:
+          type: string
+          example: 'Label'
+          description: |-
+            Type of address format.
+
+
+
+            **Note:** Premier supports Label address format.
+          enum:
+            - Label
+        Addr1:
+          maxLength: 64
+          type: string
+          example: '141 SECOND ST.'
+          description: |+
+            Address line 1.
+
+
+
+            **Note:** *Conditionally Required field*
+
+
+
+            Should be provided if a new address record is being created.
+
+            Dependent on the Name and Address Length Option defined under the Miscellaneous specification in Premier, the First Address Line can be either 30 or 40 characters long.
+
+            Name and Address Length Option values available in Premier:
+
+            "0" indicates names and addresses up to 30 characters in length can be entered.
+
+            "1" indicates names and addresses up to 40 characters in length can be entered.
+
+            "2" indicates names and addresses up to 30 characters may be entered, and that two address lines are available.
+
+            "3" indicates names and addresses up to 40 characters may be entered, and that two address lines are available.
+
+
+
+        Addr2:
+          maxLength: 64
+          type: string
+          example: 'Suite 200'
+          description: |-
+            Address line 2. To enter Addr2, an Addr1 field must be provided.
+
+
+
+            **Note:** Address Line 2 is supported if enabled under the Address and Name Length Option in the Miscellaneous specification in Premier. Preceding also defines the length of Address Line 2, which can be either 40 or 30 characters.
+        City:
+          maxLength: 32
+          type: string
+          example: 'WACO'
+          description: "Name of the city.\n\n\n\n**Note:** *Conditionally Required field*\n\n\n\nMaximum 20 characters (including spaces) are supported. It is recommended that the Consumer abbreviate the 'City' being sent in the EFX Request. \n\nFor example: City \"Rancho Santa Margarita\" exceeds 20 characters. Abbreviation \"Rancho Santa Mrgrta\" or \"Rancho S Margarita\" can be used.\n\nPremier supports a maximum 40 characters for the City, StateProv, and PostalCode fields appended together, including spaces."
+        StateProv:
+          type: string
+          example: 'AL'
+          description: |-
+            State province name
+        PostalCode:
+          maxLength: 11
+          example: '68510-0000'
+          type: string
+          description: "Postal code or Zip code.\n\n\n\n**Note:** Postal Code provides information about the ZIP code, if Address is a United States address. It also provides Postal Code information, if the address is a non-US address.  The format of ZIP code consists of five digits for the ZIP code, a hyphen, and four additional digits that determine a more specific location within a given ZIP code. The four additional digits are optional and when not present they are will be displayed as 0000.  Examples: 32714-1234 or 32714-0000 \n\nPostal codes for non-US addresses are simply a string of characters.\n\nRequired to be provided, if address country is United States.\n\nMax provider length: 40"
+        AddrType:
+          type: string
+          example: 'Seasonal'
+          description: "Type of the address.\n\n\n\n**Note:** Address record in Premier can have a Primary address and a Seasonal address.\n\nSeasonal Address record cannot exist as a single address record and is always related to a primary address record, therefore seasonal address cannot be created without a primary address.\n\nPrimary address type is required when creating an address record. \n\nSeasonal Address is optional and requires a time frame.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+          enum:
+            - Primary
+            - Seasonal
+        TimeFrame:
+          $ref: '#/components/schemas/addAddressRequest_AddrInfo_TimeFrame'
+        Retention:
+          type: boolean
+          example: false
+          description: |+
+            Value to indicate if the address should be retained after its timeframe.
+
+
+
+            **Note:** If indicated not to retain Address record, Premier automatically deletes it when no accounts, tax addenda, or any other relationships exist for the address record.
+
+            If Retention is set to true, Address record cannot be deleted. Address can be deleted only if the Retention Code is false or not provided.
+
+
+
+        CensusTract:
+          maxLength: 20
+          example: '0'
+          type: string
+          description: Census track number assigned by the U.S. Census Bureau to identify the geographic location.
+        CensusBlock:
+          maxLength: 20
+          example: '0'
+          type: string
+          description: |-
+            Census block number assigned by the U.S. Postal Service to uniquely identify each carrier delivery point.
+
+
+
+            **Note:** If Census Block is provided, then ZipCode is expected to be provided in XXXXX-XXXX format.
+        ForeignFlag:
+          type: boolean
+          example: false
+          description: Value to indicate if the given address is foreign address.
+        HandlingCodeOption:
+          type: string
+          example: 'StatementsNoticesChecks'
+          description: |-
+            Notification and statement forms handling option.
+
+
+
+            **Note:** Refers to the value identifies the types of customer correspondence that will print handling messages, as defined by the Handling Code.
+          enum:
+            - StatementsNoticesChecks
+            - Statements
+            - StatementsNotices
+            - StatementsChecks
+            - Notices
+            - NoticesChecks
+            - Checks
+            - DoNotPrint
+        MSACode:
+          type: integer
+          example: 0
+          description: |-
+            Code that identifies a Metropolitan Statistical Area for postal delivery purposes. This code is defined by the U.S. Office of Management and Budget (OMB) and used by the U.S. Census Bureau and other federal government agencies for statistical purposes.
+
+            **Note:** Max provider length: 5
+          format: int64
+    addAddressRequest_AddrInfo:
+      required:
+        - PostAddr
+      type: object
+      properties:
+        PostAddr:
+          type: array
+          description: Postal address details of a party.
+          items:
+            $ref: '#/components/schemas/addAddressRequest_AddrInfo_PostAddr'
+      example:
+        AddrInfo:
+          PostAddr:
+            - OpenDt: '2023-02-28'
+              RelationshipMgr:
+                - RelationshipMgrIdent: '0'
+                  RelationshipRole: Officer
+                - RelationshipMgrIdent: '0'
+                  RelationshipRole: ReferralOfficer
+              OriginatingBranch: '2'
+              ResponsibleBranch: '2'
+              AddrFormatType: Label
+              Addr1: 141 SECOND ST.
+              City: WACO
+              StateProv: AL
+              PostalCode: 68510-0000
+              AddrType: Primary
+              Retention: false
+              CensusTract: '0'
+              CensusBlock: '0'
+              ForeignFlag: false
+              HandlingCodeOption: StatementsNoticesChecks
+              MSACode: 0
+            - OpenDt: '2023-02-28'
+              RelationshipMgr:
+                - RelationshipMgrIdent: '0'
+                  RelationshipRole: Officer
+                - RelationshipMgrIdent: '0'
+                  RelationshipRole: ReferralOfficer
+              OriginatingBranch: '2'
+              ResponsibleBranch: '2'
+              AddrFormatType: Label
+              Addr1: 141 THIRD ST.
+              Addr2: Suite 200
+              City: WACO
+              StateProv: AL
+              PostalCode: 68510-0000
+              AddrType: Seasonal
+              Retention: false
+              CensusTract: '0'
+              CensusBlock: '0'
+              ForeignFlag: false
+              HandlingCodeOption: StatementsNoticesChecks
+              MSACode: 0
+              TimeFrame:
+                StartDt: '2023-06-06'
+                EndDt: '2023-07-05'
+
+      description: Address details of a party.
+    addAddressResponse_AddrStatusRec_AddrKeys:
+      type: object
+      properties:
+        AddrId:
+          maxLength: 36
+          type: string
+          description: |-
+            Unique address identifier value.
+
+            **Note:** Max provider length: 5
+      description: Unique information to identify the address record.
+    addAddressResponse_AddrStatusRec_AddrStatus:
+      required:
+        - AddrStatusCode
+      type: object
+      properties:
+        AddrStatusCode:
+          type: string
+          description: Code that indicates the status of the address record.
+          enum:
+            - Valid
+        EffDt:
+          pattern: '[0-9]{4}-[0-9]{2}-[0-9]{2}(T[0-9]{2}:[0-9]{2}(:[0-9]{2}(\.[0-9]{3})?((-|\+)[0-9]{2}:[0-9]{2})?)?)?'
+          type: string
+          description: |-
+            Effective date and time when the address status is changed.
+
+
+
+            Format: yyyy-MM-ddTHH:mm:ss.SSS
+
+            Example: 2021-12-31T23:59:59.999
+      description: Status details of the address record.
+    addAddressResponse_AddrStatusRec:
+      required:
+        - AddrKeys
+        - AddrStatus
+      type: object
+      properties:
+        AddrKeys:
+          $ref: '#/components/schemas/addAddressResponse_AddrStatusRec_AddrKeys'
+        AddrStatus:
+          $ref: '#/components/schemas/addAddressResponse_AddrStatusRec_AddrStatus'
+      description: Details of the address status record in response to add operation.
+    deleteAddrByPutRequest_AddrKeys:
+      type: object
+      properties:
+        AddrId:
+          maxLength: 36
+          type: string
+          example: '2113248'
+          description: |-
+            Unique identification number of an address record.
+            **Note:** Max provider length: 17
+      description: Unique information to identify the address record.
+    deleteAddrByPutResponse_AddrStatusRec_AddrKeys:
+      type: object
+      properties:
+        AddrId:
+          maxLength: 36
+          type: string
+          description: Unique identification number of an address record.
+      description: Unique information to identify the address record.
+    deleteAddrByPutResponse_AddrStatusRec_AddrStatus:
+      required:
+        - AddrStatusCode
+      type: object
+      properties:
+        AddrStatusCode:
+          type: string
+          description: Code that indicates the status of the address record.
+          enum:
+            - Deleted
+        EffDt:
+          pattern: '[0-9]{4}-[0-9]{2}-[0-9]{2}(T[0-9]{2}:[0-9]{2}(:[0-9]{2}(\.[0-9]{3})?((-|\+)[0-9]{2}:[0-9]{2})?)?)?'
+          type: string
+          description: |-
+            Effective date and time when the address status is changed.
+
+
+
+            Format: yyyy-MM-ddTHH:mm:ss.SSS
+
+            Example: 2021-12-31T23:59:59.999
+      description: Status details of the address record.
+    deleteAddrByPutResponse_AddrStatusRec:
+      required:
+        - AddrKeys
+        - AddrStatus
+      type: object
+      properties:
+        AddrKeys:
+          $ref: '#/components/schemas/deleteAddrByPutResponse_AddrStatusRec_AddrKeys'
+        AddrStatus:
+          $ref: '#/components/schemas/deleteAddrByPutResponse_AddrStatusRec_AddrStatus'
+      description: Details of the address status record in response to delete operation.
+    modifyAddrRequest_AddrInfo_RelationshipMgr:
+      required:
+        - RelationshipMgrIdent
+      properties:
+        RelationshipMgrIdent:
+          maxLength: 36
+          type: string
+          description: |-
+            Unique identifier of a relationship manager.
+
+
+
+            **Note:** This field is not applicable to Seasonal address type.
+
+            Max provider length: 5
+        RelationshipRole:
+          type: string
+          description: "Type of relationship manager's role.\n\n\n\n**Note:** Values refers to: \n\n\n\n- Officer refers to responsibility code.\n\n\n\n- Referral Officer refers to the referral responsibility code."
+          enum:
+            - Officer
+            - ReferralOfficer
+    modifyAddrRequest_AddrInfo_TimeFrame:
+      type: object
+      properties:
+        StartDt:
+          pattern: '[0-9]{4}-[0-9]{2}-[0-9]{2}(T[0-9]{2}:[0-9]{2}(:[0-9]{2}(\.[0-9]{3})?((-|\+)[0-9]{2}:[0-9]{2})?)?)?'
+          type: string
+          example: '9999-06-06'
+          description: "Start date and time value to search the address records. \n\n\n\nFormat: yyyy-MM-ddTHH:mm:ss.SSS\n\n\n\nExample: 2021-12-31T23:59:59.999\n\n\n\n**Note:** Applicable only for seasonal address type.  \n\n\n\nThe seasonal address begins on the same start date and ends on the same end date every year, therefore Premier only stores seasonal address start month and start day. \n\n\n\nYear can be provided as 9999."
+        EndDt:
+          pattern: '[0-9]{4}-[0-9]{2}-[0-9]{2}(T[0-9]{2}:[0-9]{2}(:[0-9]{2}(\.[0-9]{3})?((-|\+)[0-9]{2}:[0-9]{2})?)?)?'
+          type: string
+          example: '9999-07-05'
+          description: "End date and time value to search the address records. \n\n\n\nFormat: yyyy-MM-ddTHH:mm:ss.SSS\n\n\n\nExample: 2021-12-31T23:59:59.999\n\n\n\n**Note:** Applicable only for seasonal address type.  \n\n\n\nThe seasonal address begins on the same start date and ends on the same end date every year, therefore Premier only stores seasonal address end month and end day. \n\n\n\nYear can be provided as 9999."
+      description: Details of the time frame when the postal address is active.
+    modifyAddrRequest_AddrInfo_PostAddr:
+      required:
+        - AddrType
+      properties:
+        OpenDt:
+          type: string
+          description: "Date on which the account is created.\n\n\n\n\n\n\n\nFormat: yyyy-mm-dd \n\n\n\nExample: 2021-11-20\n\n\n\n**Note:** This field is not applicable to Seasonal address type."
+          format: date
+          example: '2023-02-28'
+        RelationshipMgr:
+          type: array
+          description: Information about the financial institution officers who have management-related responsibilities of the account.
+          items:
+            $ref: '#/components/schemas/modifyAddrRequest_AddrInfo_RelationshipMgr'
+          example:
+            - RelationshipMgrIdent: '0'
+              RelationshipRole: 'Officer'
+            - RelationshipMgrIdent: '0'
+              RelationshipRole: 'ReferralOfficer'
+        OriginatingBranch:
+          maxLength: 32
+          type: string
+          example: '2'
+          description: |-
+            Branch that primarily created the account with the party.
+            **Note:** Values are client defined. This field is not applicable for seasonal address type.
+        ResponsibleBranch:
+          maxLength: 32
+          type: string
+          example: '2'
+          description: |-
+            Branch responsible for the relationship.
+            **Note:** Values are client defined. This field is not applicable for seasonal address type.
+            Max provider length: 5
+        AddrFormatType:
+          type: string
+          example: 'Label'
+          description: |-
+            Type of address format.
+            **Note:** Premier supports Label address format.
+          enum:
+            - Label
+        Addr1:
+          maxLength: 64
+          type: string
+          example: '141 SECOND ST.'
+          description: |+
+            Address line 1.
+            **Note:** *Conditionally Required field*
+            Should be provided if a new address record is being created.
+            Dependent on the Name and Address Length Option defined under the Miscellaneous specification in Premier, the First Address Line can be either 30 or 40 characters long.
+            Name and Address Length Option values available in Premier:
+            "0" indicates names and addresses up to 30 characters in length can be entered.
+            "1" indicates names and addresses up to 40 characters in length can be entered.
+            "2" indicates names and addresses up to 30 characters may be entered, and that two address lines are available.
+            "3" indicates names and addresses up to 40 characters may be entered, and that two address lines are available.
+        City:
+          maxLength: 32
+          type: string
+          example: 'WACO'
+          description: "Name of the city.\n\n\n\n**Note:** *Conditionally Required field*\n\n\n\n\n\n\n\nMaximum 20 characters (including spaces) are supported. It is recommended that the Consumer abbreviate the 'City' being sent in the EFX Request. \n\n\n\nFor example: City \"Rancho Santa Margarita\" exceeds 20 characters. Abbreviation \"Rancho Santa Mrgrta\" or \"Rancho S Margarita\" can be used.\n\n\n\nPremier supports a maximum 40 characters for the City, StateProv, and PostalCode fields appended together, including spaces."
+        StateProv:
+          type: string
+          example: 'AL'
+          description: |-
+            State province name
+        PostalCode:
+          maxLength: 11
+          type: string
+          example: '68510-0000'
+          description: "Postal code or Zip code.\n\n\n\n**Note:** Postal Code provides information about the ZIP code, if Address is a United States address. It also provides Postal Code information, if the address is a non-US address.  The format of ZIP code consists of five digits for the ZIP code, a hyphen, and four additional digits that determine a more specific location within a given ZIP code. The four additional digits are optional and when not present they are will be displayed as 0000.  Examples: 32714-1234 or 32714-0000 \n\nPostal codes for non-US addresses are simply a string of characters.\n\nRequired to be provided, if address country is United States."
+        AddrType:
+          type: string
+          example: 'Seasonal'
+          description: |+
+            Type of the address.
+            **Note:** Address record in Premier can have primary address and a seasonal address.
+            Primary and seasonal are considered as one record in Premier therefore they share the same address identifier.
+          enum:
+            - Primary
+            - Seasonal
+        TimeFrame:
+          $ref: '#/components/schemas/modifyAddrRequest_AddrInfo_TimeFrame'
+        Retention:
+          type: boolean
+          example: false
+          description: |+
+            Value to indicate if the address should be retained after its timeframe.
+            **Note:** If indicated not to retain Address record, Premier automatically deletes it when no accounts, tax addenda, or any other relationships exist for the address record.
+            If the value is set to true, then, address record cannot be deleted.
+        CensusTract:
+          maxLength: 20
+          type: string
+          example: '0'
+          description: Census track number assigned by the U.S. Census Bureau to identify the geographic location.
+        CensusBlock:
+          maxLength: 20
+          type: string
+          example: '0'
+          description: |-
+            Census block number assigned by the U.S. Postal Service to uniquely identify each carrier delivery point.
+            **Note:** If census block is provided then, zip code is expected to be provided in XXXXX-XXXX format.
+        ForeignFlag:
+          type: boolean
+          example: false
+          description: Value to indicate if the given address is a foreign address.
+        HandlingCodeOption:
+          type: string
+          example: 'StatementsNoticesChecks'
+          description: |-
+            Notification and statement forms handling option.
+            **Note:** Refers to the value identifies the types of customer correspondence that will print handling messages, as defined by the Handling Code.
+          enum:
+            - StatementsNoticesChecks
+            - Statements
+            - StatementsNotices
+            - StatementsChecks
+            - Notices
+            - NoticesChecks
+            - Checks
+            - DoNotPrint
+        MSACode:
+          type: integer
+          example: 0
+          description: |-
+            Code that identifies a Metropolitan Statistical Area for postal delivery purposes. This code is defined by the U.S. Office of Management and Budget (OMB) and used by the U.S. Census Bureau and other federal government agencies for statistical purposes.
+            **Note:** Max provider length: 5
+          format: int64
+    modifyAddrRequest_AddrInfo:
+      required:
+        - PostAddr
+      type: object
+      properties:
+        PostAddr:
+          type: array
+          description: "Postal address details of a party.\n\n\n\n**Note:** Address record in Premier can consist of two addresses: Primary address and a Seasonal address. \n\n\n\nPrimary and Seasonal addresses are considered as one record in Premier, therefore they share the same address identifier.\n\n\n\nThis service allows to modify either Primary and/or Seasonal address details."
+          items:
+            $ref: '#/components/schemas/modifyAddrRequest_AddrInfo_PostAddr'
+      example:
+        OvrdAutoAckInd: true
+        AddrKeys:
+          AddrId: '2112961'
+        AddrInfo:
+          PostAddr:
+            - OpenDt: '2023-02-28'
+              RelationshipMgr:
+                - RelationshipMgrIdent: '0'
+                  RelationshipRole: Officer
+                - RelationshipMgrIdent: '0'
+                  RelationshipRole: ReferralOfficer
+              OriginatingBranch: '2'
+              ResponsibleBranch: '2'
+              AddrFormatType: Label
+              Addr1: 141 SECOND ST.
+              City: WACO
+              StateProv: AL
+              PostalCode: 68510-0000
+              AddrType: Seasonal
+              TimeFrame:
+                StartDt: '9999-06-06'
+                EndDt: '9999-07-05'
+              Retention: false
+              CensusTract: '0'
+              CensusBlock: '0'
+              ForeignFlag: false
+              HandlingCodeOption: StatementsNoticesChecks
+              MSACode: 0
+            - AddrFormatType: Label
+              Addr1: 141 THIRD ST.
+              Addr2: Suite 200
+              City: WACO
+              StateProv: AL
+              PostalCode: 68510-0000
+              AddrType: Primary
+              CensusTract: '0'
+              CensusBlock: '0'
+              ForeignFlag: false
+              HandlingCodeOption: StatementsNoticesChecks
+              MSACode: 0
+
+    modifyAddrResponse_AddrStatusRec:
+      required:
+        - AddrKeys
+        - AddrStatus
+      type: object
+      properties:
+        AddrKeys:
+          $ref: '#/components/schemas/deleteAddrByPutRequest_AddrKeys'
+        AddrStatus:
+          $ref: '#/components/schemas/addAddressResponse_AddrStatusRec_AddrStatus'
+      description: Details of the address status record in response to update operation.
+  parameters:
+    EFXHeader:
+      name: EFXHeader
+      in: header
+      schema:
+        type: string
+      example: '{"OrganizationId":"999990300","TrnId":"123"}'
+security:
+  - OAuth2ClientCredentials: []

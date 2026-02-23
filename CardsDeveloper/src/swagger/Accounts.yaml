@@ -32,7 +32,10 @@ paths:
     post:
       tags:
         - Add
-      description: 'Add a new account'
+      description:
+        "Add a new account.\n        <br><br>\n        For more information\
+        \ go to <a href=\"../docs/?path=docs/resources.md/#account\" title=\"Click\
+        \ to open\">Resources.</a>"
       operationId: addNewAccount
       parameters:
         - name: x-fapi-userId
@@ -70,97 +73,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AddNewAccountResponse'
-        '400':
-          description: Invalid Request
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-        '401':
-          description: Unauthorized access
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-        '403':
-          description: Forbidden
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-        '404':
-          description: Not Found
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-        '405':
-          description: Method Not Allowed
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-        '406':
-          description: Unacceptable
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-        '415':
-          description: Unsupported Media Type
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-        '422':
-          description: Unprocessable Entity
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-        '500':
-          description: Internal Server Error
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  errorResponse:
-                    code: 500-01
-                    message: internal server error
-                    developerInfo:
-                      developerMessage: internal server error
-                      moreInfo:
-                        There was a problem handling your request. Please
-                        try again. If the problem persists please contact Support
-                      messageid: 25557-84290371-1
+              example:
+                newAccount:
+                  - accountNumber: 400010XXXXXX3001
+                    cardNumber: 400010XXXXXX3000
+                  - accountNumber: 400010XXXXXX3001
+                    cardNumber: 400010XXXXXX3000
       deprecated: false
       x-child-product-name: Accounts
       x-proxy-name: Add new account v1
@@ -169,7 +87,10 @@ paths:
     post:
       tags:
         - Authorization
-      description: 'Initiate balance transfer from one account to another'
+      description:
+        "Initiate balance transfer from one account to another.\n     \
+        \   <br><br>\n        For more information go to <a href=\"../docs/?path=docs/resources.md/#account\"\
+        \ title=\"Click to open\">Resources.</a>"
       operationId: balanceTransfer
       parameters:
         - name: x-fapi-userId
@@ -203,97 +124,6 @@ paths:
       responses:
         '204':
           description: No Content
-        '400':
-          description: Invalid Request
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-        '401':
-          description: Unauthorized access
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-        '403':
-          description: Forbidden
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-        '404':
-          description: Not Found
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-        '405':
-          description: Method Not Allowed
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-        '406':
-          description: Unacceptable
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-        '415':
-          description: Unsupported Media Type
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-        '422':
-          description: Unprocessable Entity
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-        '500':
-          description: Internal Server Error
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  errorResponse:
-                    code: 500-01
-                    message: internal server error
-                    developerInfo:
-                      developerMessage: internal server error
-                      moreInfo:
-                        There was a problem handling your request. Please
-                        try again. If the problem persists please contact Support
-                      messageid: 25557-84290371-1
       deprecated: false
       x-child-product-name: Accounts
       x-proxy-name: Balance transfer v1
@@ -302,7 +132,10 @@ paths:
     put:
       tags:
         - Batch Processing
-      description: 'Submit a new charge-off to the account.Applies for credit only'
+      description:
+        "Submit a new charge-off to the account.Applies for credit only.\n\
+        \        <br><br>\n        For more information go to <a href=\"../docs/?path=docs/resources.md/#account\"\
+        \ title=\"Click to open\">Resources.</a>"
       operationId: submitChargeOff
       parameters:
         - name: x-fapi-userId
@@ -337,121 +170,6 @@ paths:
       responses:
         '204':
           description: ChargeOff submitted
-        '400':
-          description: Invalid Request
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-              examples:
-                ChargeOffRequest400:
-                  $ref: '#/components/examples/ChargeOffRequest400'
-        '401':
-          description: Unauthorized access
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-              examples:
-                ChargeOffRequest401:
-                  $ref: '#/components/examples/ChargeOffRequest401'
-        '403':
-          description: Forbidden
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-              examples:
-                ChargeOffRequest403:
-                  $ref: '#/components/examples/ChargeOffRequest403'
-        '404':
-          description: Not Found
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-              examples:
-                ChargeOffRequest404:
-                  $ref: '#/components/examples/ChargeOffRequest404'
-        '405':
-          description: Method Not Allowed
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-              examples:
-                ChargeOffRequest405:
-                  $ref: '#/components/examples/ChargeOffRequest405'
-        '406':
-          description: Unacceptable
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-              examples:
-                ChargeOffRequest406:
-                  $ref: '#/components/examples/ChargeOffRequest406'
-        '415':
-          description: Unsupported Media Type
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-              examples:
-                ChargeOffRequest415:
-                  $ref: '#/components/examples/ChargeOffRequest415'
-        '422':
-          description: Unprocessable Entity
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-              examples:
-                ChargeOffRequest422:
-                  $ref: '#/components/examples/ChargeOffRequest422'
-        '500':
-          description: Internal Server Error
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  errorResponse:
-                    code: 500-01
-                    message: internal server error
-                    developerInfo:
-                      developerMessage: internal server error
-                      moreInfo:
-                        There was a problem handling your request. Please
-                        try again. If the problem persists please contact Support
-                      messageid: 25557-84290371-1
       deprecated: false
       x-child-product-name: Accounts
       x-proxy-name: Submit chargeoff v1
@@ -460,7 +178,10 @@ paths:
     post:
       tags:
         - Authorization
-      description: 'Create a new authorization related to the account'
+      description:
+        "Create a new authorization related to the account.Applies for\
+        \ credit only.\n        <br><br>\n        For more information go to <a href=\"\
+        ../docs/?path=docs/resources.md/#account\" title=\"Click to open\">Resources.</a>"
       operationId: addNewAuthorization
       parameters:
         - name: x-fapi-userId
@@ -498,121 +219,15 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CreateAuthorizationResponse'
-        '400':
-          description: Invalid Request
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-              examples:
-                CreateAuthorization:
-                  $ref: '#/components/examples/CreateAuthorization400'
-        '401':
-          description: Unauthorized access
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-              examples:
-                CreateAuthorization:
-                  $ref: '#/components/examples/CreateAuthorization401'
-        '403':
-          description: Forbidden
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-              examples:
-                CreateAuthorization:
-                  $ref: '#/components/examples/CreateAuthorization403'
-        '404':
-          description: Not Found
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-              examples:
-                CreateAuthorization:
-                  $ref: '#/components/examples/CreateAuthorization404'
-        '405':
-          description: Method Not Allowed
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-              examples:
-                CreateAuthorization:
-                  $ref: '#/components/examples/CreateAuthorization405'
-        '406':
-          description: Unacceptable
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-              examples:
-                CreateAuthorization:
-                  $ref: '#/components/examples/CreateAuthorization406'
-        '415':
-          description: Unsupported Media Type
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-              examples:
-                CreateAuthorization:
-                  $ref: '#/components/examples/CreateAuthorization415'
-        '422':
-          description: Unprocessable Entity
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-              examples:
-                CreateAuthorization:
-                  $ref: '#/components/examples/CreateAuthorization422'
-        '500':
-          description: Internal Server Error
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  errorResponse:
-                    code: 500-01
-                    message: internal server error
-                    developerInfo:
-                      developerMessage: internal server error
-                      moreInfo:
-                        There was a problem handling your request. Please
-                        try again. If the problem persists please contact Support
-                      messageid: 25557-84290371-1
+              example:
+                authorization:
+                  authorizationType: CASH_ADVANCE
+                  authorizationAmount: '2.30'
+                  merchantAccountIdentifier: '12345678'
+                  forceAuthorization: true
+                  authorizationCode: '029851'
+                  authorizationStatus: Approved
+                  actionReason: '75'
       deprecated: false
       x-child-product-name: Accounts
       x-proxy-name: Create authorization v1
@@ -621,7 +236,10 @@ paths:
     patch:
       tags:
         - Authorization
-      description: 'Cancel an authorization related to the account'
+      description:
+        "Cancel an authorization related to the account.Applies for credit\
+        \ only.\n        <br><br>\n        For more information go to <a href=\"../docs/?path=docs/resources.md/#account\"\
+        \ title=\"Click to open\">Resources.</a>"
       operationId: cancelAuthorization
       parameters:
         - name: x-fapi-userId
@@ -655,121 +273,6 @@ paths:
       responses:
         '204':
           description: Authorization cancelled
-        '400':
-          description: Invalid Request
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-              examples:
-                CancelAuthorization:
-                  $ref: '#/components/examples/CancelAuthorization400'
-        '401':
-          description: Unauthorized access
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-              examples:
-                CancelAuthorization:
-                  $ref: '#/components/examples/CancelAuthorization401'
-        '403':
-          description: Forbidden
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-              examples:
-                CancelAuthorization:
-                  $ref: '#/components/examples/CancelAuthorization403'
-        '404':
-          description: Not Found
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-              examples:
-                CancelAuthorization:
-                  $ref: '#/components/examples/CancelAuthorization404'
-        '405':
-          description: Method Not Allowed
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-              examples:
-                CancelAuthorization:
-                  $ref: '#/components/examples/CancelAuthorization405'
-        '406':
-          description: Unacceptable
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-              examples:
-                CancelAuthorization:
-                  $ref: '#/components/examples/CancelAuthorization406'
-        '415':
-          description: Unsupported Media Type
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-              examples:
-                CancelAuthorization:
-                  $ref: '#/components/examples/CancelAuthorization415'
-        '422':
-          description: Unprocessable Entity
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-              examples:
-                CancelAuthorization:
-                  $ref: '#/components/examples/CancelAuthorization422'
-        '500':
-          description: Internal Server Error
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  errorResponse:
-                    code: 500-01
-                    message: internal server error
-                    developerInfo:
-                      developerMessage: internal server error
-                      moreInfo:
-                        There was a problem handling your request. Please
-                        try again. If the problem persists please contact Support
-                      messageid: 25557-84290371-1
       deprecated: false
       x-child-product-name: Accounts
       x-proxy-name: Cancel authorization v1
@@ -778,7 +281,10 @@ paths:
     post:
       tags:
         - Statements
-      description: 'Search for statement information given the account'
+      description:
+        "Search for statement information given the account. Applies to\
+        \ credit only. \n        <br><br>\n        For more information go to <a href=\"\
+        ../docs/?path=docs/resources.md/#account\" title=\"Click to open\">Resources.</a>"
       operationId: getStatements
       parameters:
         - name: x-fapi-userId
@@ -842,121 +348,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/StatementSearchResponse'
-        '400':
-          description: Invalid Request
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-              examples:
-                StatementSearch400:
-                  $ref: '#/components/examples/StatementSearch400'
-        '401':
-          description: Unauthorized access
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-              examples:
-                StatementSearch401:
-                  $ref: '#/components/examples/StatementSearch401'
-        '403':
-          description: Forbidden
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-              examples:
-                StatementSearch403:
-                  $ref: '#/components/examples/StatementSearch403'
-        '404':
-          description: Not Found
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-              examples:
-                StatementSearch404:
-                  $ref: '#/components/examples/StatementSearch404'
-        '405':
-          description: Method Not Allowed
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-              examples:
-                StatementSearch405:
-                  $ref: '#/components/examples/StatementSearch405'
-        '406':
-          description: Unacceptable
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-              examples:
-                StatementSearch406:
-                  $ref: '#/components/examples/StatementSearch406'
-        '415':
-          description: Unsupported Media Type
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-              examples:
-                StatementSearch415:
-                  $ref: '#/components/examples/StatementSearch415'
-        '422':
-          description: Unprocessable Entity
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-              examples:
-                StatementSearch422:
-                  $ref: '#/components/examples/StatementSearch422'
-        '500':
-          description: Internal Server Error
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  errorResponse:
-                    code: 500-01
-                    message: internal server error
-                    developerInfo:
-                      developerMessage: internal server error
-                      moreInfo:
-                        There was a problem handling your request. Please
-                        try again. If the problem persists please contact Support
-                      messageid: 25557-84290371-1
       deprecated: false
       x-child-product-name: Accounts
       x-proxy-name: Get statements v1
@@ -965,7 +356,10 @@ paths:
     post:
       tags:
         - Statements
-      description: 'Retrieves the PDF Statement based on the account number'
+      description:
+        "Retrieves the PDF Statement based on the account number.\n   \
+        \     <br><br>\n        For more information go to <a href=\"../docs/?path=docs/resources.md/#account\"\
+        \ title=\"Click to open\">Resources.</a>"
       operationId: SearchStatementByYearMonth
       parameters:
         - name: x-fapi-financial-id
@@ -996,35 +390,15 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/pdfIdsResponse'
-        '400':
-          description: Bad Request
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '422':
-          description: Unprocessable Entity
-        '500':
-          description: Internal Server Error
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  errorResponse:
-                    code: 500-01
-                    message: internal server error
-                    developerInfo:
-                      developerMessage: internal server error
-                      moreInfo:
-                        There was a problem handling your request. Please
-                        try again. If the problem persists please contact Support
-                      messageid: 25557-84290371-1
+              example:
+                pdfs:
+                  - statementDate: '2022-05-31T00:00:00.000+0000'
+                    docId: 'E68A974727A06929B786939B8C68B030CA4E56A3079985834543673C575B740FBE67229617FB'
+                    link: 'https://card.dsp.apimz.onefiserv.net/v2/statements/search/pdf/E68A974727A06929B786939B8C68B030CA4E56A3079985834543673C575B740FBE67229617FB'
+                  - statementDate: '2022-05-31T00:00:00.000+0000'
+                    docId: 'E68A974727A06929B786939B8C68B030CA4E56A3079985834543673C575B740FBE67229617FB'
+                    link: 'https://card.dsp.apimz.onefiserv.net/v2/statements/search/pdf/E68A974727A06929B786939B8C68B030CA4E56A3079985834543673C575B740FBE67229617FB'
+
       deprecated: false
       x-child-product-name: Accounts
       x-proxy-name: Search statement by year and month v1
@@ -1033,7 +407,11 @@ paths:
     get:
       tags:
         - Statements
-      description: 'Returns the binary in the PDF format based on the documentId provided'
+      description:
+        "Returns the binary in the PDF format based on the documentId provided\
+        \ in the request.\n        <br><br>\n        For more information go to <a\
+        \ href=\"../docs/?path=docs/resources.md/#account\" title=\"Click to open\"\
+        >Resources.</a>"
       operationId: downloadPDFBinary
       parameters:
         - name: x-fapi-financial-id
@@ -1067,33 +445,6 @@ paths:
               schema:
                 type: string
                 format: binary
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-        '422':
-          description: Unprocessable Entity
-        '500':
-          description: Internal Server Error
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  errorResponse:
-                    code: 500-01
-                    message: internal server error
-                    developerInfo:
-                      developerMessage: internal server error
-                      moreInfo:
-                        There was a problem handling your request. Please
-                        try again. If the problem persists please contact Support
-                      messageid: 25557-84290371-1
       deprecated: false
       x-child-product-name: Accounts
       x-proxy-name: Download PDF binary v1
@@ -1102,7 +453,12 @@ paths:
     post:
       tags:
         - Details
-      description: 'Returns account information for the given account number based'
+      description:
+        "Returns account information for the given account number based\
+        \ on the filter criteria passed which could be either 'summary', 'detail'\
+        \ or 'all'. Applies for credit only.\n        <br><br>\n        For more information\
+        \ go to <a href=\"../docs/?path=docs/resources.md/#account\" title=\"Click\
+        \ to open\">Resources.</a>"
       operationId: getAccountV2
       parameters:
         - name: x-fapi-userId
@@ -1163,109 +519,6 @@ paths:
                   $ref: '#/components/examples/AccountSearchResponseDetail'
                 Account Search - All:
                   $ref: '#/components/examples/AccountSearchResponseAll'
-        '400':
-          description: Invalid Request
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-              examples:
-                AccountSearch400:
-                  $ref: '#/components/examples/AccountSearch400'
-        '401':
-          description: Unauthorized access
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-              examples:
-                AccountSearch401:
-                  $ref: '#/components/examples/AccountSearch401'
-        '403':
-          description: Forbidden
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-              examples:
-                AccountSearch403:
-                  $ref: '#/components/examples/AccountSearch403'
-        '404':
-          description: Not Found
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-              examples:
-                AccountSearch404:
-                  $ref: '#/components/examples/AccountSearch404'
-        '406':
-          description: Unacceptable
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-              examples:
-                AccountSearch406:
-                  $ref: '#/components/examples/AccountSearch406'
-        '415':
-          description: Unsupported Media Type
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-              examples:
-                AccountSearch415:
-                  $ref: '#/components/examples/AccountSearch415'
-        '422':
-          description: Unprocessable Entity
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-              examples:
-                AccountSearch422:
-                  $ref: '#/components/examples/AccountSearch422'
-        '500':
-          description: Internal Server Error
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  errorResponse:
-                    code: 500-01
-                    message: internal server error
-                    developerInfo:
-                      developerMessage: internal server error
-                      moreInfo:
-                        There was a problem handling your request. Please
-                        try again. If the problem persists please contact Support
-                      messageid: 25557-84290371-1
       deprecated: false
       x-child-product-name: Accounts
       x-proxy-name: Get account v2
@@ -1274,7 +527,11 @@ paths:
     post:
       tags:
         - Details
-      description: 'Search for the payoff balance of the current day'
+      description:
+        "Search for the payoff balance of the current day and the following\
+        \ 30 days balance of an account.Applies for credit only.\n        <br><br>\n\
+        \        For more information go to <a href=\"../docs/?path=docs/resources.md/#account\"\
+        \ title=\"Click to open\">Resources.</a>"
       operationId: getAccountPayOffBalances
       parameters:
         - name: x-fapi-userId
@@ -1312,121 +569,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SearchPayoffBalanceResponse'
-        '400':
-          description: Invalid Request
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-              examples:
-                PayOffBalanceSearch400:
-                  $ref: '#/components/examples/PayoffBalanceSearch400'
-        '401':
-          description: Unauthorized access
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-              examples:
-                PayOffBalanceSearch401:
-                  $ref: '#/components/examples/PayoffBalanceSearch401'
-        '403':
-          description: Forbidden
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-              examples:
-                PayOffBalanceSearch403:
-                  $ref: '#/components/examples/PayoffBalanceSearch403'
-        '404':
-          description: Not Found
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-              examples:
-                PayOffBalanceSearch404:
-                  $ref: '#/components/examples/PayoffBalanceSearch404'
-        '405':
-          description: Method Not Allowed
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-              examples:
-                PayOffBalanceSearch405:
-                  $ref: '#/components/examples/PayoffBalanceSearch405'
-        '406':
-          description: Unacceptable
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-              examples:
-                PayOffBalanceSearch406:
-                  $ref: '#/components/examples/PayoffBalanceSearch406'
-        '415':
-          description: Unsupported Media Type
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-              examples:
-                PayOffBalanceSearch415:
-                  $ref: '#/components/examples/PayoffBalanceSearch415'
-        '422':
-          description: Unprocessable Entity
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-              examples:
-                PayOffBalanceSearch422:
-                  $ref: '#/components/examples/PayoffBalanceSearch422'
-        '500':
-          description: Internal Server Error
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  errorResponse:
-                    code: 500-01
-                    message: internal server error
-                    developerInfo:
-                      developerMessage: internal server error
-                      moreInfo:
-                        There was a problem handling your request. Please
-                        try again. If the problem persists please contact Support
-                      messageid: 25557-84290371-1
+              example:
+                payoffBalance:
+                  - dailyInterestAmount: '1.40'
+                    promotionPayoffBalanceAmount: '5326.52'
+                    promotionPayoffBalanceDate: '2025-09-09'
+                  - dailyInterestAmount: '1.40'
+                    promotionPayoffBalanceAmount: '5326.52'
+                    promotionPayoffBalanceDate: '2025-09-09'
       deprecated: false
       x-child-product-name: Accounts
       x-proxy-name: Get payoff balance v1
@@ -1435,7 +585,10 @@ paths:
     post:
       tags:
         - Limits
-      description: 'Returns the limit values for a given account'
+      description:
+        "Returns the limit values for a given account.\n        <br><br>\n\
+        \        For more information go to <a href=\"../docs/?path=docs/resources.md/#account\"\
+        \ title=\"Click to open\">Resources.</a>"
       operationId: AccountsLimitSearchRequest
       parameters:
         - name: userId
@@ -1471,80 +624,23 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountLimitSearchResponse'
-        '400':
-          description: Invalid Request
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/400Error'
-        '401':
-          description: Unauthorized access
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/401Error'
-        '403':
-          description: Forbidden
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/403Error'
-        '404':
-          description: Not Found
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/404Error'
-        '409':
-          description: Resource conflict
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/409Error'
-        '415':
-          description: Unsupported Media Type
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/415Error'
-        '500':
-          description: Internal Server Error
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  errorResponse:
-                    code: 500-01
-                    message: internal server error
-                    developerInfo:
-                      developerMessage: internal server error
-                      moreInfo:
-                        There was a problem handling your request.  Please
-                        try again.  If the problem persists please contact Fiserv
-                        ETSD at 888-243-2543 (you unique messageID included below)
-                      messageid: 25557-84290371-1
+              example:
+                currentBalanceAmount: '3000.00'
+                creditLimitAmount: '3000.00'
+                availableCreditAmount: '3000.00'
+                cashLimitAmount: '3000.00'
+                availableCashAmount: '3000.00'
+                creditLineMaximumAmount: '3000.00'
+                temporaryCreditLine: true
+                previousCreditLimitAmount: '2000.00'
+                temporaryCreditLimitAmount: '200.00'
+                temporaryCreditLineEndDate: '1972-08-13'
+                billingCycle: '10'
+                billingLevel: 'Individual'
+                lastpermanentCreditLimit: '1000.00'
+                lastPermanentCreditLimitDate: '2023-09-10'
+                highBalanceDate: '1995-09-09'
+                highBalanceAmount: '2000.0'
       deprecated: false
       x-child-product-name: Accounts
       x-proxy-name: Accounts limit search request v1
@@ -1553,7 +649,12 @@ paths:
     patch:
       tags:
         - Limits
-      description: 'Used to update the credit limit, cash limit'
+      description:
+        "Used to update the credit limit, cash limit, or the temporary\
+        \ credit limit based on account number. The user must provide an update to\
+        \ one of the limit fields. Applies to credit cards only.\n        <br><br>\n\
+        \        For more information go to <a href=\"../docs/?path=docs/resources.md/#account\"\
+        \ title=\"Click to open\">Resources.</a>"
       operationId: updateLimits
       parameters:
         - name: x-fapi-userId
@@ -1587,80 +688,6 @@ paths:
       responses:
         '204':
           description: Updated
-        '400':
-          description: Invalid Request
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/400Error'
-        '401':
-          description: Unauthorized access
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/401Error'
-        '403':
-          description: Forbidden
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/403Error'
-        '404':
-          description: Not Found
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/404Error'
-        '409':
-          description: Resource conflict
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/409Error'
-        '415':
-          description: Unsupported Media Type
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/415Error'
-        '500':
-          description: Internal Server Error
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  errorResponse:
-                    code: 500-01
-                    message: internal server error
-                    developerInfo:
-                      developerMessage: internal server error
-                      moreInfo:
-                        There was a problem handling your request.  Please
-                        try again.  If the problem persists please contact Fiserv
-                        ETSD at 888-243-2543 (you unique messageID included below)
-                      messageid: 25557-84290371-1
       deprecated: false
       x-child-product-name: Accounts
       x-proxy-name: Update limits v1
@@ -1669,7 +696,11 @@ paths:
     post:
       tags:
         - Transactions
-      description: 'Retrieves the list of Transactions for the account'
+      description:
+        "Retrieves the list of Transactions for the account based on the\
+        \ filter criteria passed in the request. Only applicable for credit.\n   \
+        \     <br><br>\n        For more information go to <a href=\"../docs/?path=docs/resources.md/#account\"\
+        \ title=\"Click to open\">Resources.</a>"
       operationId: getAccountTransactions
       parameters:
         - name: userId
@@ -1754,304 +785,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountTransactionSearchResponse'
-        '400':
-          description: Invalid Request
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-        '401':
-          description: Unauthorized access
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-        '403':
-          description: Forbidden
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-        '404':
-          description: Not Found
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-        '405':
-          description: Method Not Allowed
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-        '406':
-          description: Unacceptable
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-        '415':
-          description: Unsupported Media Type
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-        '422':
-          description: Unprocessable Entity
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-        '429':
-          description: Too Many Requests
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/4xxError'
-        '500':
-          description: Internal Server Error
-          headers:
-            x-fapi-interaction-id:
-              $ref: '#/components/headers/interactionId'
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  errorResponse:
-                    code: 500-01
-                    message: internal server error
-                    developerInfo:
-                      developerMessage: internal server error
-                      moreInfo:
-                        There was a problem handling your request.  Please
-                        try again.  If the problem persists please contact Fiserv
-                        ETSD at 888-243-2543 (you unique messageID included below)
-                      messageid: 25557-84290371-1
       deprecated: false
       x-child-product-name: Accounts
       x-proxy-name: Get account transactions v1
       x-group-name: Transactions
 components:
   schemas:
-    400Error:
-      type: object
-      properties:
-        type:
-          type: string
-          description: An URI reference that identifies the problem type
-          example: https://developer.fiserv.com/product/CardDeveloper/docs/?path=docs/response-codes.md&branch=main
-        title:
-          type: string
-          description: Short summary of the problem.
-          example: Bad Request
-        detail:
-          type: string
-          description: Specific explanation to the occurence of the problem.
-          example: CONTENT-TYPE header required. Supported content-type is application/json
-        instance:
-          type: string
-          description:
-            A URI reference that identifies the specific occurence of the
-            problem.
-          example: /api/basepath
-        status:
-          type: number
-          description:
-            The HTTP status code generated by the origin server for this
-            occurance of the problem.
-          example: 400
-    401Error:
-      type: object
-      properties:
-        type:
-          type: string
-          description: An URI reference that identifies the problem type
-          example: https://developer.fiserv.com/product/CardDeveloper/docs/?path=docs/response-codes.md&branch=main
-        title:
-          type: string
-          description: Short summary of the problem.
-          example: Unauthorized
-        detail:
-          type: string
-          description: Specific explanation to the occurence of the problem.
-          example: Invalid Access Token
-        instance:
-          type: string
-          description:
-            A URI reference that identifies the specific occurence of the
-            problem.
-          example: /api/basepath
-        status:
-          type: number
-          description:
-            The HTTP status code generated by the origin server for this
-            occurance of the problem.
-          example: 401
-    403Error:
-      type: object
-      properties:
-        type:
-          type: string
-          description: An URI reference that identifies the problem type
-          example: https://developer.fiserv.com/product/CardDeveloper/docs/?path=docs/response-codes.md&branch=main
-        title:
-          type: string
-          description: Short summary of the problem.
-          example: Forbidden
-        detail:
-          type: string
-          description: Specific explanation to the occurence of the problem.
-          example: Authorization failure
-        instance:
-          type: string
-          description:
-            A URI reference that identifies the specific occurence of the
-            problem.
-          example: /api/basepath
-        status:
-          type: number
-          description:
-            The HTTP status code generated by the origin server for this
-            occurance of the problem.
-          example: 403
-    404Error:
-      type: object
-      properties:
-        type:
-          type: string
-          description: An URI reference that identifies the problem type
-          example: https://developer.fiserv.com/product/CardDeveloper/docs/?path=docs/response-codes.md&branch=main
-        title:
-          type: string
-          description: Short summary of the problem.
-          example: Resource Not found
-        detail:
-          type: string
-          description: Specific explanation to the occurence of the problem.
-          example:
-            No matching search results found or you do not have sufficient
-            access rights to get search results matching your criteria.
-        instance:
-          type: string
-          description:
-            A URI reference that identifies the specific occurence of the
-            problem.
-          example: /api/basepath
-        status:
-          type: number
-          description:
-            The HTTP status code generated by the origin server for this
-            occurance of the problem.
-          example: 404
-    409Error:
-      type: object
-      properties:
-        type:
-          type: string
-          description: An URI reference that identifies the problem type
-          example: https://developer.fiserv.com/product/CardDeveloper/docs/?path=docs/response-codes.md&branch=main
-        title:
-          type: string
-          description: Short summary of the problem.
-          example: Resource conflict
-        detail:
-          type: string
-          description: Specific explanation to the occurence of the problem.
-          example: Card is already present with the same status
-        instance:
-          type: string
-          description:
-            A URI reference that identifies the specific occurence of the
-            problem.
-          example: /api/basepath
-        status:
-          type: number
-          description:
-            The HTTP status code generated by the origin server for this
-            occurance of the problem.
-          example: 409
-    415Error:
-      type: object
-      properties:
-        type:
-          type: string
-          description: An URI reference that identifies the problem type
-          example: https://developer.fiserv.com/product/CardDeveloper/docs/?path=docs/response-codes.md&branch=main
-        title:
-          type: string
-          description: Short summary of the problem.
-          example: Unsupported Media Type
-        detail:
-          type: string
-          description: Specific explanation to the occurence of the problem.
-          example: unsupported Media Type
-        instance:
-          type: string
-          description:
-            A URI reference that identifies the specific occurence of the
-            problem.
-          example: /api/basepath
-        status:
-          type: number
-          description:
-            The HTTP status code generated by the origin server for this
-            occurance of the problem.
-          example: 415
-    4xxError:
-      type: object
-      properties:
-        type:
-          type: string
-          description: An URI reference that identifies the problem type
-          example: https://developer.fiserv.com/product/CardDeveloper/docs/?path=docs/response-codes.md&branch=main
-        title:
-          type: string
-          description: Short summary of the problem.
-          example: Invalid Request
-        detail:
-          type: string
-          description: Specific explanation to the occurence of the problem.
-          example: We had a problem getting your credit and debit card information.
-        instance:
-          type: string
-          description:
-            A URI reference that identifies the specific occurence of the
-            problem.
-          example: /v1/entity/example
-        status:
-          type: number
-          description:
-            The HTTP status code generated by the origin server for this
-            occurance of the problem.
-          example: 400
     LenderInstitutionAddress:
       required:
         - addressLine1
@@ -16422,6 +15161,7 @@ components:
         customerName: Doe, Jesse H
         association: PRIMARY
         accountStatus: NORMAL
+
     AccountSearchResponseDetail:
       value:
         accountType: Consumer
